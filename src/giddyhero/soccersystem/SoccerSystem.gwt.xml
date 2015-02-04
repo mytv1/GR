@@ -10,11 +10,11 @@
 	<inherits name='com.google.gwt.user.User' />
 
 	<!-- Inherit the default GWT style sheet.  You can change       -->
-	<!-- the theme of your GWT application by uncommenting          -->	
+	<!-- the theme of your GWT application by uncommenting          -->
 	<!-- any one of the following lines.                            -->
 	<inherits name="com.googlecode.objectify.Objectify" />
 	<inherits name="com.googlecode.gwtphonegap.PhoneGap" />
-<!-- 	<inherits name="com.googlecode.objectify.ObjectifyService" /> -->
+	<!-- 	<inherits name="com.googlecode.objectify.ObjectifyService" /> -->
 	<inherits name='com.google.gwt.user.theme.clean.Clean' />
 	<!-- <inherits name='com.google.gwt.user.theme.standard.Standard'/> -->
 	<!-- <inherits name='com.google.gwt.user.theme.chrome.Chrome'/> -->
@@ -30,7 +30,6 @@
 
 	<!-- allow Super Dev Mode -->
 	<add-linker name="xsiframe" />
-	<entry-point
-		class="giddyhero.soccersystem.client.SoccerSystem">
+	<entry-point class="giddyhero.soccersystem.client.SoccerSystem">
 	</entry-point>
 </module>
