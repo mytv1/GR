@@ -1,0 +1,2 @@
+serviceClass: giddyhero.soccersystem.client.GreetingService
+path: E912CB1E85EF87007EC790361249163C.gwt.rpc

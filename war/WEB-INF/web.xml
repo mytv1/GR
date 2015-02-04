@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+              http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	version="2.5" xmlns="http://java.sun.com/xml/ns/javaee">
+
+	<!-- Servlets -->
+	<!-- Servlets Greeting -->
+	<servlet>
+		<servlet-name>greetServlet</servlet-name>
+		<servlet-class>giddyhero.soccersystem.server.GreetingServiceImpl
+		</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>greetServlet</servlet-name>
+		<url-pattern>/soccersystem/greet</url-pattern>
+	</servlet-mapping>
+
+	<!-- Servlets Player -->
+	<servlet>
+		<servlet-name>playerServlet</servlet-name>
+		<servlet-class>giddyhero.soccersystem.server.PlayerServiceImpl
+		</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>playerServlet</servlet-name>
+		<url-pattern>/soccersystem/player</url-pattern>
+	</servlet-mapping>
+
+	<!-- Servlets Team -->
+	<servlet>
+		<servlet-name>teamServlet</servlet-name>
+		<servlet-class>giddyhero.soccersystem.server.TeamServiceImpl
+		</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>teamServlet</servlet-name>
+		<url-pattern>/soccersystem/team</url-pattern>
+	</servlet-mapping>
+
+	<!-- Servlets Team -->
+	<servlet>
+		<servlet-name>newsServlet</servlet-name>
+		<servlet-class>giddyhero.soccersystem.server.NewsServiceImpl
+		</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>newsServlet</servlet-name>
+		<url-pattern>
+			/soccersystem/news
+		</url-pattern>
+	</servlet-mapping>
+
+	<!-- Default page to serve -->
+	<welcome-file-list>
+		<welcome-file>SoccerSystem.html</welcome-file>
+	</welcome-file-list>
+
+</web-app>

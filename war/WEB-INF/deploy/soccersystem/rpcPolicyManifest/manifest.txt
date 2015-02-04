@@ -1,0 +1,7 @@
+# Module soccersystem
+# RPC service class, partial path of RPC policy file
+giddyhero.soccersystem.client.manager.ui.team.TeamService, C24243E4F9D9F89531A055E879B481CA.gwt.rpc
+giddyhero.soccersystem.client.manager.ui.player.PlayerService, 5199FC64DA60854DEAA3795E97D0114E.gwt.rpc
+giddyhero.soccersystem.client.manager.ui.news.NewsService, 459DD4E1E3696B42C988808572488E2C.gwt.rpc
+giddyhero.soccersystem.client.GreetingService, E912CB1E85EF87007EC790361249163C.gwt.rpc
+com.googlecode.gwtphonegap.client.log.shared.PhoneGapLogService, BB850280443CBF073E9FB7C0308476B9.gwt.rpc

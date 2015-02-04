@@ -1,0 +1,99 @@
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+	.eastPanel {
+		background-color: #F60;
+	}
+	
+	.westPanel {
+		background-color: #EEE;
+	}
+	
+	.northPanel {
+		background-color: #FFF;
+	}
+	
+	.southPanel {
+		background-color: #FFF;
+	}
+	
+	.centerPanel {
+		background-color: #FFC;
+	}
+	
+	.indentation1 {
+		margin-left: 15px;
+	}
+	
+	.northItem {
+		padding-top: 5px;
+		padding-right: 10px;
+		padding-left: 10px;
+	}
+	
+	.logo {
+		padding-right: 600px;
+	}
+	</ui:style>
+	<g:DockLayoutPanel unit="EM">
+		<g:north size="3">
+			<g:FlowPanel styleName="{style.northPanel}">
+				<g:HorizontalPanel>
+					<g:Image ui:field="logo" styleName="{style.logo}"></g:Image>
+					<g:Label styleName="{style.northItem}"> Welcome Admin </g:Label>
+					<g:Hyperlink styleName="{style.northItem}"> My Account </g:Hyperlink>
+					<g:Hyperlink styleName="{style.northItem}"> Help </g:Hyperlink>
+					<g:Hyperlink styleName="{style.northItem}"> Sign Out </g:Hyperlink>
+				</g:HorizontalPanel>
+			</g:FlowPanel>
+		</g:north>
+		<g:west size="10">
+			<g:FlowPanel styleName="{style.westPanel}">
+				<g:VerticalPanel>
+					<g:Label> League </g:Label>
+					<g:Label styleName="{style.indentation1}"> Create League </g:Label>
+					<g:Label styleName="{style.indentation1}"> Create Season </g:Label>
+
+					<g:Hyperlink ui:field="hlTeams"> Team </g:Hyperlink>
+					<g:Hyperlink ui:field="hlCreateTeam" styleName="{style.indentation1}">
+						CreateTeam
+					</g:Hyperlink>
+
+					<g:Hyperlink ui:field="hlPlayerAllOverview"> Player </g:Hyperlink>
+					<g:Hyperlink ui:field="hlNewPlayer" styleName="{style.indentation1}">Create
+						Player</g:Hyperlink>
+
+					<g:Label> Match </g:Label>
+					<g:Label styleName="{style.indentation1}"> Create Match </g:Label>
+
+					<g:Hyperlink ui:field="hlNews"> News </g:Hyperlink>
+					<g:Hyperlink ui:field="hlNewNews" styleName="{style.indentation1}">Create
+						News</g:Hyperlink>
+
+					<g:Label> User </g:Label>
+					<g:Label styleName="{style.indentation1}"> Find User</g:Label>
+
+					<g:Label> Games </g:Label>
+					<g:Label styleName="{style.indentation1}"> Knowledge </g:Label>
+					<g:Label styleName="{style.indentation1}"> Checking </g:Label>
+					<g:Label styleName="{style.indentation1}"> Fan battle </g:Label>
+					<g:Label styleName="{style.indentation1}"> Match Bet </g:Label>
+
+					<g:Label> Store </g:Label>
+					<g:Label styleName="{style.indentation1}"> New Item </g:Label>
+
+				</g:VerticalPanel>
+			</g:FlowPanel>
+		</g:west>
+		<g:center>
+			<g:FlowPanel styleName="{style.centerPanel}" ui:field="centerPanel">
+				<g:Label>This is the CENTER panel</g:Label>
+			</g:FlowPanel>
+		</g:center>
+		<g:south size="2">
+			<g:FlowPanel styleName="{style.southPanel}">
+				<g:Label>SOUTH</g:Label>
+			</g:FlowPanel>
+		</g:south>
+	</g:DockLayoutPanel>
+</ui:UiBinder> 

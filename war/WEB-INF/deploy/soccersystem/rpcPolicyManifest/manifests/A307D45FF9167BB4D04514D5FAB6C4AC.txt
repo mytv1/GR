@@ -1,0 +1,2 @@
+serviceClass: giddyhero.soccersystem.client.manager.ui.news.NewsService
+path: 459DD4E1E3696B42C988808572488E2C.gwt.rpc

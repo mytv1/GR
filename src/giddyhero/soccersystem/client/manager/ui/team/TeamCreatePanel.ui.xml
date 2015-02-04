@@ -1,0 +1,53 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+		.important {
+		font-weight: bold;
+		}
+		.mytv-form {
+		background-color: #EEE;
+		padding: 20px;
+		margin:
+		20px;
+		}
+		.mytv-label {
+		width: 200px;
+		}
+		.mytv-textfield {
+		width: 800px;
+		height: 400px;
+		}
+		.mytv-button {
+		margin-top: 20px;
+		margin-left: 250px;
+		width: 100px;
+		height: 25px;
+		}
+	</ui:style>
+	<g:HTMLPanel>
+	        <g:VerticalPanel styleName="{style.mytv-form}">
+			<g:Label> New Team </g:Label>
+			<g:Label> Let's inform information of the team</g:Label>
+			<g:HorizontalPanel>
+				<g:Label styleName="{style.mytv-label}"> Name </g:Label>
+				<g:TextBox ui:field="tbName"></g:TextBox>
+			</g:HorizontalPanel>
+			<g:HorizontalPanel>
+				<g:Label styleName="{style.mytv-label}"> Establish Year </g:Label>
+				<g:ListBox ui:field='lbYear'></g:ListBox>
+			</g:HorizontalPanel>
+			<g:HorizontalPanel>
+				<g:Label styleName="{style.mytv-label}"> Stadium Name </g:Label>
+				<g:TextBox ui:field="tbStadiumName"></g:TextBox>
+			</g:HorizontalPanel>
+			<g:HorizontalPanel>
+				<g:Label styleName="{style.mytv-label}"> Nation </g:Label>
+				<g:TextBox ui:field="tbNation"></g:TextBox>
+			</g:HorizontalPanel>
+			
+			<g:Button styleName="{style.mytv-button}" ui:field="btConfirm" text="OK"/>
+		</g:VerticalPanel>
+	        
+	</g:HTMLPanel>
+</ui:UiBinder> 
