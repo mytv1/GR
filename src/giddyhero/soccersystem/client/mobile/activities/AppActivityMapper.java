@@ -4,6 +4,10 @@ import giddyhero.soccersystem.client.mobile.activities.greeting.GreetingActivity
 import giddyhero.soccersystem.client.mobile.activities.greeting.GreetingPlace;
 import giddyhero.soccersystem.client.mobile.activities.home.HomeActivity;
 import giddyhero.soccersystem.client.mobile.activities.home.HomePlace;
+import giddyhero.soccersystem.client.mobile.activities.news.detail.NewsDetailActivity;
+import giddyhero.soccersystem.client.mobile.activities.news.detail.NewsDetailPlace;
+import giddyhero.soccersystem.client.mobile.activities.news.list.NewsActivity;
+import giddyhero.soccersystem.client.mobile.activities.news.list.NewsPlace;
 
 import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.activity.shared.ActivityMapper;
@@ -21,7 +25,12 @@ public class AppActivityMapper implements ActivityMapper {
 	public Activity getActivity(Place place) {
 		if (place instanceof GreetingPlace)
 			return new GreetingActivity(clientFactory, place);
-
+		else if (place instanceof HomePlace)
+			return new HomeActivity(clientFactory, place);
+		else if (place instanceof NewsPlace)
+			return new NewsActivity(clientFactory, place);
+		else if (place instanceof NewsDetailPlace)
+			return new NewsDetailActivity(clientFactory, place);
 		return new HomeActivity(clientFactory, place);
 	}
 }

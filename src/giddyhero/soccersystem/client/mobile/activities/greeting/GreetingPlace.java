@@ -12,7 +12,7 @@ public class GreetingPlace extends BasicPlace{
 		setToken("Greeting");
 	}
 	
-	public static class HomePlaceTokenizer implements PlaceTokenizer<GreetingPlace>{
+	public static class GreetingPlaceTokenizer implements PlaceTokenizer<GreetingPlace>{
 
 		@Override
 		public GreetingPlace getPlace(String token) {

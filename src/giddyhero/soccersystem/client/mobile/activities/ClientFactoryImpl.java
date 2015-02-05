@@ -4,6 +4,10 @@ import giddyhero.soccersystem.client.mobile.activities.greeting.GreetingView;
 import giddyhero.soccersystem.client.mobile.activities.greeting.GreetingViewImpl;
 import giddyhero.soccersystem.client.mobile.activities.home.HomeView;
 import giddyhero.soccersystem.client.mobile.activities.home.HomeViewImpl;
+import giddyhero.soccersystem.client.mobile.activities.news.detail.NewsDetailView;
+import giddyhero.soccersystem.client.mobile.activities.news.detail.NewsDetailViewImpl;
+import giddyhero.soccersystem.client.mobile.activities.news.list.NewsView;
+import giddyhero.soccersystem.client.mobile.activities.news.list.NewsViewImpl;
 
 import com.google.gwt.place.shared.PlaceController;
 import com.google.web.bindery.event.shared.EventBus;
@@ -37,5 +41,15 @@ public class ClientFactoryImpl  implements ClientFactory  {
 	@Override
 	public GreetingView getGreetingView() {
 		return new GreetingViewImpl();
+	}
+
+	@Override
+	public NewsView getNewsView() {
+		return new NewsViewImpl();
+	}
+
+	@Override
+	public NewsDetailView getNewsDetailView() {
+		return new NewsDetailViewImpl();
 	}
 }
