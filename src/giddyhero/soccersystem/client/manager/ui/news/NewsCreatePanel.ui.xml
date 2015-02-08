@@ -1,0 +1,53 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+		.form {
+		background-color: #EEE;
+		padding: 20px;
+		margin: 20px;
+		}
+
+		.label {
+		width: 100px;
+		}
+
+		.button {
+		margin-top: 20px;
+		margin-left: 200px;
+		width: 150px:
+		}
+
+		.content {
+		width: 800px;
+		height: 300px;
+		}
+	</ui:style>
+	<g:HTMLPanel>
+		<g:VerticalPanel styleName="{style.form}">
+			<g:HorizontalPanel>
+				<g:Label styleName="{style.label}">Title</g:Label>
+				<g:TextBox ui:field="tbTitle"></g:TextBox>
+			</g:HorizontalPanel>
+			<g:HorizontalPanel>
+				<g:Label styleName="{style.label}">Title Image</g:Label>
+				<g:TextBox ui:field="tbTitleImage"></g:TextBox>
+			</g:HorizontalPanel>
+			<g:HorizontalPanel>
+				<g:Label styleName="{style.label}">Category</g:Label>
+				<g:ListBox ui:field="lbCategory"></g:ListBox>
+			</g:HorizontalPanel>
+			<g:HorizontalPanel>
+				<g:Label styleName="{style.label}">Tagged Player</g:Label>
+				<g:ListBox ui:field="lbTaggedPlayer"></g:ListBox>
+			</g:HorizontalPanel>
+			<g:HorizontalPanel>
+				<g:Label styleName="{style.label}">Content</g:Label>
+				<g:TextArea styleName="{style.content}" ui:field="taContent"></g:TextArea>
+			</g:HorizontalPanel>
+
+			<g:Button ui:field="btConfirm" styleName="{style.button}"
+				text="OK"></g:Button>
+		</g:VerticalPanel>
+	</g:HTMLPanel>
+</ui:UiBinder> 
