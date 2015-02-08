@@ -1,5 +1,7 @@
 package giddyhero.soccersystem.client;
 
+import giddyhero.soccersystem.client.manager.ui.news.NewsService;
+import giddyhero.soccersystem.client.manager.ui.news.NewsServiceAsync;
 import giddyhero.soccersystem.client.mobile.activities.AppActivityMapper;
 import giddyhero.soccersystem.client.mobile.activities.AppAnimationMapper;
 import giddyhero.soccersystem.client.mobile.activities.AppPlaceHistoryMapper;
@@ -11,6 +13,7 @@ import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.place.shared.PlaceHistoryHandler;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.rpc.ServiceDefTarget;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.googlecode.gwtphonegap.client.PhoneGap;
@@ -28,31 +31,41 @@ import com.googlecode.mgwt.ui.client.widget.animation.AnimationWidget;
 public class MobileEntryPoint implements EntryPoint {
 
 	private PhoneGap phoneGap;
-	private static ClientFactory clientFactory = GWT.create(ClientFactoryImpl.class);
-	private static GreetingServiceAsync greetingServiceAsync = GWT.create(GreetingService.class);
-	
+	private static ClientFactory clientFactory = GWT
+			.create(ClientFactoryImpl.class);
+	private static GreetingServiceAsync greetingServiceAsync = GWT
+			.create(GreetingService.class);
+	public final static NewsServiceAsync newsService = GWT
+			.create(NewsService.class);
+
 	@Override
 	public void onModuleLoad() {
 		initPhoneGap();
 		setMGWTSettings();
 		initManager();
 	}
-	
+
 	private void initManager() {
-		AppPlaceHistoryMapper historyMapper = GWT.create(AppPlaceHistoryMapper.class);
-		
+		AppPlaceHistoryMapper historyMapper = GWT
+				.create(AppPlaceHistoryMapper.class);
+
 		createPhoneDisplay();
-		
-		PlaceHistoryHandler historyHandler = new PlaceHistoryHandler(historyMapper);
-		historyHandler.register(clientFactory.getPlaceController(), clientFactory.getEventBus(), new HomePlace());
+
+		PlaceHistoryHandler historyHandler = new PlaceHistoryHandler(
+				historyMapper);
+		historyHandler.register(clientFactory.getPlaceController(),
+				clientFactory.getEventBus(), new HomePlace());
 		historyHandler.handleCurrentHistory();
 	}
 
 	private void createPhoneDisplay() {
 		AnimationWidget display = new AnimationWidget();
-		AppActivityMapper appActivityMapper = new AppActivityMapper(clientFactory);
+		AppActivityMapper appActivityMapper = new AppActivityMapper(
+				clientFactory);
 		AppAnimationMapper appAnimationMapper = new AppAnimationMapper();
-		AnimatingActivityManager activityManager = new AnimatingActivityManager(appActivityMapper, appAnimationMapper, clientFactory.getEventBus());
+		AnimatingActivityManager activityManager = new AnimatingActivityManager(
+				appActivityMapper, appAnimationMapper,
+				clientFactory.getEventBus());
 		activityManager.setDisplay(display);
 		RootPanel.get().add(display);
 	}
@@ -67,7 +80,7 @@ public class MobileEntryPoint implements EntryPoint {
 		settings.setFullscreen(true);
 		settings.setFixIOS71BodyBug(true);
 		settings.setPreventScrolling(true);
-		MGWT.applySettings(settings);		
+		MGWT.applySettings(settings);
 	}
 
 	public static ClientFactory getClientFactory() {
@@ -79,9 +92,29 @@ public class MobileEntryPoint implements EntryPoint {
 		phoneGap.addHandler(new PhoneGapAvailableHandler() {
 			@Override
 			public void onPhoneGapAvailable(PhoneGapAvailableEvent event) {
-//				if (phoneGap.isPhoneGapDevice())
-//					PhonegapUtil.prepareService((ServiceDefTarget)teamService,  "http://1-dot-mytv-ssm.appspot.com/", "/soccersystem/team");
-				Window.alert("on Phonegap Available");
+				if (phoneGap.isPhoneGapDevice()) {
+//					Window.alert("on is PhoneGap Device");
+					PhonegapUtil.prepareService((ServiceDefTarget) newsService,
+							"http://1-dot-mytv-ssm.appspot.com/",
+							"/mobileentrypoint/news");
+					// ((ServiceDefTarget) newsService)
+					// .setServiceEntryPoint("/mobileentrypoint/news");
+				} else {
+					
+					newsService.registerRelateEntity(new AsyncCallback<Void>() {
+
+						@Override
+						public void onSuccess(Void result) {
+							Window.alert("Register Success");
+						}
+
+						@Override
+						public void onFailure(Throwable caught) {
+							Window.alert("Register Failure");
+						}
+					});
+				}
+//				Window.alert("on Phonegap Available");
 			}
 		});
 
@@ -91,7 +124,7 @@ public class MobileEntryPoint implements EntryPoint {
 				Window.alert("on PhoneGap Timeout");
 			}
 		});
-		phoneGap.initializePhoneGap();		
+		phoneGap.initializePhoneGap();
 	}
 
 }

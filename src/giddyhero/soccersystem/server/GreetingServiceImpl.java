@@ -58,7 +58,7 @@ public class GreetingServiceImpl extends RemoteServiceServlet implements
 				.replaceAll(">", "&gt;");
 	}
 	
-	public void initDataStore(){
+	public void registerAllEntity(){
 //		ObjectifyService.register(Nation.class);
 		ObjectifyService.register(Player.class);
 		ObjectifyService.register(News.class);

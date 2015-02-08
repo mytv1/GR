@@ -21,14 +21,13 @@ public class NewsDetailActivity extends BasicActivity{
 		super.start(panel, eventBus);
 		view.getHeader().setText("News Detail");
 		panel.setWidget(view);
-		
-		view.addContent(((NewsDetailPlace)place).getNewsId());
 		bind();
 	}
 
 	@Override
 	public void bind() {
-		
+		NewsDetailPlace newsDetailPlace = (NewsDetailPlace)place; 
+		view.addContent(newsDetailPlace.getTitle(),newsDetailPlace.getImgUrl(),newsDetailPlace.getContent());		
 	}
 	
 	

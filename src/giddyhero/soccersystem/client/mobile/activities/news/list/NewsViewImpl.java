@@ -1,7 +1,9 @@
 package giddyhero.soccersystem.client.mobile.activities.news.list;
 
 import giddyhero.soccersystem.client.ClientUtils;
+import giddyhero.soccersystem.client.MobileEntryPoint;
 import giddyhero.soccersystem.client.mobile.activities.basic.BasicViewImpl;
+import giddyhero.soccersystem.shared.model.News;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -9,6 +11,7 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HasText;
@@ -36,18 +39,34 @@ public class NewsViewImpl extends BasicViewImpl implements NewsView{
 		this.layout.getHeaderBackButton().setVisible(false);
 		mainPanel.setHeight(ClientUtils.getHeight()
 				-this.layout.getHeaderPanel().getOffsetHeight() +"px");
-		addNews();
 		
 	}
 
-	private void addNews() {
-		newItems = new NewsItem[10];
-		for(int i = 0;i < 10;i++){
-			NewsItem item = new NewsItem("images/messi.jpg", "Messi : Why always me? Bring Ronaldo come here, ok men? " +
-					"Messi said after Argentina won Europa League");
-			mainPanel.add(item);
-			newItems[i] = item;
-		}
+	@Override
+	public void addNewsListContent(News[] newsList) {
+//		MobileEntryPoint.newsService.getAllNews(new AsyncCallback<News[]>() {
+//			
+//			@Override
+//			public void onSuccess(News[] result) {
+//				Window.alert("Suceess : "+result.length);
+				newItems = new NewsItem[newsList.length];
+				for (int j = 0; j < newsList.length; j++) {
+					News news = newsList[j];
+					NewsItem item =
+							new NewsItem(news.titleImageUrl, news.title);
+//					Window.alert(news.toString());
+					mainPanel.add(item);
+					newItems[j] = item;
+				}
+//						
+//			}
+//			
+//			@Override
+//			public void onFailure(Throwable caught) {
+//				Window.alert("Failure : "+caught.toString());
+//			}
+//		});
+		
 	}
 
 	@Override

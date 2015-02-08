@@ -10,11 +10,11 @@ import com.googlecode.objectify.annotation.Id;
 public class News  implements Serializable, IsSerializable{
 	public @Id
 	Long id;
-	public String title;
-	public String titleImageUrl;
-	public String content;
-	public String category;
-	public long taggedPlayer;
+	public String title = "";
+	public String titleImageUrl = "";
+	public String content = "";
+	public String category = "";
+	public long taggedPlayer = -1;
 
 	private News() {
 
@@ -27,5 +27,12 @@ public class News  implements Serializable, IsSerializable{
 		this.category = category;
 		this.taggedPlayer = taggedPlayer;
 	}
+
+	@Override
+	public String toString() {
+		return "Title : "+title+" \n Content "+content;
+	}
+	
+	
 	
 }

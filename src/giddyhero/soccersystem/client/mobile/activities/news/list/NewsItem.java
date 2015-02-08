@@ -43,16 +43,21 @@ public class NewsItem extends Composite {
 	}
 
 	private void initLabel(String title) {
-		this.lbTitle.setText(title);
-		lbTitle.setWidth((int) (ClientUtils.getWidth() * 0.8) + "px");
+		if (title != null){
+			this.lbTitle.setText(title);
+			lbTitle.setWidth((int) (ClientUtils.getWidth() * 0.8) + "px");			
+		}
 	}
 
 	private void initImage(String imgUrl) {
-		imgMain.setUrl(imgUrl);
-		int width = (int) (ClientUtils.getWidth() * 0.8);
-		int height = (int) (ClientUtils.getHeight() * 0.3);
-		imgMain.setWidth(width + "px");
-		imgMain.setHeight(height + "px");
+		if (imgUrl != null){
+			imgMain.setUrl(imgUrl);
+			int width = (int) (ClientUtils.getWidth() * 0.8);
+			int height = (int) (ClientUtils.getHeight() * 0.3);
+			imgMain.setWidth(width + "px");
+			imgMain.setHeight(height + "px");	
+		}
+		
 	}
 
 	public void setClickHandler(ClickHandler clickHandler) {

@@ -10,4 +10,6 @@ public interface NewsServiceAsync {
 
 	void getAllNews(AsyncCallback<News[]> callback);
 
+	void registerRelateEntity(AsyncCallback<Void> callback);
+
 }

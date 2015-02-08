@@ -7,6 +7,8 @@ import giddyhero.soccersystem.shared.model.News;
 import java.util.List;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
+import com.googlecode.objectify.Objectify;
+import com.googlecode.objectify.ObjectifyService;
 
 public class NewsServiceImpl extends RemoteServiceServlet implements NewsService{
 
@@ -23,6 +25,11 @@ public class NewsServiceImpl extends RemoteServiceServlet implements NewsService
 			news[i] = newsList.get(i);
 		}
 		return news;
+	}
+
+	@Override
+	public void registerRelateEntity() {
+		ObjectifyService.register(News.class);
 	}
 
 }

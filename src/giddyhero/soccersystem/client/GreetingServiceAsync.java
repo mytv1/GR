@@ -11,7 +11,7 @@ public interface GreetingServiceAsync {
 	void greetServer(String input, AsyncCallback<String> callback)
 			throws IllegalArgumentException;
 
-	void initDataStore(AsyncCallback<Void> asyncCallback);
+	void registerAllEntity(AsyncCallback<Void> asyncCallback);
 
 	void getAllCountryNames(AsyncCallback<String[]> callback);
 

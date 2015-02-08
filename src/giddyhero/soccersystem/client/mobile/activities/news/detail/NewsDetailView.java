@@ -4,6 +4,6 @@ import giddyhero.soccersystem.client.mobile.activities.basic.BasicView;
 
 import com.googlecode.mgwt.dom.client.event.tap.HasTapHandlers;
 
-public interface NewsDetailView extends BasicView{
-	void addContent(int newsId);
+public interface NewsDetailView extends BasicView {
+	void addContent(String title, String imgUrl, String content);
 }

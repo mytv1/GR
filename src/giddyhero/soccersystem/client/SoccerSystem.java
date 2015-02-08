@@ -36,7 +36,6 @@ public class SoccerSystem implements EntryPoint {
 			.create(NewsService.class);
 	public final static TeamServiceAsync teamService = GWT
 			.create(TeamService.class);
-	PhoneGap phonegap = GWT.create(PhoneGap.class);
 	
 
 	/**
@@ -44,9 +43,8 @@ public class SoccerSystem implements EntryPoint {
 	 */
 	public void onModuleLoad() {
 //		RootPanel.get().add(new MainPage());
-//		initPhoneGap();
 		RootLayoutPanel.get().add(new MainPage());
-		greetingService.initDataStore(new AsyncCallback<Void>() {
+		greetingService.registerAllEntity(new AsyncCallback<Void>() {
 
 			@Override
 			public void onFailure(Throwable caught) {
@@ -58,42 +56,7 @@ public class SoccerSystem implements EntryPoint {
 				Window.alert("Init Success");
 			}
 		});
-//		PhonegapUtil.prepareService(greetingService, "http://1-dot-mytv-ssm.appspot.com/", "")
-//		greetingService.initDataStore(new AsyncCallback<Void>() {
-//
-//			@Override
-//			public void onFailure(Throwable caught) {
-//				Window.alert("Failure");
-//			}
-//
-//			@Override
-//			public void onSuccess(Void result) {
-//				Window.alert("Success");				
-//			}
-//		});
-		
 	}
 
 
-	private void initPhoneGap() {
-		phonegap.addHandler(new PhoneGapAvailableHandler() {
-			
-			@Override
-			public void onPhoneGapAvailable(PhoneGapAvailableEvent event) {
-				if (phonegap.isPhoneGapDevice())
-					PhonegapUtil.prepareService((ServiceDefTarget)teamService,  "http://1-dot-mytv-ssm.appspot.com/", "/soccersystem/team");
-				Window.alert("Phonegap Available 222");
-			}
-		});
-		
-		phonegap.addHandler(new PhoneGapTimeoutHandler() {
-			
-			@Override	
-			public void onPhoneGapTimeout(PhoneGapTimeoutEvent event) {
-				Window.alert("Something wrong happend");
-			}
-		});
-		
-		phonegap.initializePhoneGap();
-	}
 }

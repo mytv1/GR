@@ -44,9 +44,9 @@ public class NewsDetailViewImpl extends BasicViewImpl implements NewsDetailView 
 				- this.layout.getHeaderPanel().getOffsetHeight() + "px");
 	}
 	
-	private void initLabel(String title) {
+	private void initLabelContent(String content) {
 		this.lbContent
-				.setText("Tuy nhiên, có thực tế ít ai biết rằng, chính thủ thành David Ospina của Arsenal đã tác động không nhỏ để người đồng hương chuyển sang London thi đấu cho The Blues. Cụ thể, trước khi Juan Cuadrado quyết định đầu quân cho Chelsea, cầu thủ này đã hỏi ý kiến của David Ospina. Thủ môn của Arsenal đã tư vấn cho tân binh của The Blues khá nhiệt tình về cuộc sống ở London cũng như cách thích nghi với Premier League. Thậm chí, anh còn lên tiếng khuyên Juan Cuadrado nên gia nhập Chelsea. Chính vì vậy, sau khi Juan Cuadrado tới đầu quân cho đội chủ sân Stamford Bridge, David Ospina đã gửi lời chúc người đồng hương trên trang Instagram với nội dung: “Chúc mọi điều tốt đẹp nhất tới với anh, đồng đội”. Đáp lại, Juan Cuadrado đã cảm ơn David Ospina: “Cảm ơn vì lời mời, người đồng đội!”. Ở thời điểm này, David Ospina đã chiếm vị trí số 1 trong khung gỗ của Arsenal. Do đó, những người hâm mộ hoàn toàn có thể chờ đợi vào cuộc đọ sức của hai tuyển thủ Colombia này khi Arsenal đụng độ với Chelsea vào ngày 25/4.");
+				.setText(content);
 
 		lbContent.setWidth((int) (ClientUtils.getWidth() * 0.8) + "px");
 	}
@@ -59,9 +59,15 @@ public class NewsDetailViewImpl extends BasicViewImpl implements NewsDetailView 
 		imgMain.setHeight(height + "px");
 	}
 
-	public void addContent(int newsId) {
-		initImage("images/messi.jpg");
-		initLabel("");
+//	public void addContent(int newsId) {
+//		initImage("images/messi.jpg");
+//		initLabelContent("");
+//	}
+
+	@Override
+	public void addContent(String title, String imgUrl, String content) {
+		initImage(imgUrl);
+		initLabelContent(content);		
 	}
 
 }

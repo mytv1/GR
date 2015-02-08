@@ -10,4 +10,6 @@ public interface NewsService extends RemoteService{
 	void addNews(News news);
 	
 	News[] getAllNews();
+	
+	void registerRelateEntity();
 }

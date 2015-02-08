@@ -6,14 +6,41 @@ import giddyhero.soccersystem.client.mobile.activities.basic.BasicPlace;
 
 public class NewsDetailPlace extends BasicPlace{
 	int newsId;
+	String content;
+	String title;
+	String imgUrl;
 	
 	public NewsDetailPlace() {
 		super();
 		setToken("newsdetail");
 	}
 	
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
+	}
+	
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	
+	public String getImgUrl() {
+		return imgUrl;
+	}
+	
+	public String getTitle() {
+		return title;
+	}
+	
 	public void setNewId(int newsId) {
 		this.newsId = newsId;
+	}
+	
+	public void setContent(String content) {
+		this.content = content;
+	}
+	
+	public String getContent() {
+		return content;
 	}
 	
 	public int getNewsId() {
