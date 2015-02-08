@@ -1,11 +1,19 @@
 package giddyhero.soccersystem.client.manager.ui.player;
 
 import giddyhero.soccersystem.client.SoccerSystem;
+import giddyhero.soccersystem.shared.Position;
 import giddyhero.soccersystem.shared.model.Player;
-import giddyhero.soccersystem.shared.model.Position;
+
+import java.sql.Date;
+import java.util.Iterator;
+import java.util.Map.Entry;
+import java.util.Set;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.i18n.rebind.LocaleUtils;
+import com.google.gwt.i18n.shared.GwtLocale;
+import com.google.gwt.i18n.shared.GwtLocaleFactory;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
@@ -29,10 +37,9 @@ public class CreatePlayerPanel extends Composite {
 	@UiField
 	Button btConfirm;
 	@UiField
-	ListBox lbPositions, lbDay, lbMonth, lbYear;
+	ListBox lbPositions, lbDay, lbMonth, lbYear, lbNationality;
 	@UiField
-	TextBox tbName, tbHeight, tbWeight;
-	Position[] positions;
+	TextBox tbName, tbHeight, tbAvatarUrl;
 
 	public CreatePlayerPanel() {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -43,6 +50,26 @@ public class CreatePlayerPanel extends Composite {
 		initPositionListBox();
 		initConfirmButton();
 		initBirthdayList();
+		initNationalityList();
+	}
+
+	private void initNationalityList() {
+		SoccerSystem.greetingService.getAllCountryNames(new AsyncCallback<String[]>() {
+
+			@Override
+			public void onFailure(Throwable caught) {
+				Window.alert("Locale failure");				
+			}
+
+			@Override
+			public void onSuccess(String[] result) {
+				Window.alert("Locale success");
+				String[] locales = result;
+				for (int i = 0; i < locales.length; i++) {
+					lbNationality.addItem(locales[i]);
+				}
+			}
+		});
 	}
 
 	private void initBirthdayList() {
@@ -62,43 +89,33 @@ public class CreatePlayerPanel extends Composite {
 	}
 
 	private void initPositionListBox() {
-		SoccerSystem.greetingService.getStandardSoccerPosition(new AsyncCallback<Position[]>() {
-			
-			@Override
-			public void onSuccess(Position[] result) {
-				Window.alert("Success");
-				for (Position position : result) {
-					lbPositions.addItem(position.getName());
-				}
-				CreatePlayerPanel.this.positions = result;
-			}
-			
-			@Override
-			public void onFailure(Throwable caught) {
-				Window.alert("Failure : "+caught.toString());
-				
-			}
-		});
-				
+		for(Entry<Integer, String> entry : Position.positions.entrySet()) {
+		    String value = entry.getValue();
+		    lbPositions.addItem(value);
+		}
 		
 	}
 
 	@UiHandler("btConfirm")
 	void onClick(ClickEvent e) {
-//		Window.alert("Click!");
 		String name = tbName.getText();
-		String birth = lbDay.getItemText(lbDay.getSelectedIndex()) +"/"+ lbMonth.getItemText(lbMonth.getSelectedIndex()) +"/"+ lbYear.getItemText(lbYear.getSelectedIndex());
-		int weight = Integer.parseInt(tbWeight.getText());
-		int height = Integer.parseInt(tbHeight.getText());
-		Position position = getPositionByName(lbPositions.getItemText(lbPositions.getSelectedIndex()));
+		int year = Integer.parseInt(lbYear.getItemText(lbYear.getSelectedIndex()));
+		int month = Integer.parseInt(lbMonth.getItemText(lbMonth.getSelectedIndex()));
+		int day = Integer.parseInt(lbDay.getItemText(lbDay.getSelectedIndex()));
 		
-		Player player = new Player(name, birth, height, weight, position);
+		int height = Integer.parseInt(tbHeight.getText());
+		int positionId = lbPositions.getSelectedIndex();
+		String nationality = lbNationality.getItemText(lbNationality.getSelectedIndex());
+		String avatarUrl = tbAvatarUrl.getText();
+		
+//		Player player = new Player(name, new Date(year, month, day), height, positionId,nationality,avatarUrl);
 		Window.alert("name "+name
-					 +"\n birth "+birth
-					 +"\nheight "+height
-					 +"\n weight "+weight
-					 +"\n position "+position.getName() +" id : "+position.getId());
-		SoccerSystem.playerService.addNewPlayer(player, new AsyncCallback<Void>() {
+				 +"\n "+day+" - "+month+" - "+year
+				 +"\nheight "+height
+				 +"\n position id : "+positionId
+				 +"\n nationality : "+nationality
+				 +"\n Avatar Url : "+avatarUrl);
+		SoccerSystem.playerService.addNewPlayer(name, day, month, year, height, positionId,nationality,avatarUrl, new AsyncCallback<Player>() {
 
 			@Override
 			public void onFailure(Throwable caught) {
@@ -106,20 +123,13 @@ public class CreatePlayerPanel extends Composite {
 			}
 
 			@Override
-			public void onSuccess(Void result) {
-				Window.alert("Success : ");
+			public void onSuccess(Player player) {
+				Window.alert("Success : "+player.toString());
 				
 			}
 		});
 	}
 	
-	public Position getPositionByName(String name){
-		for (int i = 0; i < positions.length; i++) {
-			if (positions[i].getName().equalsIgnoreCase(name))
-				return positions[i];
-		}
-		return new Position(12, "");
-	}
 
 
 }

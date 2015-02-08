@@ -86,13 +86,13 @@
 			</g:FlowPanel>
 		</g:west>
 		<g:center>
-			<g:FlowPanel styleName="{style.centerPanel}" ui:field="centerPanel">
+			<g:ScrollPanel styleName="{style.centerPanel}" ui:field="centerPanel">
 				<g:Label>This is the CENTER panel</g:Label>
-			</g:FlowPanel>
+			</g:ScrollPanel>
 		</g:center>
 		<g:south size="2">
 			<g:FlowPanel styleName="{style.southPanel}">
-				<g:Label>SOUTH</g:Label>
+				<g:Label> Soccer System Manager - Graduate Reseach - Mytv</g:Label>
 			</g:FlowPanel>
 		</g:south>
 	</g:DockLayoutPanel>

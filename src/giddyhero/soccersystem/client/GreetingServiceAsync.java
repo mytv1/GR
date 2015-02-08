@@ -1,6 +1,6 @@
 package giddyhero.soccersystem.client;
 
-import giddyhero.soccersystem.shared.model.Position;
+import giddyhero.soccersystem.shared.Position;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
@@ -11,10 +11,8 @@ public interface GreetingServiceAsync {
 	void greetServer(String input, AsyncCallback<String> callback)
 			throws IllegalArgumentException;
 
-	void createStandardPositions(AsyncCallback<Void> asyncCallback);
-
 	void initDataStore(AsyncCallback<Void> asyncCallback);
 
-	void getStandardSoccerPosition(AsyncCallback<Position[]> callback);
+	void getAllCountryNames(AsyncCallback<String[]> callback);
 
 }

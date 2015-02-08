@@ -3,6 +3,7 @@ package giddyhero.soccersystem.server;
 import giddyhero.soccersystem.client.manager.ui.player.PlayerService;
 import giddyhero.soccersystem.shared.model.Player;
 
+import java.sql.Date;
 import java.util.List;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
@@ -13,8 +14,10 @@ public class PlayerServiceImpl extends RemoteServiceServlet implements
 		PlayerService {
 
 	@Override
-	public void addNewPlayer(Player player) {
+	public Player addNewPlayer(String name, int day,int month,int year, int height, int positionId,String nationality, String avatarUrl) {
+		Player player = new Player(name, day, month, year, height, positionId, nationality, avatarUrl);
 		ofy().save().entities(player).now();
+		return player;
 	}
 
 	@Override

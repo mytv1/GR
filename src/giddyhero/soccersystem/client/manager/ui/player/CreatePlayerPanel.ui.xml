@@ -27,6 +27,10 @@
 				<g:TextBox ui:field="tbName" ></g:TextBox>
 			</g:HorizontalPanel>
 			<g:HorizontalPanel>
+				<g:Label styleName="{style.label}"> AvatarUrl </g:Label>
+				<g:TextBox ui:field="tbAvatarUrl" ></g:TextBox>
+			</g:HorizontalPanel>
+			<g:HorizontalPanel>
 				<g:Label styleName="{style.label}"> Birth </g:Label>
 				<g:ListBox ui:field='lbDay'></g:ListBox>
 				<g:ListBox ui:field='lbMonth'></g:ListBox>
@@ -37,14 +41,13 @@
 				<g:TextBox ui:field="tbHeight"></g:TextBox>
 			</g:HorizontalPanel>
 			<g:HorizontalPanel>
-				<g:Label styleName="{style.label}"> Weight </g:Label>
-				<g:TextBox ui:field="tbWeight"></g:TextBox>
-			</g:HorizontalPanel>
-			<g:HorizontalPanel>
 				<g:Label styleName="{style.label}"> Position </g:Label>
 				<g:ListBox ui:field='lbPositions'></g:ListBox>
 			</g:HorizontalPanel>
-
+			<g:HorizontalPanel>
+				<g:Label styleName="{style.label}"> Nationality </g:Label>
+				<g:ListBox ui:field='lbNationality'></g:ListBox>
+			</g:HorizontalPanel>
 			<g:Button styleName="{style.button}" ui:field="btConfirm" />
 		</g:VerticalPanel>
 

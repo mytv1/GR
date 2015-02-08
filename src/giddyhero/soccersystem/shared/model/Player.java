@@ -1,32 +1,56 @@
-
 package giddyhero.soccersystem.shared.model;
 
+import giddyhero.soccersystem.shared.Position;
+
 import java.io.Serializable;
+import java.sql.Date;
 
 import com.google.gwt.user.client.rpc.IsSerializable;
+import com.google.gwt.user.client.ui.Image;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 
-
 @Entity
-public class Player  implements Serializable, IsSerializable{
+public class Player implements Serializable, IsSerializable {
 	private static final long serialVersionUID = 1L;
-	public @Id Long id;
+	public @Id
+	Long id;
 	public String name;
-	public String birth;
-	public int height, weight;
-	public Long positionId;
-//	public Ref<Position> position;
-	
-    public Player() {}
-    
-    public Player(String name, String birth, int height, int weight, Position position) {
-//    	this.id = (long) 145;
-    	this.name = name;
-    	this.birth = birth;
-    	this.height = height;
-    	this.weight = weight;
-//    	this.position = Ref.create(Key.create(position));
-    	
-    }
+	public int year, month, day;
+	public int height;
+	public int positionId;
+	public String nationality;
+	public String avatarUrl;
+
+	public Player() {
+	}
+
+	public Player(String name, int year,int month, int day, int height, int positionId,
+			String nationality, String avatarUrl) {
+		this.name = name;
+		this.day = day;
+		this.month = month;
+		this.year = year;
+		this.height = height;
+		this.positionId = positionId;
+		this.nationality = nationality;
+		this.avatarUrl = avatarUrl;
+	}
+
+	@Override
+	public String toString() {
+		return "name " + name + "\n " + day + " - "
+				+ month + " - " + year + "\nheight "
+				+ height + "\n position id : " + positionId
+				+ "\n nationality : " + nationality + "\n Avatar Url : "
+				+ avatarUrl;
+	}
+
+	public Image getAvatar() {
+		Image image = new Image();
+		if (avatarUrl != null)
+			image.setUrl(avatarUrl);
+		image.setPixelSize(60, 60);
+		return image;
+	}
 }

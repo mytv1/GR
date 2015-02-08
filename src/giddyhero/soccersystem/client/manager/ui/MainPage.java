@@ -22,6 +22,7 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Hyperlink;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.Widget;
 
 public class MainPage extends Composite {
@@ -34,7 +35,7 @@ public class MainPage extends Composite {
 	@UiField
 	Image logo;
 	@UiField
-	FlowPanel centerPanel;
+	ScrollPanel centerPanel;
 	@UiField
 	Hyperlink hlNewPlayer,hlPlayerAllOverview, hlNews, hlTeams, hlCreateTeam;
 
