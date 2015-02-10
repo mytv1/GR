@@ -37,7 +37,7 @@ public class NewsActivity extends BasicActivity {
 
 	@Override
 	public void bind() {
-		MobileEntryPoint.newsService.getAllNews(new AsyncCallback<News[]>() {
+		MobileEntryPoint.Service.news.getAllNews(new AsyncCallback<News[]>() {
 
 			@Override
 			public void onSuccess(News[] result) {

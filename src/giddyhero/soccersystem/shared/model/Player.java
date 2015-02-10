@@ -11,7 +11,7 @@ import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 
 @Entity
-public class Player implements Serializable, IsSerializable {
+public class Player implements SerializableEntity {
 	private static final long serialVersionUID = 1L;
 	public @Id
 	Long id;

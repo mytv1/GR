@@ -8,6 +8,8 @@ import giddyhero.soccersystem.client.mobile.activities.news.detail.NewsDetailVie
 import giddyhero.soccersystem.client.mobile.activities.news.detail.NewsDetailViewImpl;
 import giddyhero.soccersystem.client.mobile.activities.news.list.NewsView;
 import giddyhero.soccersystem.client.mobile.activities.news.list.NewsViewImpl;
+import giddyhero.soccersystem.client.mobile.activities.player.PlayerView;
+import giddyhero.soccersystem.client.mobile.activities.player.PlayerViewImpl;
 
 import com.google.gwt.place.shared.PlaceController;
 import com.google.web.bindery.event.shared.EventBus;
@@ -51,5 +53,10 @@ public class ClientFactoryImpl  implements ClientFactory  {
 	@Override
 	public NewsDetailView getNewsDetailView() {
 		return new NewsDetailViewImpl();
+	}
+
+	@Override
+	public PlayerView getPlayerView() {
+		return new PlayerViewImpl();
 	}
 }

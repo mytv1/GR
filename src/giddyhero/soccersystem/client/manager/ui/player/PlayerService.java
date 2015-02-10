@@ -12,4 +12,7 @@ public interface PlayerService  extends RemoteService{
 	Player addNewPlayer(String name,  int day,int month,int year, int height, int positionId,String nationality, String avatarUrl);
 	
 	Player[] getAllPlayers();
+	
+	Player getPlayer(long id);
+	
 }

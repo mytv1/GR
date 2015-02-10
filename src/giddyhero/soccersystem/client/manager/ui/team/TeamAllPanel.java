@@ -1,6 +1,7 @@
 package giddyhero.soccersystem.client.manager.ui.team;
 
 import giddyhero.soccersystem.client.SoccerSystem;
+import giddyhero.soccersystem.client.SoccerSystem.Service;
 import giddyhero.soccersystem.shared.model.Team;
 
 import com.google.gwt.core.client.GWT;
@@ -45,7 +46,7 @@ public class TeamAllPanel extends Composite {
 		tblTeam.setText(1, 4, "England");
 		tblTeam.setText(1, 5, "34");
 		
-		SoccerSystem.teamService.getAllTeams(new AsyncCallback<Team[]>() {
+		SoccerSystem.Service.team.getAllTeams(new AsyncCallback<Team[]>() {
 			
 			@Override
 			public void onSuccess(Team[] result) {

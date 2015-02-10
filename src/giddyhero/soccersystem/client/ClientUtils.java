@@ -10,4 +10,6 @@ public class ClientUtils {
 	public static int getWidth(){
 		return Window.getClientWidth();
 	}
+	
+	
 }

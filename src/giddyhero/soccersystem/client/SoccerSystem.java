@@ -28,23 +28,34 @@ import com.googlecode.gwtphonegap.client.util.PhonegapUtil;
  * Entry point classes define <code>onModuleLoad()</code>.
  */
 public class SoccerSystem implements EntryPoint {
-	public final static GreetingServiceAsync greetingService = GWT
-			.create(GreetingService.class);
-	public final static PlayerServiceAsync playerService = GWT
-			.create(PlayerService.class);
-	public final static NewsServiceAsync newsService = GWT
-			.create(NewsService.class);
-	public final static TeamServiceAsync teamService = GWT
-			.create(TeamService.class);
+//	public final static GeneralServiceAsync generalService = GWT
+//			.create(GeneralService.class);
+//	public final static PlayerServiceAsync playerService = GWT
+//			.create(PlayerService.class);
+//	public final static NewsServiceAsync newsService = GWT
+//			.create(NewsService.class);
+//	public final static TeamServiceAsync teamService = GWT
+//			.create(TeamService.class);
+	
+	public static class Service{
+		public final static GeneralServiceAsync general = GWT
+				.create(GeneralService.class);
+		public final static PlayerServiceAsync player= GWT
+				.create(PlayerService.class);
+		public final static NewsServiceAsync news= GWT
+				.create(NewsService.class);
+		public final static TeamServiceAsync team= GWT
+				.create(TeamService.class);
+		
+	}
 	
 
 	/**
 	 * This is the entry point method.
 	 */
 	public void onModuleLoad() {
-//		RootPanel.get().add(new MainPage());
 		RootLayoutPanel.get().add(new MainPage());
-		greetingService.registerAllEntity(new AsyncCallback<Void>() {
+		Service.general.registerAllEntity(new AsyncCallback<Void>() {
 
 			@Override
 			public void onFailure(Throwable caught) {

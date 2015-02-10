@@ -1,0 +1,32 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+		.home-panel{
+		background-color:#73706C;
+		}
+		.label{
+		padding-top: 7px;
+		padding-left: 40px;
+		padding-bottom: 7px;
+		}
+	</ui:style>
+	<g:VerticalPanel ui:field="mainPanel" styleName="{style.home-panel}"
+		height="100%" width="100%" horizontalAlignment="ALIGN_CENTER" >
+		<g:HorizontalPanel >
+			<g:Image  ui:field="imgAvatar"></g:Image>
+			<g:Cell width="50%" height="30%">
+			    <g:VerticalPanel >
+					<g:Label ui:field="lbName" styleName="{style.label}"> Name : </g:Label>
+					<g:Label ui:field="lbBirth" styleName="{style.label}"> Birth : </g:Label>
+					<g:Label ui:field="lbCurrentTeam" styleName="{style.label}"> Current Team : </g:Label>
+					<g:Label ui:field="lbNationality" styleName="{style.label}"> National : </g:Label>
+					<g:Label ui:field="lbPosition" styleName="{style.label}"> Position : </g:Label>
+					<g:Label ui:field="lbHeight" styleName="{style.label}"> Height : </g:Label>
+			</g:VerticalPanel>
+			</g:Cell>
+			
+		</g:HorizontalPanel>
+		<g:Label> Other description, relate teams, performance... </g:Label>
+	</g:VerticalPanel>
+</ui:UiBinder> 

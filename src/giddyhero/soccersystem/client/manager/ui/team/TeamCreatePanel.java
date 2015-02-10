@@ -1,6 +1,7 @@
 package giddyhero.soccersystem.client.manager.ui.team;
 
 import giddyhero.soccersystem.client.SoccerSystem;
+import giddyhero.soccersystem.client.SoccerSystem.Service;
 import giddyhero.soccersystem.shared.model.Team;
 
 import com.google.gwt.core.client.GWT;
@@ -49,7 +50,7 @@ public class TeamCreatePanel extends Composite {
 		String nation = tbNation.getText();
 		int establishYear = Integer.parseInt(lbYear.getItemText(lbYear.getSelectedIndex()));
 		Team team = new Team(name, stadiumName, establishYear,nation);
-		SoccerSystem.teamService.addNewTeam(team, new AsyncCallback<Void>() {
+		SoccerSystem.Service.team.addNewTeam(team, new AsyncCallback<Void>() {
 			
 			@Override
 			public void onSuccess(Void result) {

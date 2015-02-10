@@ -82,7 +82,7 @@ public class MainPage extends Composite {
 	@UiHandler("hlTeams")
 	void onClickHyperLinkTeams(ClickEvent e) {
 		addNewPanel(new TeamAllPanel());
-		SoccerSystem.teamService.getAllTeams(new AsyncCallback<Team[]>() {
+		SoccerSystem.Service.team.getAllTeams(new AsyncCallback<Team[]>() {
 			
 			@Override
 			public void onSuccess(Team[] result) {

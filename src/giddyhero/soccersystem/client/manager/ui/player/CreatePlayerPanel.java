@@ -1,6 +1,7 @@
 package giddyhero.soccersystem.client.manager.ui.player;
 
 import giddyhero.soccersystem.client.SoccerSystem;
+import giddyhero.soccersystem.client.SoccerSystem.Service;
 import giddyhero.soccersystem.shared.Position;
 import giddyhero.soccersystem.shared.model.Player;
 
@@ -54,7 +55,7 @@ public class CreatePlayerPanel extends Composite {
 	}
 
 	private void initNationalityList() {
-		SoccerSystem.greetingService.getAllCountryNames(new AsyncCallback<String[]>() {
+		SoccerSystem.Service.general.getAllCountryNames(new AsyncCallback<String[]>() {
 
 			@Override
 			public void onFailure(Throwable caught) {
@@ -115,7 +116,7 @@ public class CreatePlayerPanel extends Composite {
 				 +"\n position id : "+positionId
 				 +"\n nationality : "+nationality
 				 +"\n Avatar Url : "+avatarUrl);
-		SoccerSystem.playerService.addNewPlayer(name, day, month, year, height, positionId,nationality,avatarUrl, new AsyncCallback<Player>() {
+		SoccerSystem.Service.player.addNewPlayer(name, day, month, year, height, positionId,nationality,avatarUrl, new AsyncCallback<Player>() {
 
 			@Override
 			public void onFailure(Throwable caught) {

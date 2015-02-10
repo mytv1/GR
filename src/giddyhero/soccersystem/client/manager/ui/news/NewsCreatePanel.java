@@ -1,6 +1,7 @@
 package giddyhero.soccersystem.client.manager.ui.news;
 
 import giddyhero.soccersystem.client.SoccerSystem;
+import giddyhero.soccersystem.client.SoccerSystem.Service;
 import giddyhero.soccersystem.shared.model.News;
 import giddyhero.soccersystem.shared.model.Player;
 
@@ -45,7 +46,7 @@ public class NewsCreatePanel extends Composite{
 
 
 	private void initTaggedPlayer() {
-		SoccerSystem.playerService.getAllPlayers(new AsyncCallback<Player[]>() {
+		SoccerSystem.Service.player.getAllPlayers(new AsyncCallback<Player[]>() {
 
 			@Override
 			public void onFailure(Throwable caught) {
@@ -84,7 +85,7 @@ public class NewsCreatePanel extends Composite{
 		String content = taContent.getText();
 		
 		News news = new News(title, titleUrl, category, taggedPlayerId, content);
-		SoccerSystem.newsService.addNews(news, new AsyncCallback<Void>() {
+		SoccerSystem.Service.news.addNews(news, new AsyncCallback<Void>() {
 			
 			@Override
 			public void onSuccess(Void result) {

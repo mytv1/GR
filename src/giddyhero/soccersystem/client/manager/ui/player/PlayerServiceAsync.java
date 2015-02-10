@@ -13,4 +13,6 @@ public interface PlayerServiceAsync {
 
 	void getAllPlayers(AsyncCallback<Player[]> callback);
 
+	void getPlayer(long id, AsyncCallback<Player> callback);
+
 }

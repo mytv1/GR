@@ -10,6 +10,7 @@ import giddyhero.soccersystem.client.manager.ui.news.NewsAllPanel;
 import giddyhero.soccersystem.client.mobile.activities.ClientFactory;
 import giddyhero.soccersystem.client.mobile.activities.basic.BasicActivity;
 import giddyhero.soccersystem.client.mobile.activities.news.list.NewsPlace;
+import giddyhero.soccersystem.client.mobile.activities.player.PlayerPlace;
 
 public class HomeActivity extends BasicActivity {
 
@@ -37,6 +38,18 @@ public class HomeActivity extends BasicActivity {
 					public void onTap(TapEvent event) {
 						clientFactory.getPlaceController()
 								.goTo(new NewsPlace());
+					}
+				}));
+		
+		addHandlerRegistration(view.getButtonPlayer().addTapHandler(
+				new TapHandler() {
+
+					@Override
+					public void onTap(TapEvent event) {
+						PlayerPlace playerPlace = new PlayerPlace();
+//						playerPlace.setPlayerId(6614661952700416L);
+						clientFactory.getPlaceController()
+								.goTo(playerPlace);
 					}
 				}));
 	}

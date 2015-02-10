@@ -7,7 +7,7 @@ import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 
 @Entity
-public class Team  implements Serializable, IsSerializable {
+public class Team  implements SerializableEntity{
 	@Id public Long id;
 	public String name;
 	public String stadiumName;

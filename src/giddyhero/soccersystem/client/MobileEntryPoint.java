@@ -2,6 +2,8 @@ package giddyhero.soccersystem.client;
 
 import giddyhero.soccersystem.client.manager.ui.news.NewsService;
 import giddyhero.soccersystem.client.manager.ui.news.NewsServiceAsync;
+import giddyhero.soccersystem.client.manager.ui.player.PlayerService;
+import giddyhero.soccersystem.client.manager.ui.player.PlayerServiceAsync;
 import giddyhero.soccersystem.client.mobile.activities.AppActivityMapper;
 import giddyhero.soccersystem.client.mobile.activities.AppAnimationMapper;
 import giddyhero.soccersystem.client.mobile.activities.AppPlaceHistoryMapper;
@@ -31,12 +33,18 @@ import com.googlecode.mgwt.ui.client.widget.animation.AnimationWidget;
 public class MobileEntryPoint implements EntryPoint {
 
 	private PhoneGap phoneGap;
-	private static ClientFactory clientFactory = GWT
+	public static ClientFactory clientFactory = GWT
 			.create(ClientFactoryImpl.class);
-	private static GreetingServiceAsync greetingServiceAsync = GWT
-			.create(GreetingService.class);
-	public final static NewsServiceAsync newsService = GWT
-			.create(NewsService.class);
+	
+	public static class Service{
+	
+		public static GeneralServiceAsync general = GWT
+				.create(GeneralService.class);
+		public final static NewsServiceAsync news = GWT
+				.create(NewsService.class);
+		public final static PlayerServiceAsync player = GWT
+				.create(PlayerService.class);
+	}
 
 	@Override
 	public void onModuleLoad() {
@@ -93,15 +101,19 @@ public class MobileEntryPoint implements EntryPoint {
 			@Override
 			public void onPhoneGapAvailable(PhoneGapAvailableEvent event) {
 				if (phoneGap.isPhoneGapDevice()) {
-//					Window.alert("on is PhoneGap Device");
-					PhonegapUtil.prepareService((ServiceDefTarget) newsService,
+					PhonegapUtil.prepareService((ServiceDefTarget) Service.news,
 							"http://1-dot-mytv-ssm.appspot.com/",
 							"/mobileentrypoint/news");
+					PhonegapUtil.prepareService((ServiceDefTarget) Service.general,
+							"http://1-dot-mytv-ssm.appspot.com/",
+							"/mobileentrypoint/general");
+					PhonegapUtil.prepareService((ServiceDefTarget) Service.player,
+							"http://1-dot-mytv-ssm.appspot.com/",
+							"/mobileentrypoint/player");
 					// ((ServiceDefTarget) newsService)
 					// .setServiceEntryPoint("/mobileentrypoint/news");
 				} else {
-					
-					newsService.registerRelateEntity(new AsyncCallback<Void>() {
+					Service.general.registerAllEntity(new AsyncCallback<Void>(){
 
 						@Override
 						public void onSuccess(Void result) {
@@ -112,7 +124,21 @@ public class MobileEntryPoint implements EntryPoint {
 						public void onFailure(Throwable caught) {
 							Window.alert("Register Failure");
 						}
+						
 					});
+//					
+//					 Service.news.registerRelateEntity(new AsyncCallback<Void>() {
+//
+//						@Override
+//						public void onSuccess(Void result) {
+//							Window.alert("Register Success");
+//						}
+//
+//						@Override
+//						public void onFailure(Throwable caught) {
+//							Window.alert("Register Failure");
+//						}
+//					});
 				}
 //				Window.alert("on Phonegap Available");
 			}

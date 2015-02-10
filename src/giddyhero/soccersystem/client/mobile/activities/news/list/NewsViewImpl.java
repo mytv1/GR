@@ -44,28 +44,14 @@ public class NewsViewImpl extends BasicViewImpl implements NewsView{
 
 	@Override
 	public void addNewsListContent(News[] newsList) {
-//		MobileEntryPoint.newsService.getAllNews(new AsyncCallback<News[]>() {
-//			
-//			@Override
-//			public void onSuccess(News[] result) {
-//				Window.alert("Suceess : "+result.length);
 				newItems = new NewsItem[newsList.length];
 				for (int j = 0; j < newsList.length; j++) {
 					News news = newsList[j];
 					NewsItem item =
 							new NewsItem(news.titleImageUrl, news.title);
-//					Window.alert(news.toString());
 					mainPanel.add(item);
 					newItems[j] = item;
 				}
-//						
-//			}
-//			
-//			@Override
-//			public void onFailure(Throwable caught) {
-//				Window.alert("Failure : "+caught.toString());
-//			}
-//		});
 		
 	}
 

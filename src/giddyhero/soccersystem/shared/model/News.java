@@ -7,7 +7,7 @@ import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 
 @Entity
-public class News  implements Serializable, IsSerializable{
+public class News  implements SerializableEntity{
 	public @Id
 	Long id;
 	public String title = "";
