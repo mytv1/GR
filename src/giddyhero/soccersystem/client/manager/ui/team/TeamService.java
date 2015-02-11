@@ -9,5 +9,7 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 public interface TeamService extends RemoteService {
 	Team[] getAllTeams();
 	
-	void addNewTeam(Team team);
+	Team addNewTeam(Team team);
+
+	Team getTeam(long teamId);
 }

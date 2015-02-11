@@ -1,9 +1,13 @@
 package giddyhero.soccersystem.client;
 
+import java.util.logging.Logger;
+
 import giddyhero.soccersystem.client.manager.ui.news.NewsService;
 import giddyhero.soccersystem.client.manager.ui.news.NewsServiceAsync;
 import giddyhero.soccersystem.client.manager.ui.player.PlayerService;
 import giddyhero.soccersystem.client.manager.ui.player.PlayerServiceAsync;
+import giddyhero.soccersystem.client.manager.ui.team.TeamService;
+import giddyhero.soccersystem.client.manager.ui.team.TeamServiceAsync;
 import giddyhero.soccersystem.client.mobile.activities.AppActivityMapper;
 import giddyhero.soccersystem.client.mobile.activities.AppAnimationMapper;
 import giddyhero.soccersystem.client.mobile.activities.AppPlaceHistoryMapper;
@@ -44,6 +48,8 @@ public class MobileEntryPoint implements EntryPoint {
 				.create(NewsService.class);
 		public final static PlayerServiceAsync player = GWT
 				.create(PlayerService.class);
+		public final static TeamServiceAsync team = GWT
+				.create(TeamService.class);
 	}
 
 	@Override
@@ -110,8 +116,9 @@ public class MobileEntryPoint implements EntryPoint {
 					PhonegapUtil.prepareService((ServiceDefTarget) Service.player,
 							"http://1-dot-mytv-ssm.appspot.com/",
 							"/mobileentrypoint/player");
-					// ((ServiceDefTarget) newsService)
-					// .setServiceEntryPoint("/mobileentrypoint/news");
+					PhonegapUtil.prepareService((ServiceDefTarget) Service.team,
+							"http://1-dot-mytv-ssm.appspot.com/",
+							"/mobileentrypoint/team");
 				} else {
 					Service.general.registerAllEntity(new AsyncCallback<Void>(){
 

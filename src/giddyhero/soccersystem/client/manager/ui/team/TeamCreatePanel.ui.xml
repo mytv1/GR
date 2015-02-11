@@ -14,6 +14,9 @@
 		.mytv-label {
 		width: 200px;
 		}
+		.mytv-padding-left{
+		padding-left: 200px;
+		}
 		.mytv-textfield {
 		width: 800px;
 		height: 400px;
@@ -26,12 +29,16 @@
 		}
 	</ui:style>
 	<g:HTMLPanel>
-	        <g:VerticalPanel styleName="{style.mytv-form}">
+	        <g:VerticalPanel styleName="{style.mytv-form}" ui:field="mainPanel">
 			<g:Label> New Team </g:Label>
 			<g:Label> Let's inform information of the team</g:Label>
 			<g:HorizontalPanel>
 				<g:Label styleName="{style.mytv-label}"> Name </g:Label>
 				<g:TextBox ui:field="tbName"></g:TextBox>
+			</g:HorizontalPanel>
+			<g:HorizontalPanel>
+				<g:Label styleName="{style.mytv-label}"> Logo Url </g:Label>
+				<g:TextBox ui:field="tbLogoUrl"></g:TextBox>
 			</g:HorizontalPanel>
 			<g:HorizontalPanel>
 				<g:Label styleName="{style.mytv-label}"> Establish Year </g:Label>
@@ -45,7 +52,9 @@
 				<g:Label styleName="{style.mytv-label}"> Nation </g:Label>
 				<g:TextBox ui:field="tbNation"></g:TextBox>
 			</g:HorizontalPanel>
-			
+			<g:VerticalPanel ui:field="pnAddPlayer" styleName="{style.mytv-padding-left}">
+							    
+			</g:VerticalPanel>
 			<g:Button styleName="{style.mytv-button}" ui:field="btConfirm" text="OK"/>
 		</g:VerticalPanel>
 	        

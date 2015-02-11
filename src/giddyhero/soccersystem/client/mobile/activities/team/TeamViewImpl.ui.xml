@@ -1,0 +1,38 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+		.home-panel{
+		background-color:#73706C;
+		}
+		.label{
+		padding-top: 7px;
+		padding-left: 40px;
+		padding-bottom: 7px;
+		}
+	.table-style {
+		border: 1px solid black;
+	}
+	</ui:style>
+	<g:VerticalPanel ui:field="mainPanel" styleName="{style.home-panel}"
+		height="100%" width="100%" horizontalAlignment="ALIGN_CENTER" >
+		<g:HorizontalPanel >
+			<g:Image  ui:field="imgLogo"></g:Image>
+			<g:Cell width="50%" height="30%">
+			    <g:VerticalPanel >
+					<g:Label ui:field="lbName" styleName="{style.label}"> Name : </g:Label>
+					<g:Label ui:field="lbEstablishYear" styleName="{style.label}"> Establish Year : </g:Label>
+					<g:Label ui:field="lbStadium" styleName="{style.label}"> Stadium : </g:Label>
+					<g:Label ui:field="lbNation" styleName="{style.label}"> Nation : </g:Label>
+					<g:Label ui:field="lbNumOfPlayer" styleName="{style.label}"> Number of player : </g:Label>
+					<g:Label ui:field="lbManager" styleName="{style.label}"> Manager : </g:Label>
+			</g:VerticalPanel>
+			</g:Cell>
+			
+		</g:HorizontalPanel>
+		<g:Label> Other description, relate teams, performance... </g:Label>
+		<g:FlexTable ui:field="tblPlayers" styleName="{style.table-style}" borderWidth="2">
+		    
+		</g:FlexTable>
+	</g:VerticalPanel>
+</ui:UiBinder> 

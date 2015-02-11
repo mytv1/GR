@@ -11,6 +11,7 @@ import giddyhero.soccersystem.client.mobile.activities.ClientFactory;
 import giddyhero.soccersystem.client.mobile.activities.basic.BasicActivity;
 import giddyhero.soccersystem.client.mobile.activities.news.list.NewsPlace;
 import giddyhero.soccersystem.client.mobile.activities.player.PlayerPlace;
+import giddyhero.soccersystem.client.mobile.activities.team.TeamPlace;
 
 public class HomeActivity extends BasicActivity {
 
@@ -47,9 +48,18 @@ public class HomeActivity extends BasicActivity {
 					@Override
 					public void onTap(TapEvent event) {
 						PlayerPlace playerPlace = new PlayerPlace();
-//						playerPlace.setPlayerId(6614661952700416L);
 						clientFactory.getPlaceController()
 								.goTo(playerPlace);
+					}
+				}));
+		addHandlerRegistration(view.getButtonTeam().addTapHandler(
+				new TapHandler() {
+
+					@Override
+					public void onTap(TapEvent event) {
+						TeamPlace teamPlace = new TeamPlace();
+						clientFactory.getPlaceController()
+								.goTo(teamPlace);
 					}
 				}));
 	}

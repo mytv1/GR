@@ -21,6 +21,7 @@ public class Player implements SerializableEntity {
 	public int positionId;
 	public String nationality;
 	public String avatarUrl;
+	public Long currentTeamId;
 
 	public Player() {
 	}
@@ -36,6 +37,7 @@ public class Player implements SerializableEntity {
 		this.nationality = nationality;
 		this.avatarUrl = avatarUrl;
 	}
+	
 
 	@Override
 	public String toString() {

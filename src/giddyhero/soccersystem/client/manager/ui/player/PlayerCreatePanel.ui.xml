@@ -1,0 +1,55 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+		.important {
+		font-weight: bold;
+		}
+		.form {
+		background-color: #EEE;
+		padding: 20px;
+		margin: 20px;
+		}
+		.label {
+		width: 200px;
+		}
+		.button {
+		margin-top: 20px;
+		 margin-left: 250px;
+		}
+	</ui:style>
+	<g:HTMLPanel>
+		<g:VerticalPanel styleName="{style.form}">
+			<g:Label> New Player </g:Label>
+			<g:Label> Let's inform information of the player</g:Label>
+			<g:HorizontalPanel>
+				<g:Label styleName="{style.label}"> Name </g:Label>
+				<g:TextBox ui:field="tbName" ></g:TextBox>
+			</g:HorizontalPanel>
+			<g:HorizontalPanel>
+				<g:Label styleName="{style.label}"> AvatarUrl </g:Label>
+				<g:TextBox ui:field="tbAvatarUrl" ></g:TextBox>
+			</g:HorizontalPanel>
+			<g:HorizontalPanel>
+				<g:Label styleName="{style.label}"> Birth </g:Label>
+				<g:ListBox ui:field='lbDay'></g:ListBox>
+				<g:ListBox ui:field='lbMonth'></g:ListBox>
+				<g:ListBox ui:field='lbYear'></g:ListBox>
+			</g:HorizontalPanel>
+			<g:HorizontalPanel>
+				<g:Label styleName="{style.label}"> Height </g:Label>
+				<g:TextBox ui:field="tbHeight"></g:TextBox>
+			</g:HorizontalPanel>
+			<g:HorizontalPanel>
+				<g:Label styleName="{style.label}"> Position </g:Label>
+				<g:ListBox ui:field='lbPositions'></g:ListBox>
+			</g:HorizontalPanel>
+			<g:HorizontalPanel>
+				<g:Label styleName="{style.label}"> Nationality </g:Label>
+				<g:ListBox ui:field='lbNationality'></g:ListBox>
+			</g:HorizontalPanel>
+			<g:Button styleName="{style.button}" ui:field="btConfirm" />
+		</g:VerticalPanel>
+
+	</g:HTMLPanel>
+</ui:UiBinder> 

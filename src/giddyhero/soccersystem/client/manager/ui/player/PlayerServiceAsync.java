@@ -15,4 +15,8 @@ public interface PlayerServiceAsync {
 
 	void getPlayer(long id, AsyncCallback<Player> callback);
 
+	void savePlayers(Player[] players, AsyncCallback<Void> callback);
+
+	void getPlayers(long[] ids, AsyncCallback<Player[]> callback);
+
 }

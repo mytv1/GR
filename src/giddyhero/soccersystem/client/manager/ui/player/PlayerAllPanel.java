@@ -21,8 +21,7 @@ import com.google.gwt.user.client.ui.Widget;
 
 public class PlayerAllPanel extends Composite {
 
-	private static PlayerAllPanelUiBinder uiBinder = GWT
-			.create(PlayerAllPanelUiBinder.class);
+	private static PlayerAllPanelUiBinder uiBinder = GWT.create(PlayerAllPanelUiBinder.class);
 
 	interface PlayerAllPanelUiBinder extends UiBinder<Widget, PlayerAllPanel> {
 	}
@@ -68,16 +67,10 @@ public class PlayerAllPanel extends Composite {
 					tblPlayers.setText(2 + i, 0, "" + player.id);
 					tblPlayers.setWidget(2 + i, 1, player.getAvatar());
 					tblPlayers.setText(2 + i, 2, "" + player.name);
-					tblPlayers.setText(2 + i, 3, "" + player.day + " - "
-							+ player.month + " - " + player.year);
-					tblPlayers.setText(2 + i, 4, "");
+					tblPlayers.setText(2 + i, 3, "" + player.day + " - " + player.month + " - " + player.year);
+					tblPlayers.setText(2 + i, 4, "" + player.currentTeamId);
 					tblPlayers.setText(2 + i, 5, "" + player.nationality);
-					tblPlayers.setText(
-							2 + i,
-							6,
-							""
-									+ Position
-											.getPositionNameById(player.positionId));
+					tblPlayers.setText(2 + i, 6, "" + Position.getPositionNameById(player.positionId));
 					tblPlayers.setText(2 + i, 7, "" + player.height);
 					tblPlayers.setWidget(2 + i, 8, createCustomActionPanel(player.id));
 				}
@@ -97,8 +90,7 @@ public class PlayerAllPanel extends Composite {
 
 			@Override
 			public void onClick(ClickEvent event) {
-				SoccerSystem.Service.general.deleteEntity(
-						SerializableEntity.PLAYER, entityId,
+				SoccerSystem.Service.general.deleteEntity(SerializableEntity.PLAYER, entityId,
 						new AsyncCallback<Boolean>() {
 
 							@Override

@@ -8,6 +8,8 @@ public interface TeamServiceAsync {
 
 	void getAllTeams(AsyncCallback<Team[]> callback);
 
-	void addNewTeam(Team team, AsyncCallback<Void> callback);
+	void addNewTeam(Team team, AsyncCallback<Team> callback);
+
+	void getTeam(long teamId, AsyncCallback<Team> callback);
 
 }

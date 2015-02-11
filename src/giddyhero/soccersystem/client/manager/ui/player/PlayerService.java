@@ -15,4 +15,7 @@ public interface PlayerService  extends RemoteService{
 	
 	Player getPlayer(long id);
 	
+	Player[] getPlayers(long[] ids);
+	
+	void savePlayers(Player[] players);
 }

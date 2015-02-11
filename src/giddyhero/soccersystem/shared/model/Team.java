@@ -13,16 +13,22 @@ public class Team  implements SerializableEntity{
 	public String stadiumName;
 	public int establishYear;
 	public String nation;
+	public long managerId;
+	public long[] playerIds;
+	public String logoUrl = "";
 	
 	private Team(){
 		
 	}
 	
-	public Team(String name, String stadiumName, int establishYear, String nation){
+	public Team(String name, String logoUrl, String stadiumName, int establishYear, String nation, long managerId, long[] playersIds){
 		this.name = name;
+		this.logoUrl = logoUrl;
 		this.stadiumName = stadiumName;
 		this.establishYear = establishYear;
 		this.nation = nation;
+		this.managerId = managerId;
+		this.playerIds = playersIds;
 	}
 
 	@Override

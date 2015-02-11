@@ -3,7 +3,7 @@ package giddyhero.soccersystem.client.manager.ui;
 import giddyhero.soccersystem.client.SoccerSystem;
 import giddyhero.soccersystem.client.manager.ui.news.NewsCreatePanel;
 import giddyhero.soccersystem.client.manager.ui.news.NewsAllPanel;
-import giddyhero.soccersystem.client.manager.ui.player.CreatePlayerPanel;
+import giddyhero.soccersystem.client.manager.ui.player.PlayerCreatePanel;
 import giddyhero.soccersystem.client.manager.ui.player.PlayerAllPanel;
 import giddyhero.soccersystem.client.manager.ui.team.TeamAllPanel;
 import giddyhero.soccersystem.client.manager.ui.team.TeamCreatePanel;
@@ -66,7 +66,7 @@ public class MainPage extends Composite {
 	@UiHandler("hlNewPlayer")
 	void onClickHyperLinkNewPlayer(ClickEvent e) {
 		Window.alert("NewPlayer");
-		addNewPanel(new CreatePlayerPanel());
+		addNewPanel(new PlayerCreatePanel());
 	}
 
 	@UiHandler("hlNewNews")
