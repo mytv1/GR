@@ -1,0 +1,15 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:m="urn:import:giddyhero.soccersystem.client.manager.ui.league">
+	<ui:style>
+	.table-style {
+		border: 1px solid black;
+	}
+	</ui:style>
+	<g:HTMLPanel>
+	    <g:ToggleButton ui:field="btNewLeague" width="120px" height="20px">Create New League</g:ToggleButton>
+	    <m:LeagueCreatePanel ui:field="pnNewLeague"></m:LeagueCreatePanel>
+		<g:FlexTable ui:field="tblLeague" styleName="{style.table-style}" borderWidth="2"></g:FlexTable>
+	</g:HTMLPanel>
+</ui:UiBinder> 

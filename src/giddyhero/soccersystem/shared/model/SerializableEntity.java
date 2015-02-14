@@ -9,5 +9,7 @@ public interface SerializableEntity extends IsSerializable, Serializable{
 	public static int NEWS = 2;
 	public static int TEAM = 3;
 	public static int NATION = 4;
+	public static int LEAGUE = 5;
+	public static int SEASON = 6;
 	
 }

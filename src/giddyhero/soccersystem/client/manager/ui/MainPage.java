@@ -1,6 +1,7 @@
 package giddyhero.soccersystem.client.manager.ui;
 
 import giddyhero.soccersystem.client.SoccerSystem;
+import giddyhero.soccersystem.client.manager.ui.league.LeagueAllPanel;
 import giddyhero.soccersystem.client.manager.ui.news.NewsCreatePanel;
 import giddyhero.soccersystem.client.manager.ui.news.NewsAllPanel;
 import giddyhero.soccersystem.client.manager.ui.player.PlayerCreatePanel;
@@ -37,7 +38,7 @@ public class MainPage extends Composite {
 	@UiField
 	ScrollPanel centerPanel;
 	@UiField
-	Hyperlink hlNewPlayer,hlPlayerAllOverview, hlNews, hlTeams, hlCreateTeam;
+	Hyperlink hlNewPlayer,hlPlayerAllOverview, hlNews, hlTeams, hlCreateTeam, hlLeagueAll;
 
 	public MainPage() {
 		initWidget(uiBinder.createAndBindUi(this));
@@ -51,21 +52,25 @@ public class MainPage extends Composite {
 		
 	}
 	
-	private void addNewPanel(Composite panel){
+	public void addNewPanel(Composite panel){
 		centerPanel.clear();
 		centerPanel.add(panel);
 	}
 	
+	@UiHandler("hlLeagueAll")
+	void onClickHyperLinkLeagueAllOverview(ClickEvent e) {
+		addNewPanel(new LeagueAllPanel());
+		
+	}
+	
 	@UiHandler("hlPlayerAllOverview")
 	void onClickHyperLinkPlayerAllOverview(ClickEvent e) {
-		Window.alert("PlayerAll");
 		addNewPanel(new PlayerAllPanel());
 		
 	}
 	
 	@UiHandler("hlNewPlayer")
 	void onClickHyperLinkNewPlayer(ClickEvent e) {
-		Window.alert("NewPlayer");
 		addNewPanel(new PlayerCreatePanel());
 	}
 
@@ -82,23 +87,6 @@ public class MainPage extends Composite {
 	@UiHandler("hlTeams")
 	void onClickHyperLinkTeams(ClickEvent e) {
 		addNewPanel(new TeamAllPanel());
-		SoccerSystem.Service.team.getAllTeams(new AsyncCallback<Team[]>() {
-			
-			@Override
-			public void onSuccess(Team[] result) {
-				Team[] teams = result;			
-				for(int i = 0;i < teams.length;i++){
-					Team team = teams[i];
-					Window.alert(team.toString());
-				}
-				Window.alert("Test Success "+result.length);
-			}
-			
-			@Override
-			public void onFailure(Throwable caught) {
-				Window.alert("Test Failure ");
-			}
-		});
 	}
 	
 	@UiHandler("hlCreateTeam")

@@ -37,6 +37,14 @@ public class PlayerActivity extends BasicActivity{
 	public void bind() {
 		long playerId = playerPlace.playerId;
 		
+		if (playerId != -1)
+			bindPlayerById(playerId);
+		else
+			bindFirstPlayerInDb();
+		
+	}
+
+	private void bindFirstPlayerInDb() {
 		MobileEntryPoint.Service.player.getAllPlayers(new AsyncCallback<Player[]>() {
 
 
@@ -55,26 +63,28 @@ public class PlayerActivity extends BasicActivity{
 				view.getLbPosition().setText("Position : "+Position.getPositionNameById(player.positionId));
 				view.getLbHeight().setText("Height : "+player.height);
 			}
+		});		
+	}
+
+	private void bindPlayerById(long playerId) {
+		MobileEntryPoint.Service.player.getPlayer(playerId, new AsyncCallback<Player>() {
+
+			@Override
+			public void onFailure(Throwable caught) {
+				Window.alert("Get player failure");						
+			}
+
+			@Override
+			public void onSuccess(Player player) {
+				view.getLbName().setText("Name : "+player.name);
+				view.getImgAvatar().setUrl(player.avatarUrl);
+				view.getLbBirth().setText("Birth : "+player.day+" - "+player.month+" - "+player.year);
+				view.getLbCurrentTeam().setText("Current Team : N/A");
+				view.getLbNationality().setText("Nationality : "+player.nationality);
+				view.getLbPosition().setText("Position : "+Position.getPositionNameById(player.positionId));
+				view.getLbHeight().setText("Height : "+player.height);				
+			}
 		});
-		
-//		MobileEntryPoint.Service.player.getPlayer(playerId, new AsyncCallback<Player>() {
-//			
-//			@Override
-//			public void onSuccess(Player player) {
-//				view.getLbName().setText("Name : "+player.name);
-//				view.getImgAvatar().setUrl(player.avatarUrl);
-//				view.getLbBirth().setText("Birth : "+player.day+" - "+player.month+" - "+player.year);
-//				view.getLbCurrentTeam().setText("Current Team : N/A");
-//				view.getLbNationality().setText("Nationality : "+player.nationality);
-//				view.getLbPosition().setText("Position : "+Position.getPositionNameById(player.positionId));
-//				view.getLbHeight().setText("Height : "+player.height);
-//			}
-//			
-//			@Override
-//			public void onFailure(Throwable caught) {
-//				Window.alert("Get player failure");				
-//			}
-//		});
 	}
 	
 	

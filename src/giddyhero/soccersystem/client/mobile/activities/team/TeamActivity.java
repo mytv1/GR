@@ -3,17 +3,21 @@ package giddyhero.soccersystem.client.mobile.activities.team;
 import java.util.Iterator;
 
 import com.google.appengine.api.datastore.Entity;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.gwt.user.client.ui.FlexTable;
+import com.google.gwt.user.client.ui.Image;
 import com.google.web.bindery.event.shared.EventBus;
 
 import giddyhero.soccersystem.client.MobileEntryPoint;
 import giddyhero.soccersystem.client.WidgetUtils;
 import giddyhero.soccersystem.client.mobile.activities.ClientFactory;
 import giddyhero.soccersystem.client.mobile.activities.basic.BasicActivity;
+import giddyhero.soccersystem.client.mobile.activities.player.PlayerPlace;
 import giddyhero.soccersystem.shared.Position;
 import giddyhero.soccersystem.shared.model.Player;
 import giddyhero.soccersystem.shared.model.SerializableEntity;
@@ -108,14 +112,7 @@ public class TeamActivity extends BasicActivity{
 				Window.alert("get player of team sucess");
 				for (int i = 0; i < result.length; i++) {
 					Player player = result[i];
-//					Window.alert("----"+player.toString());
-//					tblPlayers.setText(1+i, 0, "Avatar");
-//					tblPlayers.setText(1+i, 1, "Name");
-//					tblPlayers.setText(1+i, 2, "Birth");
-//					tblPlayers.setText(1+i, 3, "Nationality");
-//					tblPlayers.setText(1+i, 4, "Position");
-//					tblPlayers.setText(1+i, 5, "Height");
-					tblPlayers.setWidget(1 + i, 0, WidgetUtils.createImageIgnoseNull(player.avatarUrl, 40,40));
+					tblPlayers.setWidget(1 + i, 0, createLinkAvatar(player));
 					tblPlayers.setText(1 + i, 1, player.name);
 					tblPlayers.setText(1 + i, 2, WidgetUtils.dmyToString(player.day, player.month, player.year));
 					tblPlayers.setText(1 + i, 3, player.nationality);
@@ -126,7 +123,20 @@ public class TeamActivity extends BasicActivity{
 		});
 	}
 	
-	
+	private Image createLinkAvatar(final Player player){
+		Image imgAvatar = WidgetUtils.createImageIgnoseNull(player.avatarUrl, 40,40);
+		imgAvatar.addClickHandler(new ClickHandler() {
+			
+			@Override
+			public void onClick(ClickEvent event) {
+				PlayerPlace playerPlace = new PlayerPlace();
+				playerPlace.setPlayerId(player.id);
+				clientFactory.getPlaceController()
+						.goTo(playerPlace);
+			}
+		});
+		return imgAvatar;
+	}
 	
 	
 

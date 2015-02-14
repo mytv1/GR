@@ -50,9 +50,7 @@
 		<g:west size="10">
 			<g:FlowPanel styleName="{style.westPanel}">
 				<g:VerticalPanel>
-					<g:Label> League </g:Label>
-					<g:Label styleName="{style.indentation1}"> Create League </g:Label>
-					<g:Label styleName="{style.indentation1}"> Create Season </g:Label>
+					<g:Hyperlink ui:field="hlLeagueAll"> League </g:Hyperlink>
 
 					<g:Hyperlink ui:field="hlTeams"> Team </g:Hyperlink>
 					<g:Hyperlink ui:field="hlCreateTeam" styleName="{style.indentation1}">

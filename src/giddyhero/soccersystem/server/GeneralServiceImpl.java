@@ -3,9 +3,11 @@ package giddyhero.soccersystem.server;
 import static com.googlecode.objectify.ObjectifyService.ofy;
 import giddyhero.soccersystem.client.GeneralService;
 import giddyhero.soccersystem.shared.FieldVerifier;
+import giddyhero.soccersystem.shared.model.League;
 import giddyhero.soccersystem.shared.model.Nation;
 import giddyhero.soccersystem.shared.model.News;
 import giddyhero.soccersystem.shared.model.Player;
+import giddyhero.soccersystem.shared.model.Season;
 import giddyhero.soccersystem.shared.model.SerializableEntity;
 import giddyhero.soccersystem.shared.model.Team;
 
@@ -66,6 +68,8 @@ public class GeneralServiceImpl extends RemoteServiceServlet implements
 		ObjectifyService.register(Player.class);
 		ObjectifyService.register(News.class);
 		ObjectifyService.register(Team.class);
+		ObjectifyService.register(League.class);
+		ObjectifyService.register(Season.class);
 	}
 
 	@Override
@@ -103,6 +107,10 @@ public class GeneralServiceImpl extends RemoteServiceServlet implements
 			return Team.class;
 		case SerializableEntity.NATION:
 			return Nation.class;
+		case SerializableEntity.LEAGUE:
+			return League.class;
+		case SerializableEntity.SEASON:
+			return Season.class;
 		default:
 			break;
 		}
