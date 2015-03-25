@@ -1,8 +1,8 @@
 package giddyhero.soccersystem.client.mobile.activities.news.list;
 
-import com.google.gwt.place.shared.PlaceTokenizer;
-
 import giddyhero.soccersystem.client.mobile.activities.basic.BasicPlace;
+
+import com.google.gwt.place.shared.PlaceTokenizer;
 
 public class NewsPlace extends BasicPlace{
 	

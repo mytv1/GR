@@ -1,17 +1,16 @@
 package giddyhero.soccersystem.client.mobile.activities.home;
 
-import com.google.gwt.place.shared.Place;
-import com.google.gwt.user.client.ui.AcceptsOneWidget;
-import com.google.web.bindery.event.shared.EventBus;
-import com.googlecode.mgwt.dom.client.event.tap.TapEvent;
-import com.googlecode.mgwt.dom.client.event.tap.TapHandler;
-
-import giddyhero.soccersystem.client.manager.ui.news.NewsAllPanel;
 import giddyhero.soccersystem.client.mobile.activities.ClientFactory;
 import giddyhero.soccersystem.client.mobile.activities.basic.BasicActivity;
 import giddyhero.soccersystem.client.mobile.activities.news.list.NewsPlace;
 import giddyhero.soccersystem.client.mobile.activities.player.PlayerPlace;
 import giddyhero.soccersystem.client.mobile.activities.team.TeamPlace;
+
+import com.google.gwt.place.shared.Place;
+import com.google.gwt.user.client.ui.AcceptsOneWidget;
+import com.google.web.bindery.event.shared.EventBus;
+import com.googlecode.mgwt.dom.client.event.tap.TapEvent;
+import com.googlecode.mgwt.dom.client.event.tap.TapHandler;
 
 public class HomeActivity extends BasicActivity {
 

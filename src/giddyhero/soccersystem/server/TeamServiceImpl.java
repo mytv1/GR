@@ -1,18 +1,13 @@
 package giddyhero.soccersystem.server;
 
+import static com.googlecode.objectify.ObjectifyService.ofy;
 import giddyhero.soccersystem.client.manager.ui.team.TeamService;
 import giddyhero.soccersystem.shared.model.Team;
 
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.googlecode.objectify.Key;
-import com.googlecode.objectify.Result;
-
-import static com.googlecode.objectify.ObjectifyService.ofy;
 
 @SuppressWarnings("serial")
 public class TeamServiceImpl extends RemoteServiceServlet implements TeamService {

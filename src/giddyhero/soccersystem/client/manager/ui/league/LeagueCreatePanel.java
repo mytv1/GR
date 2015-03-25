@@ -10,9 +10,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
@@ -36,7 +34,7 @@ public class LeagueCreatePanel extends Composite {
 	@UiHandler("btConfirm")
 	void onClickConfirmButton(ClickEvent e) {
 		League league = new League(tbName.getText(), taInfo.getText());
-		SoccerSystem.Service.league.createNewLeague(league, new AsyncCallback<Void>() {
+		SoccerSystem.Service.league.saveLeague(league, new AsyncCallback<Void>() {
 			
 			@Override
 			public void onSuccess(Void result) {

@@ -1,8 +1,5 @@
 package giddyhero.soccersystem.shared.model;
 
-import java.io.Serializable;
-
-import com.google.gwt.user.client.rpc.IsSerializable;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 

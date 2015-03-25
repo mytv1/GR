@@ -1,8 +1,8 @@
 package giddyhero.soccersystem.client.mobile.activities.greeting;
 
-import com.google.gwt.user.client.ui.Image;
-
 import giddyhero.soccersystem.client.mobile.activities.basic.BasicView;
+
+import com.google.gwt.user.client.ui.Image;
 
 public interface GreetingView extends BasicView {
 	

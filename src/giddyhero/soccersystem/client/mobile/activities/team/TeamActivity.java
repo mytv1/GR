@@ -1,8 +1,14 @@
 package giddyhero.soccersystem.client.mobile.activities.team;
 
-import java.util.Iterator;
+import giddyhero.soccersystem.client.MobileEntryPoint;
+import giddyhero.soccersystem.client.WidgetUtils;
+import giddyhero.soccersystem.client.mobile.activities.ClientFactory;
+import giddyhero.soccersystem.client.mobile.activities.basic.BasicActivity;
+import giddyhero.soccersystem.client.mobile.activities.player.PlayerPlace;
+import giddyhero.soccersystem.shared.Position;
+import giddyhero.soccersystem.shared.model.Player;
+import giddyhero.soccersystem.shared.model.Team;
 
-import com.google.appengine.api.datastore.Entity;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.place.shared.Place;
@@ -12,16 +18,6 @@ import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.Image;
 import com.google.web.bindery.event.shared.EventBus;
-
-import giddyhero.soccersystem.client.MobileEntryPoint;
-import giddyhero.soccersystem.client.WidgetUtils;
-import giddyhero.soccersystem.client.mobile.activities.ClientFactory;
-import giddyhero.soccersystem.client.mobile.activities.basic.BasicActivity;
-import giddyhero.soccersystem.client.mobile.activities.player.PlayerPlace;
-import giddyhero.soccersystem.shared.Position;
-import giddyhero.soccersystem.shared.model.Player;
-import giddyhero.soccersystem.shared.model.SerializableEntity;
-import giddyhero.soccersystem.shared.model.Team;
 
 public class TeamActivity extends BasicActivity{
 	

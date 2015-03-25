@@ -8,8 +8,8 @@
 	<inherits name='com.google.gwt.user.User' />
 	<inherits name='com.google.gwt.activity.Activity' />
 	<inherits name='com.googlecode.mgwt.MGWT' />
-	<!-- <define-property name="gwt.logging.popupHandler"
-		values="DISABLE" /> -->
+	<define-property name="gwt.logging.popupHandler"
+		values="DISABLED" />
 	<inherits name="com.googlecode.objectify.Objectify" /> 
 	<inherits name="com.googlecode.gwtphonegap.PhoneGap" />
 	<inherits name="com.google.gwt.logging.Logging" />

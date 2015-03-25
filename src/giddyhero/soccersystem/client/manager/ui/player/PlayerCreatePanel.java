@@ -1,20 +1,13 @@
 package giddyhero.soccersystem.client.manager.ui.player;
 
 import giddyhero.soccersystem.client.SoccerSystem;
-import giddyhero.soccersystem.client.SoccerSystem.Service;
 import giddyhero.soccersystem.shared.Position;
 import giddyhero.soccersystem.shared.model.Player;
 
-import java.sql.Date;
-import java.util.Iterator;
 import java.util.Map.Entry;
-import java.util.Set;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.i18n.rebind.LocaleUtils;
-import com.google.gwt.i18n.shared.GwtLocale;
-import com.google.gwt.i18n.shared.GwtLocaleFactory;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;

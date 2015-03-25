@@ -1,14 +1,11 @@
 package giddyhero.soccersystem.client.manager.ui.team;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-
 import giddyhero.soccersystem.client.SoccerSystem;
-import giddyhero.soccersystem.client.SoccerSystem.Service;
 import giddyhero.soccersystem.client.manager.ui.team.TeamCreatePanel.PlayerListGroup.PlayerSelectedGroup;
 import giddyhero.soccersystem.shared.model.Player;
 import giddyhero.soccersystem.shared.model.Team;
+
+import java.util.ArrayList;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;

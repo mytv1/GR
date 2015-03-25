@@ -1,14 +1,9 @@
 package giddyhero.soccersystem.shared.model;
 
-import giddyhero.soccersystem.shared.Position;
-
-import java.io.Serializable;
-import java.sql.Date;
-
-import com.google.gwt.user.client.rpc.IsSerializable;
 import com.google.gwt.user.client.ui.Image;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
+import com.googlecode.objectify.annotation.Index;
 
 @Entity
 public class Player implements SerializableEntity {
@@ -21,7 +16,7 @@ public class Player implements SerializableEntity {
 	public int positionId;
 	public String nationality;
 	public String avatarUrl;
-	public Long currentTeamId;
+	@Index public Long currentTeamId;
 
 	public Player() {
 	}

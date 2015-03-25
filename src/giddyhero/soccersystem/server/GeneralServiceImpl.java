@@ -3,7 +3,11 @@ package giddyhero.soccersystem.server;
 import static com.googlecode.objectify.ObjectifyService.ofy;
 import giddyhero.soccersystem.client.GeneralService;
 import giddyhero.soccersystem.shared.FieldVerifier;
+import giddyhero.soccersystem.shared.model.EventCard;
+import giddyhero.soccersystem.shared.model.EventChangePlayer;
+import giddyhero.soccersystem.shared.model.EventGoal;
 import giddyhero.soccersystem.shared.model.League;
+import giddyhero.soccersystem.shared.model.Match;
 import giddyhero.soccersystem.shared.model.Nation;
 import giddyhero.soccersystem.shared.model.News;
 import giddyhero.soccersystem.shared.model.Player;
@@ -13,10 +17,8 @@ import giddyhero.soccersystem.shared.model.Team;
 
 import java.util.Locale;
 
-import com.google.appengine.api.datastore.Entity;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.googlecode.objectify.ObjectifyService;
-import com.googlecode.objectify.Ref;
 
 /**
  * The server-side implementation of the RPC service.
@@ -70,6 +72,10 @@ public class GeneralServiceImpl extends RemoteServiceServlet implements
 		ObjectifyService.register(Team.class);
 		ObjectifyService.register(League.class);
 		ObjectifyService.register(Season.class);
+		ObjectifyService.register(Match.class);
+		ObjectifyService.register(EventCard.class);
+		ObjectifyService.register(EventChangePlayer.class);
+		ObjectifyService.register(EventGoal.class);
 	}
 
 	@Override
@@ -115,6 +121,17 @@ public class GeneralServiceImpl extends RemoteServiceServlet implements
 			break;
 		}
 		return null;
+	}
+
+	@Override
+	public void deleteEntities(int type, long[] entityIds) {
+		if ( entityIds == null) {
+			return;
+		}
+		Class clazz = getEntityClassByIntType(type);
+		if (clazz != null) {
+			ofy().delete().type(clazz).ids(entityIds);
+		}
 	}
 
 }

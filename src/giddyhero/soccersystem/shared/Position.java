@@ -1,14 +1,7 @@
 package giddyhero.soccersystem.shared;
 
-import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map.Entry;
-
-import org.datanucleus.store.types.sco.simple.Map;
-
-import com.google.gwt.user.client.rpc.IsSerializable;
-import com.googlecode.objectify.annotation.Entity;
-import com.googlecode.objectify.annotation.Id;
 
 public class Position  {
 	int id;

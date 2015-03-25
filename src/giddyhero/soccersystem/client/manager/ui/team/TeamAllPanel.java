@@ -1,8 +1,8 @@
 package giddyhero.soccersystem.client.manager.ui.team;
 
 import giddyhero.soccersystem.client.SoccerSystem;
-import giddyhero.soccersystem.client.SoccerSystem.Service;
-import giddyhero.soccersystem.client.manager.ui.general.EditDeletePanel;
+import giddyhero.soccersystem.client.manager.ui.widget.TableInfoDisplay;
+import giddyhero.soccersystem.client.manager.ui.widget.TableInfoDisplay.ActionPanel;
 import giddyhero.soccersystem.shared.model.SerializableEntity;
 import giddyhero.soccersystem.shared.model.Team;
 
@@ -10,41 +10,30 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.uibinder.client.UiBinder;
-import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.Image;
-import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.Widget;
 
-public class TeamAllPanel extends Composite {
-
-	private static TeamAllPanelUiBinder uiBinder = GWT
-			.create(TeamAllPanelUiBinder.class);
-
-	interface TeamAllPanelUiBinder extends UiBinder<Widget, TeamAllPanel> {
-	}
-
-	@UiField
-	FlexTable tblTeam;
+public class TeamAllPanel extends TableInfoDisplay {
+	
 	
 	public TeamAllPanel() {
-		initWidget(uiBinder.createAndBindUi(this));
+		super();
 		initTable();
 	}
 
 
 	private void initTable() {
-		tblTeam.setText(0, 0, "ID");
-		tblTeam.setText(0, 1, "Logo");
-		tblTeam.setText(0, 2, "Name");
-		tblTeam.setText(0, 3, "Establish Year");
-		tblTeam.setText(0, 4, "Stadium");
-		tblTeam.setText(0, 5, "Nation");
-		tblTeam.setText(0, 6, "Players");
-		tblTeam.setText(0, 7, "Actions");
+		setText(0, 0, "ID");
+		setText(0, 1, "Logo");
+		setText(0, 2, "Name");
+		setText(0, 3, "Establish Year");
+		setText(0, 4, "Stadium");
+		setText(0, 5, "Nation");
+		setText(0, 6, "Players");
+		setText(0, 7, "Actions");
 		
 		SoccerSystem.Service.team.getAllTeams(new AsyncCallback<Team[]>() {
 			
@@ -54,35 +43,35 @@ public class TeamAllPanel extends Composite {
 				Team[] teams = result;			
 				for(int i = 0;i < teams.length;i++){
 					final Team team = teams[i];
-					tblTeam.setText(2+i, 0, ""+team.id);
-					tblTeam.setWidget(2+i, 1, getLogo(team.logoUrl));
-					tblTeam.setText(2+i, 2, ""+team.name);
-					tblTeam.setText(2+i, 3, ""+team.establishYear);
-					tblTeam.setText(2+i, 4, ""+team.stadiumName);
-					tblTeam.setText(2+i, 5, ""+team.nation);
-					tblTeam.setText(2+i, 6, ""+team.playerIds.length);
+					setText(2+i, 0, ""+team.id);
+					setWidget(2+i, 1, getLogo(team.logoUrl));
+					setText(2+i, 2, ""+team.name);
+					setText(2+i, 3, ""+team.establishYear);
+					setText(2+i, 4, ""+team.stadiumName);
+					setText(2+i, 5, ""+team.nation);
+					setText(2+i, 6, ""+team.playerIds.length);
 					
-					EditDeletePanel editDeletePanel = new EditDeletePanel();
-					editDeletePanel.getBtDelete().addClickHandler(new ClickHandler() {
-						
-						@Override
-						public void onClick(ClickEvent event) {
-							SoccerSystem.Service.general.deleteEntity(SerializableEntity.TEAM, team.id, new AsyncCallback<Boolean>() {
-
-								@Override
-								public void onFailure(Throwable caught) {
-									Window.alert("Delete failure");
-								}
-
-								@Override
-								public void onSuccess(Boolean result) {
-									Window.alert("Delete success");
-								}
-								
-							});
-						}
-					});
-					tblTeam.setWidget(2+i, 7, editDeletePanel);
+//					EditDeletePanel editDeletePanel = new EditDeletePanel();
+//					editDeletePanel.getBtDelete().addClickHandler(new ClickHandler() {
+//						
+//						@Override
+//						public void onClick(ClickEvent event) {
+//							SoccerSystem.Service.general.deleteEntity(SerializableEntity.TEAM, team.id, new AsyncCallback<Boolean>() {
+//
+//								@Override
+//								public void onFailure(Throwable caught) {
+//									Window.alert("Delete failure");
+//								}
+//
+//								@Override
+//								public void onSuccess(Boolean result) {
+//									Window.alert("Delete success");
+//								}
+//								
+//							});
+//						}
+//					});
+					setWidget(2+i, 7, new ActionPanel());
 				}
 			}
 			

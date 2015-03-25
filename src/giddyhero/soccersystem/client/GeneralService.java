@@ -1,9 +1,5 @@
 package giddyhero.soccersystem.client;
 
-import giddyhero.soccersystem.shared.model.SerializableEntity;
-
-import com.google.appengine.api.datastore.Entity;
-import com.google.gwt.user.client.rpc.IsSerializable;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
@@ -19,4 +15,6 @@ public interface GeneralService extends RemoteService{
 	String[] getAllCountryNames();
 	
 	boolean deleteEntity(int type,long entityId);
+	
+	void deleteEntities(int type,long[] entityId);
 }

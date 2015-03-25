@@ -1,18 +1,16 @@
 package giddyhero.soccersystem.client.mobile.activities.player;
 
-import com.google.appengine.api.datastore.Entity;
-import com.google.gwt.place.shared.Place;
-import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.ui.AcceptsOneWidget;
-import com.google.web.bindery.event.shared.EventBus;
-
 import giddyhero.soccersystem.client.MobileEntryPoint;
 import giddyhero.soccersystem.client.mobile.activities.ClientFactory;
 import giddyhero.soccersystem.client.mobile.activities.basic.BasicActivity;
 import giddyhero.soccersystem.shared.Position;
 import giddyhero.soccersystem.shared.model.Player;
-import giddyhero.soccersystem.shared.model.SerializableEntity;
+
+import com.google.gwt.place.shared.Place;
+import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.gwt.user.client.ui.AcceptsOneWidget;
+import com.google.web.bindery.event.shared.EventBus;
 
 public class PlayerActivity extends BasicActivity{
 	

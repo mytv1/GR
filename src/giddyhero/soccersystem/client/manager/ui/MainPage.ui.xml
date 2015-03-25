@@ -1,6 +1,6 @@
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
 	xmlns:g="urn:import:com.google.gwt.user.client.ui">
-	<ui:style>
+	<!-- <ui:style>
 	.eastPanel {
 		background-color: #F60;
 	}
@@ -34,9 +34,9 @@
 	.logo {
 		padding-right: 600px;
 	}
-	</ui:style>
-	<g:DockLayoutPanel unit="EM">
-		<g:north size="3">
+	</ui:style> -->
+	<g:DockLayoutPanel ui:field="pnMain" width="100%" height="100%" unit="PX">
+		<!-- <g:north size="3">
 			<g:FlowPanel styleName="{style.northPanel}">
 				<g:HorizontalPanel>
 					<g:Image ui:field="logo" styleName="{style.logo}"></g:Image>
@@ -92,6 +92,6 @@
 			<g:FlowPanel styleName="{style.southPanel}">
 				<g:Label> Soccer System Manager - Graduate Reseach - Mytv</g:Label>
 			</g:FlowPanel>
-		</g:south>
+		</g:south> -->
 	</g:DockLayoutPanel>
 </ui:UiBinder> 

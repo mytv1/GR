@@ -1,13 +1,12 @@
 package giddyhero.soccersystem.server;
 
-import giddyhero.soccersystem.client.manager.ui.news.NewsService;
 import static com.googlecode.objectify.ObjectifyService.ofy;
+import giddyhero.soccersystem.client.manager.ui.news.NewsService;
 import giddyhero.soccersystem.shared.model.News;
 
 import java.util.List;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
-import com.googlecode.objectify.Objectify;
 import com.googlecode.objectify.ObjectifyService;
 
 public class NewsServiceImpl extends RemoteServiceServlet implements NewsService{

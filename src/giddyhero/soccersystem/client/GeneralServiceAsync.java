@@ -1,10 +1,6 @@
 package giddyhero.soccersystem.client;
 
-import giddyhero.soccersystem.shared.model.SerializableEntity;
-
-import com.google.appengine.api.datastore.Entity;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.rpc.IsSerializable;
 
 /**
  * The async counterpart of <code>GreetingService</code>.
@@ -18,5 +14,7 @@ public interface GeneralServiceAsync {
 	void getAllCountryNames(AsyncCallback<String[]> callback);
 
 	void deleteEntity(int type, long entityId, AsyncCallback<Boolean> callback);
+
+	void deleteEntities(int type, long[] entityId, AsyncCallback<Void> callback);
 
 }

@@ -1,0 +1,42 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+		.important {
+		font-weight: bold;
+		}
+		.mytv-form {
+		width: 100%;
+		background-color: #EFF;
+		padding:
+		10px;
+		margin-bottom:15px;
+		}
+		.mytv-label {
+		width: 120px;
+		}
+		.mytv-padding-left{
+		padding-left: 200px;
+		}
+		.mytv-textfield {
+		width: 800px;
+		height: 400px;
+		}
+		.mytv-button {
+		margin-top: 20px;
+		margin-left: 250px;
+		width: 100px;
+		height: 25px;
+		}
+	</ui:style>
+	<g:VerticalPanel styleName="{style.mytv-form}"
+		ui:field="mainPanel">
+		<g:Label ui:field="lbLeagueName"></g:Label>
+		<g:HorizontalPanel>
+			<g:Label styleName="{style.mytv-label}"> Year </g:Label>
+			<g:TextBox  ui:field="tbYear"></g:TextBox>
+		</g:HorizontalPanel>
+		<g:Button styleName="{style.mytv-button}" ui:field="btConfirm"
+			text="OK" />
+	</g:VerticalPanel>
+</ui:UiBinder> 

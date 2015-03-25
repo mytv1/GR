@@ -1,6 +1,7 @@
 package giddyhero.soccersystem.client;
 
 import com.google.gwt.user.client.ui.Image;
+import com.google.gwt.user.client.ui.Label;
 
 public class WidgetUtils {
 
@@ -19,5 +20,12 @@ public class WidgetUtils {
 	
 	public static String dmyToString(int day,int month, int year){
 		return ""+day+"/"+month+"/"+year;
+	}
+	
+	public static Label createIdLabel(long id, int width, int height){
+		Label label = new Label(""+id);
+		label.setPixelSize(width, height);
+		label.getElement().setAttribute("whiteSpace", "normal");
+		return label;
 	}
 }

@@ -1,9 +1,8 @@
 package giddyhero.soccersystem.client.mobile.activities.greeting;
 
-import com.google.gwt.place.shared.PlaceTokenizer;
-
 import giddyhero.soccersystem.client.mobile.activities.basic.BasicPlace;
-import giddyhero.soccersystem.client.mobile.activities.home.HomePlace;
+
+import com.google.gwt.place.shared.PlaceTokenizer;
 
 public class GreetingPlace extends BasicPlace{
 

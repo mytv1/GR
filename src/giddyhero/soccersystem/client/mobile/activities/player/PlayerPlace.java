@@ -1,8 +1,8 @@
 package giddyhero.soccersystem.client.mobile.activities.player;
 
-import com.google.gwt.place.shared.PlaceTokenizer;
-
 import giddyhero.soccersystem.client.mobile.activities.basic.BasicPlace;
+
+import com.google.gwt.place.shared.PlaceTokenizer;
 
 public class PlayerPlace extends BasicPlace{
 	long playerId;

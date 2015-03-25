@@ -6,10 +6,11 @@
 		font-weight: bold;
 		}
 		.mytv-form {
-		background-color: #EEE;
-		padding: 20px;
-		margin:
-		20px;
+		width: 100%;
+		background-color: #EFF;
+		padding:
+		10px;
+		margin-bottom:15px;
 		}
 		.mytv-label {
 		width: 120px;
@@ -39,7 +40,7 @@
 			<g:TextBox ui:field="tbName"></g:TextBox>
 		</g:HorizontalPanel>
 		<g:HorizontalPanel>
-			<g:Label styleName="{style.mytv-label}"> Logo Url </g:Label>
+			<g:Label styleName="{style.mytv-label}"> Information </g:Label>
 			<g:TextArea styleName="{style.mytv-text-area}" ui:field="taInfo"></g:TextArea>
 		</g:HorizontalPanel>
 		<g:Button styleName="{style.mytv-button}" ui:field="btConfirm"

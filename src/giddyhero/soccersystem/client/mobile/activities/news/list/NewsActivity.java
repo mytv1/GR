@@ -1,22 +1,18 @@
 package giddyhero.soccersystem.client.mobile.activities.news.list;
 
+import giddyhero.soccersystem.client.MobileEntryPoint;
+import giddyhero.soccersystem.client.mobile.activities.ClientFactory;
+import giddyhero.soccersystem.client.mobile.activities.basic.BasicActivity;
+import giddyhero.soccersystem.client.mobile.activities.news.detail.NewsDetailPlace;
+import giddyhero.soccersystem.shared.model.News;
+
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
-import com.google.gwt.user.client.ui.FocusPanel;
-import com.google.gwt.user.client.ui.Image;
 import com.google.web.bindery.event.shared.EventBus;
-import com.googlecode.mgwt.dom.client.event.tap.TapEvent;
-import com.googlecode.mgwt.dom.client.event.tap.TapHandler;
-
-import giddyhero.soccersystem.client.MobileEntryPoint;
-import giddyhero.soccersystem.client.mobile.activities.ClientFactory;
-import giddyhero.soccersystem.client.mobile.activities.basic.BasicActivity;
-import giddyhero.soccersystem.client.mobile.activities.news.detail.NewsDetailPlace;
-import giddyhero.soccersystem.shared.model.News;
 
 public class NewsActivity extends BasicActivity {
 

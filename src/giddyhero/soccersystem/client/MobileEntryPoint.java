@@ -1,7 +1,5 @@
 package giddyhero.soccersystem.client;
 
-import java.util.logging.Logger;
-
 import giddyhero.soccersystem.client.manager.ui.news.NewsService;
 import giddyhero.soccersystem.client.manager.ui.news.NewsServiceAsync;
 import giddyhero.soccersystem.client.manager.ui.player.PlayerService;

@@ -1,0 +1,9 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<g:VerticalPanel>
+	    <g:Label ui:field="lbLeague"> League : ??? </g:Label>
+	    <g:Label ui:field="lbSeason"> Season : ???</g:Label>
+	    <g:FlexTable ui:field="tblMatches"></g:FlexTable>
+	</g:VerticalPanel>
+</ui:UiBinder> 

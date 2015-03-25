@@ -1,21 +1,16 @@
 package giddyhero.soccersystem.server;
 
-import giddyhero.soccersystem.client.MobileEntryPoint;
+import static com.googlecode.objectify.ObjectifyService.ofy;
 import giddyhero.soccersystem.client.manager.ui.player.PlayerService;
 import giddyhero.soccersystem.shared.model.Player;
 
-import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import com.google.appengine.api.datastore.Entity;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.googlecode.objectify.Ref;
-
-import static com.googlecode.objectify.ObjectifyService.ofy;
 
 @SuppressWarnings("serial")
 public class PlayerServiceImpl extends RemoteServiceServlet implements
@@ -26,6 +21,12 @@ public class PlayerServiceImpl extends RemoteServiceServlet implements
 			int height, int positionId, String nationality, String avatarUrl) {
 		Player player = new Player(name, day, month, year, height, positionId,
 				nationality, avatarUrl);
+		ofy().save().entities(player).now();
+		return player;
+	}
+	
+	@Override
+	public Player addNewPlayer(Player player) {
 		ofy().save().entities(player).now();
 		return player;
 	}
@@ -64,10 +65,34 @@ public class PlayerServiceImpl extends RemoteServiceServlet implements
 			players[i] = entry.getValue();
 		    i++;
 		}
-//		Player[] players = new Player[playerList.size()];
-//		for (int i = 0; i < playerList.size(); i++) {
-//			players[i] = playerList.get(i);
+		return players;
+	}
+
+	@Override
+	public Player[] getAllPlayerOfTeam(long teamId) {
+//		List<Player> playerList = ofy().load().type(Player.class).list();
+//		Player[] players;
+//		ArrayList<Player> alPlayers = new ArrayList<Player>();
+//		
+//		int i =0;
+//		for(Player player : playerList) {
+//			if (player.currentTeamId != null && player.currentTeamId == teamId)
+//			{
+//				alPlayers.add(player);
+//				i++;
+//			}
 //		}
+//		
+//		players = new Player[i];
+//		for (int j = 0; j < i; j++) {
+//			players[j] = alPlayers.get(j);
+//		}
+//		return players;
+		List<Player> playerList = ofy().load().type(Player.class).filter("currentTeamId", teamId).list();
+		Player[] players = new Player[playerList.size()];
+		for (int i = 0; i < playerList.size(); i++) {
+			players[i] = playerList.get(i);
+		}
 		return players;
 	}
 

@@ -3,6 +3,7 @@ package giddyhero.soccersystem.client;
 import giddyhero.soccersystem.client.manager.ui.MainPage;
 import giddyhero.soccersystem.client.manager.ui.league.LeagueService;
 import giddyhero.soccersystem.client.manager.ui.league.LeagueServiceAsync;
+import giddyhero.soccersystem.client.manager.ui.match.MatchCreatePanel;
 import giddyhero.soccersystem.client.manager.ui.news.NewsService;
 import giddyhero.soccersystem.client.manager.ui.news.NewsServiceAsync;
 import giddyhero.soccersystem.client.manager.ui.player.PlayerService;
@@ -28,26 +29,33 @@ public class SoccerSystem implements EntryPoint {
 		public final static TeamServiceAsync team = GWT.create(TeamService.class);
 		public final static LeagueServiceAsync league = GWT.create(LeagueService.class);
 	}
+	
 
-	public static MainPage mainPage = new MainPage();
+	public static MainPage mainPage;
 
 	/**
 	 * This is the entry point method.
 	 */
 	public void onModuleLoad() {
-		RootLayoutPanel.get().add(mainPage);
+//		 mainPage = new MainPage();
+		RootLayoutPanel.get().add(new MainPage());
 		Service.general.registerAllEntity(new AsyncCallback<Void>() {
 
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert("Init Failure");
+//				Window.alert("Init Failure");
 			}
 
 			@Override
 			public void onSuccess(Void result) {
-				Window.alert("Init Success");
+//				Window.alert("Init Success");
+//				test();
 			}
 		});
 	}
+
+//	private void test() {
+//		mainPage.addNewPanel(new MatchCreatePanel());
+//	}
 
 }
