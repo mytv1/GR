@@ -16,17 +16,9 @@ import com.googlecode.objectify.Ref;
 public class PlayerServiceImpl extends RemoteServiceServlet implements
 		PlayerService {
 
-	@Override
-	public Player addNewPlayer(String name, int day, int month, int year,
-			int height, int positionId, String nationality, String avatarUrl) {
-		Player player = new Player(name, day, month, year, height, positionId,
-				nationality, avatarUrl);
-		ofy().save().entities(player).now();
-		return player;
-	}
 	
 	@Override
-	public Player addNewPlayer(Player player) {
+	public Player savePlayer(Player player) {
 		ofy().save().entities(player).now();
 		return player;
 	}
@@ -70,30 +62,42 @@ public class PlayerServiceImpl extends RemoteServiceServlet implements
 
 	@Override
 	public Player[] getAllPlayerOfTeam(long teamId) {
-//		List<Player> playerList = ofy().load().type(Player.class).list();
-//		Player[] players;
-//		ArrayList<Player> alPlayers = new ArrayList<Player>();
-//		
-//		int i =0;
-//		for(Player player : playerList) {
-//			if (player.currentTeamId != null && player.currentTeamId == teamId)
-//			{
-//				alPlayers.add(player);
-//				i++;
-//			}
-//		}
-//		
-//		players = new Player[i];
-//		for (int j = 0; j < i; j++) {
-//			players[j] = alPlayers.get(j);
-//		}
-//		return players;
-		List<Player> playerList = ofy().load().type(Player.class).filter("currentTeamId", teamId).list();
-		Player[] players = new Player[playerList.size()];
-		for (int i = 0; i < playerList.size(); i++) {
-			players[i] = playerList.get(i);
+		List<Player> playerList = ofy().load().type(Player.class).list();
+		Player[] players;
+		ArrayList<Player> alPlayers = new ArrayList<Player>();
+		
+		int i =0;
+		for(Player player : playerList) {
+			if (player.currentTeamId == teamId)
+			{
+				alPlayers.add(player);
+				i++;
+			}
+		}
+		
+		players = new Player[i];
+		for (int j = 0; j < i; j++) {
+			players[j] = alPlayers.get(j);
 		}
 		return players;
+		
+	//		List<Player> playerList = ofy().load().type(Player.class).filter("currentTeamId", teamId).list();
+	//		Player[] players = new Player[playerList.size()];
+	//		for (int i = 0; i < playerList.size(); i++) {
+	//			players[i] = playerList.get(i);
+	//		}
+	//		return players;
+	}
+
+	@Override
+	public void deletePlayer(long id) {
+		ofy().delete().type(Player.class).id(id);
+	}
+
+	@Override
+	public Player getFirstPlayer() {
+		Ref<Player> playerRef = ofy().load().type(Player.class).first();
+		return playerRef.get();
 	}
 
 }

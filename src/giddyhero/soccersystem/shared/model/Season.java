@@ -7,7 +7,8 @@ import com.googlecode.objectify.annotation.Id;
 public class Season implements SerializableEntity{
 	public @Id Long id;
 	public int year;
-	public long[] matchIds;
+//	public long[] matchIds;
+	public long leagueId;
 	
 	public Season() {
 		// TODO Auto-generated constructor stub
@@ -17,7 +18,12 @@ public class Season implements SerializableEntity{
 		this.year = year;
 	}
 	
-	public void setMatchIds(long[] matchIds) {
-		this.matchIds = matchIds;
+//	public void setMatchIds(long[] matchIds) {
+//		this.matchIds = matchIds;
+//	}
+//	
+	public void setLeagueId(long leagueId) {
+		this.leagueId = leagueId;
 	}
+	
 }

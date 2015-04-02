@@ -1,7 +1,7 @@
 package giddyhero.soccersystem.client.manager.ui.widget;
 
 import giddyhero.soccersystem.client.manager.widget.GHFlowPanel;
-import giddyhero.soccersystem.client.manager.widget.GHLabel;
+import giddyhero.soccersystem.client.share.CSSUtils;
 
 import com.google.gwt.dom.client.Style;
 import com.google.gwt.dom.client.Style.Cursor;
@@ -10,10 +10,11 @@ import com.google.gwt.event.dom.client.MouseOutHandler;
 import com.google.gwt.event.dom.client.MouseOverEvent;
 import com.google.gwt.event.dom.client.MouseOverHandler;
 import com.google.gwt.user.client.ui.FocusPanel;
+import com.google.gwt.user.client.ui.Label;
 
 public class ButtonMenuLevel2 extends FocusPanel {
 
-	protected GHLabel lbName = null;
+	protected Label lbName = null;
 	protected GHFlowPanel ghFlowPanel = new GHFlowPanel();
 
 	public ButtonMenuLevel2(String name) {
@@ -55,12 +56,17 @@ public class ButtonMenuLevel2 extends FocusPanel {
 	}
 
 	private void initNameLabel(String name) {
-		lbName = new GHLabel(name);
-		lbName.setFontSize("medium");
-		lbName.setFontWeight("bold");
-		lbName.setPostion("absolute");
-		lbName.setLeft(40);
-		lbName.setTop(5);
+		lbName = new Label(name);
+//		lbName.setFontSize("medium");
+//		lbName.setFontWeight("bold");
+//		lbName.setPostion("absolute");
+//		lbName.setLeft(40);
+//		lbName.setTop(5);
+		CSSUtils.setFontSize(lbName, "medium");
+		CSSUtils.setFontWeight(lbName, "bold");
+		CSSUtils.setPosition(lbName, "absolute");
+		CSSUtils.setLeft(lbName, 40);
+		CSSUtils.setTop(lbName, 5);
 		// lbName.setBottom(10);
 
 		ghFlowPanel.add(lbName);
@@ -70,7 +76,7 @@ public class ButtonMenuLevel2 extends FocusPanel {
 		return ghFlowPanel;
 	}
 	
-	public GHLabel getLbName() {
+	public Label getLbName() {
 		return lbName;
 	}
 }

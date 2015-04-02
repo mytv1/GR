@@ -1,8 +1,8 @@
-package giddyhero.soccersystem.client.manager.ui.news;
+package giddyhero.soccersystem.client.manager.ui.league;
 
 import giddyhero.soccersystem.client.SystemManager;
 import giddyhero.soccersystem.client.share.CSSUtils;
-import giddyhero.soccersystem.shared.model.News;
+import giddyhero.soccersystem.shared.model.League;
 
 import com.google.gwt.dom.client.Style;
 import com.google.gwt.dom.client.Style.Unit;
@@ -14,18 +14,17 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.Label;
 
-public class PanelCreateNews extends FlowPanel {
+public class PanelCreateLeague extends FlowPanel {
 
-	TableCreateNews tblCreateNews;
+	TableCreateLeague tblCreateNews = new TableCreateLeague();
 
-	public PanelCreateNews() {
+	public PanelCreateLeague() {
 		super();
 		init();
 	}
 
 	private void init() {
 		initLabelTitle();
-		tblCreateNews  = new TableCreateNews();
 		add(tblCreateNews);
 		initConfirmButton();
 	}
@@ -38,17 +37,17 @@ public class PanelCreateNews extends FlowPanel {
 
 			@Override
 			public void onClick(ClickEvent event) {
-				News news = tblCreateNews.getNews();
-				SystemManager.Service.news.addNews(news, new AsyncCallback<Void>() {
-
+				League league = tblCreateNews.getLeague();
+				SystemManager.Service.league.saveLeague(league, new AsyncCallback<Void>() {
+					
 					@Override
 					public void onSuccess(Void result) {
-						Window.alert("Add news success ");
+						Window.alert("new league success");
 					}
-
+					
 					@Override
 					public void onFailure(Throwable caught) {
-						Window.alert("Add news fail " + caught.toString());
+						Window.alert("new league failure");				
 					}
 				});
 			}
@@ -58,7 +57,7 @@ public class PanelCreateNews extends FlowPanel {
 	}
 
 	private void initLabelTitle() {
-		Label lbTitle = new Label("Create new news");
+		Label lbTitle = new Label("Create New League");
 		lbTitle.setWidth("100%");
 		CSSUtils.setFontSize(lbTitle, "x-large");
 		CSSUtils.setTextAlign(lbTitle, Style.TextAlign.CENTER);

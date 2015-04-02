@@ -1,6 +1,6 @@
 package giddyhero.soccersystem.client.manager.ui.news;
 
-import giddyhero.soccersystem.client.SoccerSystem;
+import giddyhero.soccersystem.client.SystemManager;
 import giddyhero.soccersystem.client.WidgetUtils;
 import giddyhero.soccersystem.client.manager.ui.widget.TableInfoDisplay;
 import giddyhero.soccersystem.shared.model.News;
@@ -28,7 +28,7 @@ public class PanelNewsAll extends TableInfoDisplay{
 	}
 	
 	private void initContent() {
-		SoccerSystem.Service.news.getAllNews(new AsyncCallback<News[]>() {
+		SystemManager.Service.news.getAllNews(new AsyncCallback<News[]>() {
 
 			@Override
 			public void onSuccess(News[] result) {
@@ -48,11 +48,11 @@ public class PanelNewsAll extends TableInfoDisplay{
 					setWidget(1 + i, 4,  WidgetUtils.createIdLabel(news.taggedPlayer, 40, 30));
 					setWidget(1+i, 5, scrollPanel);
 					ActionPanel actionPanel = new ActionPanel();
-					actionPanel.deleteButton.addClickHandler(new ClickHandler() {
+					actionPanel.btDelete.addClickHandler(new ClickHandler() {
 						
 						@Override
 						public void onClick(ClickEvent event) {
-							SoccerSystem.Service.general.deleteEntity(SerializableEntity.NEWS, news.id, new AsyncCallback<Boolean>() {
+							SystemManager.Service.general.deleteEntity(SerializableEntity.NEWS, news.id, new AsyncCallback<Boolean>() {
 
 								@Override
 								public void onFailure(Throwable caught) {

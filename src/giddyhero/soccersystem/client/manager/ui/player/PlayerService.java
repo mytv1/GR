@@ -7,9 +7,12 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
 @RemoteServiceRelativePath("player")
 public interface PlayerService  extends RemoteService{
-	Player addNewPlayer(String name,  int day,int month,int year, int height, int positionId,String nationality, String avatarUrl);
 	
-	Player addNewPlayer(Player player);
+	Player savePlayer(Player player);
+	
+	void deletePlayer(long id);
+	
+	Player getFirstPlayer();
 	
 	Player[] getAllPlayers();
 	

@@ -11,7 +11,7 @@ import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
 
-import giddyhero.soccersystem.client.SoccerSystem;
+import giddyhero.soccersystem.client.SystemManager;
 import giddyhero.soccersystem.client.manager.ui.widget.TableFormInput;
 import giddyhero.soccersystem.shared.model.News;
 import giddyhero.soccersystem.shared.model.Player;
@@ -19,15 +19,14 @@ import giddyhero.soccersystem.shared.model.Player;
 public class TableCreateNews extends TableFormInput{
 	
 	ListBox lbCategory = new ListBox();
-	TextBoxStandard tbTitle = new TextBoxStandard("500px"), tbTitleImage =  new TextBoxStandard("500px");
-	TextAreaStandard taContent =  new TextAreaStandard("800px","200px");
+	TextBoxStandard tbTitle, tbTitleImage;
+	TextAreaStandard taContent;
 	ListBox bTaggedPlayer;
 	Player[] players;
 	
 	
 	public TableCreateNews() {
 		super();
-		
 		init();
 	}
 
@@ -39,6 +38,9 @@ public class TableCreateNews extends TableFormInput{
 		
 		initCategoryListBox();
 		
+		tbTitle = new TextBoxStandard("500px");
+		tbTitleImage =  new TextBoxStandard("500px");
+		taContent =  new TextAreaStandard("800px","200px");
 		setWidget(0, 1, tbTitle);
 		setWidget(1, 1, tbTitleImage);
 		setWidget(2, 1, lbCategory);

@@ -55,7 +55,7 @@ public class PlayerActivity extends BasicActivity{
 				Player player = players[0];
 				view.getLbName().setText("Name : "+player.name);
 				view.getImgAvatar().setUrl(player.avatarUrl);
-				view.getLbBirth().setText("Birth : "+player.day+" - "+player.month+" - "+player.year);
+				view.getLbBirth().setText("Birth : "+player.birth);
 				view.getLbCurrentTeam().setText("Current Team : N/A");
 				view.getLbNationality().setText("Nationality : "+player.nationality);
 				view.getLbPosition().setText("Position : "+Position.getPositionNameById(player.positionId));
@@ -76,7 +76,7 @@ public class PlayerActivity extends BasicActivity{
 			public void onSuccess(Player player) {
 				view.getLbName().setText("Name : "+player.name);
 				view.getImgAvatar().setUrl(player.avatarUrl);
-				view.getLbBirth().setText("Birth : "+player.day+" - "+player.month+" - "+player.year);
+				view.getLbBirth().setText("Birth : "+player.birth);
 				view.getLbCurrentTeam().setText("Current Team : N/A");
 				view.getLbNationality().setText("Nationality : "+player.nationality);
 				view.getLbPosition().setText("Position : "+Position.getPositionNameById(player.positionId));

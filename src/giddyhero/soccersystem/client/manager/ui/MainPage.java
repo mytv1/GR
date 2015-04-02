@@ -2,46 +2,30 @@ package giddyhero.soccersystem.client.manager.ui;
 
 import giddyhero.soccersystem.client.HistoryToken;
 import giddyhero.soccersystem.client.manager.resources.SSClientBundleBaseThemeManager;
-import giddyhero.soccersystem.client.manager.ui.league.LeagueAllPanel;
-import giddyhero.soccersystem.client.manager.ui.news.PanelNewsAll;
-import giddyhero.soccersystem.client.manager.ui.news.PanelCreateNews;
-import giddyhero.soccersystem.client.manager.ui.player.PanelCreatePlayer;
+import giddyhero.soccersystem.client.manager.ui.match.WindowUpdateMatch;
 import giddyhero.soccersystem.client.manager.ui.player.PanelPlayerAll;
-import giddyhero.soccersystem.client.manager.ui.player.PlayerCreatePanel;
-import giddyhero.soccersystem.client.manager.ui.team.TeamAllPanel;
-import giddyhero.soccersystem.client.manager.ui.team.TeamCreatePanel;
 import giddyhero.soccersystem.client.manager.ui.widget.ButtonMenuLevel1;
 import giddyhero.soccersystem.client.manager.ui.widget.ButtonMenuLevel2;
+import giddyhero.soccersystem.client.manager.ui.widget.TestDataGrid;
 import giddyhero.soccersystem.client.manager.widget.GHFlowPanel;
-import giddyhero.soccersystem.client.manager.widget.GHImage;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.event.logical.shared.ValueChangeEvent;
-import com.google.gwt.event.logical.shared.ValueChangeHandler;
-import com.google.gwt.uibinder.client.UiBinder;
-import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.History;
-import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.DockLayoutPanel;
+import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.ScrollPanel;
+import com.google.gwt.user.client.ui.SimpleLayoutPanel;
 import com.google.gwt.user.client.ui.Widget;
 
-public class MainPage extends Composite implements ValueChangeHandler<String> {
+public class MainPage extends DockLayoutPanel {
 
-	public interface MyUiBinder extends UiBinder<Widget, MainPage> {
-	}
-	private static MyUiBinder uiBinder = GWT.create(MyUiBinder.class);
-
-	@UiField
-	DockLayoutPanel pnMain;
 	Image logo;
 	ScrollPanel pnCenter = new ScrollPanel();
 	GHFlowPanel pnWest = new GHFlowPanel();
@@ -49,35 +33,47 @@ public class MainPage extends Composite implements ValueChangeHandler<String> {
 	ButtonMenuLevel1 btLeague, btTeam, btPlayer, btMatch, btNews;
 
 	public MainPage() {	
-		initWidget(uiBinder.createAndBindUi(this));
-		initHistoryMechanism();
+		super(Unit.PX);
 		init();
+//		addNewCenterContent(new WindowMatchUpdate());
 	}
 	
-	private void initHistoryMechanism() {
-		History.addValueChangeHandler(this);
-	}
 
 	private void init() {
 		initNorth();
 		initWest();
 		initCenter();
 	}
-
+ 
 	private void initCenter() {
 		Style style = pnCenter.getElement().getStyle();
 		style.setMarginLeft(30, Unit.PX);
 		style.setMarginTop(30, Unit.PX);
 		style.setMarginRight(30, Unit.PX);
 		
-		pnMain.add(pnCenter);
+		add(pnCenter);
+//		FlowPanel flowPanel = new FlowPanel();
+//		pnCenter.add(flowPanel);
+//		SimpleLayoutPanel simpleLayoutPanel = new SimpleLayoutPanel();
+//		flowPanel.add(simpleLayoutPanel);
+//		simpleLayoutPanel.add(new TestDataGrid());
+		
+//		add(new TestDataGrid());
+//		pnCenter.setSize("900px", "600px");
+//		pnCenter.add(new PanelPlayerAll());
 	}
 
 	private void initWest() {
 		pnWest.setPostion("static");
-		pnWest.setBackgroundColor("#FAFAFA");
+//		pnWest.setBackgroundColor("#DADADA");
+		addWest(pnWest,200);
 		
-		pnMain.addWest(pnWest,220);
+		Style style = pnWest.getElement().getStyle();
+		style.setProperty("borderRight", "solid");
+		style.setProperty("borderRightWidth", "5px");
+		style.setProperty("borderRightColor", "#AAAAAA");
+//		style.setProperty("borderRightWidth", "5px");
+		
 		List<ButtonMenuLevel1> menu = new ArrayList<ButtonMenuLevel1>();
 		
 		initLeagueButtonFunction();
@@ -143,7 +139,7 @@ public class MainPage extends Composite implements ValueChangeHandler<String> {
 			
 			@Override
 			public void onClick(ClickEvent event) {
-//				History.newItem(HistoryToken.);
+				History.newItem(HistoryToken.LEAGUE_CREATE);
 			}
 		});
 
@@ -174,13 +170,30 @@ public class MainPage extends Composite implements ValueChangeHandler<String> {
 		});
 		
 		btPlayer.addChildButton(btmPlayerShowAll);
-		btPlayer.addChildButton(btmPlayerAdd);		
+//		btPlayer.addChildButton(btmPlayerAdd);		
 	}
 	
 	private void initMatchButtonFunction() {
 		btMatch = new ButtonMenuLevel1("Match");
 		ButtonMenuLevel2 btmMatchShowAll = new ButtonMenuLevel2("Show All");
 		ButtonMenuLevel2 btmMatchAdd = new ButtonMenuLevel2("Add New");
+		
+		btmMatchAdd.addClickHandler(new ClickHandler() {
+			
+			@Override
+			public void onClick(ClickEvent event) {
+				History.newItem(HistoryToken.MATCH_CREATE);
+			}
+		});
+		
+		btmMatchShowAll.addClickHandler(new ClickHandler() {
+			
+			@Override
+			public void onClick(ClickEvent event) {
+				History.newItem(HistoryToken.TEST);
+			}
+		});
+		
 		btMatch.addChildButton(btmMatchShowAll);
 		btMatch.addChildButton(btmMatchAdd);		
 	}
@@ -210,7 +223,7 @@ public class MainPage extends Composite implements ValueChangeHandler<String> {
 
 	private void initNorth() {
 		GHFlowPanel pnNorth = new GHFlowPanel();
-		pnMain.addNorth(pnNorth,50);
+		addNorth(pnNorth,50);
 		pnNorth.setBackgroundColor("#FFFFFF");
 		pnNorth.setBorderStyle("solid");
 		pnNorth.setBorderColor("#FFFFFF","#FFFFFF","#CCCCCC","#FFFFFF");
@@ -220,8 +233,15 @@ public class MainPage extends Composite implements ValueChangeHandler<String> {
 	}
 
 	private Widget createLogo() {
-		GHImage logo = new GHImage(SSClientBundleBaseThemeManager.IMPL.getBundle().logo());
+		Image logo = new Image(SSClientBundleBaseThemeManager.IMPL.getBundle().logo());
 		logo.setPixelSize(300, 50);
+		logo.addClickHandler(new ClickHandler() {
+			
+			@Override
+			public void onClick(ClickEvent event) {
+				History.newItem(HistoryToken.MainPage);
+			}
+		});
 		return logo;
 	}
 
@@ -233,35 +253,6 @@ public class MainPage extends Composite implements ValueChangeHandler<String> {
 	public void clearMainPanel() {
 		pnCenter.clear();
 	}
-
-
-	@Override
-	public void onValueChange(ValueChangeEvent<String> event) {
-		String historyToken = event.getValue();
-		try {
-			if (historyToken.equalsIgnoreCase(HistoryToken.LEAGUE))
-				addNewCenterContent(new LeagueAllPanel());
-			else if (historyToken.equalsIgnoreCase(HistoryToken.TEAM))
-				addNewCenterContent(new TeamAllPanel());
-			else if (historyToken.equalsIgnoreCase(HistoryToken.PLAYER))
-				addNewCenterContent(new PanelPlayerAll());
-			else if (historyToken.equalsIgnoreCase(HistoryToken.PLAYER_CREATE))
-					addNewCenterContent(new PanelCreatePlayer());
-			else if (historyToken.equalsIgnoreCase(HistoryToken.TEAM_CREATE))
-				addNewCenterContent(new TeamCreatePanel());
-			else if (historyToken.equalsIgnoreCase(HistoryToken.NEWS))
-				addNewCenterContent(new PanelNewsAll());
-			else if (historyToken.equalsIgnoreCase(HistoryToken.NEWS_CREATE))
-//				addNewCenterContent(new NewsCreatePanel());
-				addNewCenterContent(new PanelCreateNews());
-			
-//			else if (historyToken.equalsIgnoreCase(HistoryToken.SEASON))
-//				addNewCenterContent(new SeasonOverViewPanel(league, getSeasonOfId(id)));
-			else
-				clearMainPanel();
-		} catch (Exception e) {
-//			 TODO: handle exception
-		}
-	}
+	
 
 }

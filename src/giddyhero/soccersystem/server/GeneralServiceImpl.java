@@ -81,14 +81,15 @@ public class GeneralServiceImpl extends RemoteServiceServlet implements
 	@Override
 	public String[] getAllCountryNames() {
 		String[] locales = Locale.getISOCountries();
-		String[] countriesName = new String[locales.length];
+		int length = locales.length;
+		String[] countriesName = new String[length+1];
 
 		for (int i = 0; i < locales.length; i++) {
 			String countryCode = locales[i];
 			Locale obj = new Locale("", countryCode);
 			countriesName[i] = obj.getDisplayCountry();
-
 		}
+		countriesName[length] = "England";
 		return countriesName;
 	}
 

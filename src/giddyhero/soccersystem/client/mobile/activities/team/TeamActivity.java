@@ -1,5 +1,7 @@
 package giddyhero.soccersystem.client.mobile.activities.team;
 
+import java.util.List;
+
 import giddyhero.soccersystem.client.MobileEntryPoint;
 import giddyhero.soccersystem.client.WidgetUtils;
 import giddyhero.soccersystem.client.mobile.activities.ClientFactory;
@@ -46,7 +48,7 @@ public class TeamActivity extends BasicActivity{
 	}
 	
 	private void bindWithFirstTeamInDB() {
-		MobileEntryPoint.Service.team.getAllTeams(new AsyncCallback<Team[]>() {
+		MobileEntryPoint.Service.team.getAllTeams(new AsyncCallback<List<Team>>() {
 
 			@Override
 			public void onFailure(Throwable caught) {
@@ -54,16 +56,16 @@ public class TeamActivity extends BasicActivity{
 			}
 
 			@Override
-			public void onSuccess(Team[] result) {
-				Team team = result[0];
+			public void onSuccess(List<Team> result) {
+				Team team = result.get(0);
 				view.getImgLogo().setUrl(team.logoUrl);
 				view.getLbEstablishYear().setText("Establish : "+team.establishYear);
 				view.getLbManager().setText("Manager : N/A");
 				view.getLbName().setText("Name : "+team.name);
 				view.getLbNation().setText("Nation : "+team.nation);
 				view.getLbStadium().setText("Stadium : "+team.stadiumName);
-				view.getLbNumOfPlayer().setText("Players : "+team.playerIds.length);
-				fillPlayersTable(view.getTblPlayers(),team.playerIds);				
+//				view.getLbNumOfPlayer().setText("Players : "+team.playerIds.length);
+//				fillPlayersTable(view.getTblPlayers(),team.playerIds);				
 			}
 		});		
 	}
@@ -88,8 +90,8 @@ public class TeamActivity extends BasicActivity{
 				view.getLbName().setText("Name : "+team.name);
 				view.getLbNation().setText("Nation : "+team.nation);
 				view.getLbStadium().setText("Stadium : "+team.stadiumName);
-				view.getLbNumOfPlayer().setText("Players : "+team.playerIds.length);
-				fillPlayersTable(view.getTblPlayers(),team.playerIds);
+//				view.getLbNumOfPlayer().setText("Players : "+team.playerIds.length);
+//				fillPlayersTable(view.getTblPlayers(),team.playerIds);
 			}
 
 		});		
@@ -110,7 +112,7 @@ public class TeamActivity extends BasicActivity{
 					Player player = result[i];
 					tblPlayers.setWidget(1 + i, 0, createLinkAvatar(player));
 					tblPlayers.setText(1 + i, 1, player.name);
-					tblPlayers.setText(1 + i, 2, WidgetUtils.dmyToString(player.day, player.month, player.year));
+					tblPlayers.setText(1 + i, 2, player.birth);
 					tblPlayers.setText(1 + i, 3, player.nationality);
 					tblPlayers.setText(1 + i, 4, Position.getPositionNameById(player.positionId));
 					tblPlayers.setText(1 + i, 5, player.height+"");

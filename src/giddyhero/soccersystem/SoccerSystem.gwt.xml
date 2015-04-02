@@ -31,6 +31,6 @@
 	<!-- allow Super Dev Mode -->
 	<add-linker name="xsiframe" />
 	<!-- <entry-point class="giddyhero.soccersystem.client.MobileEntryPoint"> -->
-	<entry-point class="giddyhero.soccersystem.client.SoccerSystem">
+	<entry-point class="giddyhero.soccersystem.client.SystemManager">
 	</entry-point>
 </module>

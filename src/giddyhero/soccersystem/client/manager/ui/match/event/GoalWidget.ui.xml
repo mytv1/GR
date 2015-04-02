@@ -3,8 +3,7 @@
 	xmlns:g="urn:import:com.google.gwt.user.client.ui">
 	<ui:style>
 	.box{
-		background-color: #eeffee;
-
+background-color: #DADADA;
 	}
 	.table-style {
 		border: 1px solid black;

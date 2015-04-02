@@ -5,9 +5,10 @@ import giddyhero.soccersystem.shared.model.Player;
 import giddyhero.soccersystem.shared.model.Team;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.dom.client.Style;
+import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -15,52 +16,64 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
-public class MatchTeamPanel extends Composite{
-
-	private static MatchTeamPanelUiBinder uiBinder = GWT.create(MatchTeamPanelUiBinder.class);
-
-	interface MatchTeamPanelUiBinder extends UiBinder<Widget, MatchTeamPanel> {
-	}
+public class PanelMatchUpdateTeam extends VerticalPanel{
 	
-	public interface TeamChoose {
-		void onTeamChange(Team team, Player[] players);
-	}
-	
-	@UiField
-	ListBox lbxTeamChoose;
-	@UiField
-	Label lbTeam;
+	Label lbTeam = new Label("Team Name"), lbLineUp = new Label("LineUp"), lbSub = new Label("Substitution"), lbTeamName = new Label();
 	ArrayList<ListBox> alLineUp = new ArrayList<ListBox>(), alSubstitude = new ArrayList<ListBox>();
-	@UiField
-	VerticalPanel vpLineUp, vpSubstitution;
-//	boolean isHomeTeam = false;
-	TeamChoose teamChoose;
-	List<Team> teams;
+	VerticalPanel vpLineUp = new VerticalPanel(), vpSubstitution = new VerticalPanel();
+	Team team;
+	Player[] players;
 
-	public MatchTeamPanel() {
-		initWidget(uiBinder.createAndBindUi(this));
-		
-		initTeamChoose();
+	public PanelMatchUpdateTeam() {
+		super();
+		init();
+		style();
 	}
 	
-	public void setTeamChoose(TeamChoose teamChoose) {
-		this.teamChoose = teamChoose;
+	private void style() {
+		Style style = lbLineUp.getElement().getStyle();
+		style.setMarginTop(20, Unit.PX);
+		
+		style = lbSub.getElement().getStyle();
+		style.setMarginTop(20, Unit.PX);
 	}
+
+	private void init() {
+		initDefaultPlayers();
+		add(lbTeam);
+		add(lbTeamName);
+		add(lbLineUp);
+		add(vpLineUp);
+		add(lbSub);
+		add(vpSubstitution);
+	}
+	
+	public void setTeam(Team team) {
+		this.team = team;
+		lbTeamName.setText(team.name);
+	}
+
+	public void setPlayers(Player[] players) {
+		this.players = players;
+		initPlayerListBox();
+		
+	}
+
 	
 	public void setHomeTeam(boolean isHomeTeam) {
-//		this.isHomeTeam = isHomeTeam;
 		if (isHomeTeam)
 			lbTeam.setText("Home team");
 		else
 			lbTeam.setText("Away team");
 	}
 
-	private void initPlayerListBox(Player[] players) {
+	private void initPlayerListBox() {
 		alLineUp.clear();
 		vpLineUp.clear();
 		alSubstitude.clear();
@@ -84,57 +97,6 @@ public class MatchTeamPanel extends Composite{
 			alSubstitude.add(lbx);
 			vpSubstitution.add(lbx);
 		}
-	}
-
-	private void initLineUpAndSubstitude() {
-		long teamId = Long.parseLong(lbxTeamChoose.getValue(lbxTeamChoose.getSelectedIndex()));
-//		Window.alert("team Id : "+teamId);
-		SystemManager.Service.player.getAllPlayerOfTeam(teamId, new AsyncCallback<Player[]>() {
-
-			@Override
-			public void onFailure(Throwable caught) {
-				Window.alert("failure : "+caught.toString());				
-			}
-
-			@Override
-			public void onSuccess(Player[] result) {
-//				Window.alert(result.length+"---");
-				initPlayerListBox(result);
-				teamChoose.onTeamChange(teams.get(lbxTeamChoose.getSelectedIndex()), result);
-			}
-		});
-		
-	}
-	
-	
-
-	private void initTeamChoose() {
-		lbxTeamChoose.addChangeHandler(new ChangeHandler() {
-			
-			@Override
-			public void onChange(ChangeEvent event) {
-				initLineUpAndSubstitude();
-			}
-		});
-		
-		SystemManager.Service.team.getAllTeams(new AsyncCallback<List<Team>>() {
-			
-			@Override
-			public void onSuccess(List<Team> result) {
-				teams = result;
-				for (Team team : result) {
-					lbxTeamChoose.addItem(team.name,""+ team.id);	
-				}
-				
-			}
-			
-			@Override
-			public void onFailure(Throwable caught) {
-				
-			}
-		});
-		
-		initDefaultPlayers();
 	}
 
 	private void initDefaultPlayers() {

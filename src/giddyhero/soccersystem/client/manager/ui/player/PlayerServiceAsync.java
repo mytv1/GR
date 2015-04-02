@@ -6,9 +6,6 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 
 public interface PlayerServiceAsync {
 
-	void addNewPlayer(String name,  int day,int month,int year, int height, int positionId,
-			String nationality, String avatarUrl, AsyncCallback<Player> callback);
-
 	void getAllPlayers(AsyncCallback<Player[]> callback);
 
 	void getPlayer(long id, AsyncCallback<Player> callback);
@@ -19,6 +16,10 @@ public interface PlayerServiceAsync {
 
 	void getAllPlayerOfTeam(long teamId, AsyncCallback<Player[]> callback);
 
-	void addNewPlayer(Player player, AsyncCallback<Player> callback);
+	void savePlayer(Player player, AsyncCallback<Player> callback);
+
+	void deletePlayer(long id, AsyncCallback<Void> callback);
+
+	void getFirstPlayer(AsyncCallback<Player> callback);
 
 }

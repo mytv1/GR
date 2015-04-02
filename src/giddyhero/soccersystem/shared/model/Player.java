@@ -1,32 +1,32 @@
 package giddyhero.soccersystem.shared.model;
 
+import java.util.Date;
+
 import com.google.gwt.user.client.ui.Image;
+import com.google.gwt.view.client.ProvidesKey;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
 
 @Entity
-public class Player implements SerializableEntity {
+public class Player implements SerializableEntity{
 	private static final long serialVersionUID = 1L;
-	public @Id
-	Long id;
+	public @Id Long id;
 	public String name;
-	public int year, month, day;
+	public String birth;
 	public int height;
 	public int positionId;
 	public String nationality;
 	public String avatarUrl;
-	@Index public Long currentTeamId;
+	@Index public long currentTeamId;
 
 	public Player() {
 	}
 
-	public Player(String name, int year,int month, int day, int height, int positionId,
+	public Player(String name, String birthStr, int height, int positionId,
 			String nationality, String avatarUrl) {
 		this.name = name;
-		this.day = day;
-		this.month = month;
-		this.year = year;
+		this.birth = birthStr;
 		this.height = height;
 		this.positionId = positionId;
 		this.nationality = nationality;
@@ -36,12 +36,15 @@ public class Player implements SerializableEntity {
 
 	@Override
 	public String toString() {
-		return "name " + name + "\n " + day + " - "
-				+ month + " - " + year + "\nheight "
-				+ height + "\n position id : " + positionId
-				+ "\n nationality : " + nationality + "\n Avatar Url : "
-				+ avatarUrl;
+		return "name " + name +
+				"\n " + birth + 
+				"\nheight "+ height + 
+				"\n position id : " + positionId
+				+ "\n nationality : " + nationality + 
+				"\n Avatar Url : "+ avatarUrl+
+				"\nTeam Id : "+currentTeamId;
 	}
+	
 
 	public Image getAvatar() {
 		Image image = new Image();
@@ -50,4 +53,11 @@ public class Player implements SerializableEntity {
 		image.setPixelSize(60, 60);
 		return image;
 	}
+
+	  public static final ProvidesKey<Player> KEY_PROVIDER = new ProvidesKey<Player>() {
+	      @Override
+	      public Object getKey(Player item) {
+	        return item == null ? null : item.id;
+	      }
+	    };
 }

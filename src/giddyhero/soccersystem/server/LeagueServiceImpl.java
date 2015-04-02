@@ -1,7 +1,6 @@
 package giddyhero.soccersystem.server;
 
 import static com.googlecode.objectify.ObjectifyService.ofy;
-import giddyhero.soccersystem.client.ClientUtils;
 import giddyhero.soccersystem.client.manager.ui.league.LeagueService;
 import giddyhero.soccersystem.shared.model.EventCard;
 import giddyhero.soccersystem.shared.model.EventChangePlayer;
@@ -10,12 +9,15 @@ import giddyhero.soccersystem.shared.model.League;
 import giddyhero.soccersystem.shared.model.Match;
 import giddyhero.soccersystem.shared.model.Season;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.googlecode.objectify.Key;
+import com.googlecode.objectify.Ref;
 
 @SuppressWarnings("serial")
 public class LeagueServiceImpl extends RemoteServiceServlet implements
@@ -24,6 +26,11 @@ public class LeagueServiceImpl extends RemoteServiceServlet implements
 	@Override
 	public void saveLeague(League league) {
 		ofy().save().entity(league);
+	}
+	
+	public int saveMatches(Match[] matches){
+		Map<Key<Match>,Match> map = ofy().save().entities(matches).now();
+		return map.size();
 	}
 
 	@Override
@@ -44,6 +51,16 @@ public class LeagueServiceImpl extends RemoteServiceServlet implements
 			leagues[i] = seasonList.get(i);
 		}
 		return leagues;
+	}
+	
+	public Season getSeason(long id) {
+		Ref<Season> season = ofy().load().type(Season.class).id(id);
+		return season.get();
+	}
+	
+	public League getLeague(long id) {
+		Ref<League> league = ofy().load().type(League.class).id(id);
+		return league.get();
 	}
 
 	@Override
@@ -103,6 +120,24 @@ public class LeagueServiceImpl extends RemoteServiceServlet implements
 		}
 		
 		return eventCardIds;
+	}
+
+	@Override
+	public List<Match> getMatchOfSeason(long seasonId) {
+		List<Match> result = ofy().load().type(Match.class).filter("seasonId", seasonId).list();
+		List<Match> list = new ArrayList<Match>(result);
+		return list;
+	}
+
+	@Override
+	public void deleteMatch(long id) {
+		ofy().delete().type(Match.class).id(id);
+	}
+
+	@Override
+	public Match getMatch(long matchId) {
+		Ref<Match> matchRef = ofy().load().type(Match.class).id(matchId);
+		return matchRef.get();
 	}
 	
 	

@@ -1,11 +1,11 @@
 package giddyhero.soccersystem.client.manager.ui.widget;
 
 import giddyhero.soccersystem.client.manager.widget.GHFlowPanel;
-import giddyhero.soccersystem.client.manager.widget.GHLabel;
+import giddyhero.soccersystem.client.share.CSSUtils;
 
-import com.google.gwt.dom.client.Style;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.ui.Label;
 
 public class ButtonMenuLevel1 extends GHFlowPanel{
 	
@@ -47,10 +47,10 @@ public class ButtonMenuLevel1 extends GHFlowPanel{
 
 
 	private void setChildStyleToButton(ButtonMenuLevel2 button) {
-		GHLabel ghLabel = button.getLbName(); 
-		ghLabel.setLeft(50);
-		ghLabel.setFontSize("small");
-		ghLabel.setFontWeight("normal");
+		Label ghLabel = button.getLbName(); 
+		CSSUtils.setLeft(ghLabel, 50);
+		CSSUtils.setFontSize(ghLabel, "small");
+		CSSUtils.setFontWeight(ghLabel, "normal");
 	}
 
 }
