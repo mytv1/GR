@@ -7,7 +7,9 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
 @RemoteServiceRelativePath("news")
 public interface NewsService extends RemoteService{
-	void addNews(News news);
+	News saveNews(News news);
+	
+	void deleteNews(long newsId);
 	
 	News[] getAllNews();
 	

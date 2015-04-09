@@ -3,10 +3,15 @@ package giddyhero.soccersystem.client.mobile.activities.basic;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HasText;
+import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.googlecode.mgwt.dom.client.event.tap.HasTapHandlers;
+import com.googlecode.mgwt.dom.client.event.tap.TapEvent;
+import com.googlecode.mgwt.dom.client.event.tap.TapHandler;
 import com.googlecode.mgwt.ui.client.widget.button.image.PreviousitemImageButton;
 import com.googlecode.mgwt.ui.client.widget.header.HeaderPanel;
 import com.googlecode.mgwt.ui.client.widget.header.HeaderTitle;
@@ -16,6 +21,7 @@ import com.googlecode.mgwt.ui.client.widget.panel.scroll.ScrollEndEvent.Handler;
 import com.googlecode.mgwt.ui.client.widget.panel.scroll.ScrollPanel;
 
 public class BasicViewImpl extends Composite implements BasicView {
+
 
 	private static BasicViewImplUiBinder uiBinder = GWT
 			.create(BasicViewImplUiBinder.class);
@@ -97,6 +103,14 @@ public class BasicViewImpl extends Composite implements BasicView {
 				layout.getScrollPanel().refresh();
 			}
 		});
+		
+		getButtonBack().addTapHandler(new TapHandler() {
+			
+			@Override
+			public void onTap(TapEvent event) {
+				History.back();
+			}
+		});
 	}
 	
 	
@@ -117,5 +131,4 @@ public class BasicViewImpl extends Composite implements BasicView {
 	public HasText getHeader() {
 		return layout.title;
 	}
-
 }

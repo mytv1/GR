@@ -1,8 +1,5 @@
 package giddyhero.soccersystem.client.mobile.activities.home;
 
-import giddyhero.soccersystem.client.ClientUtils;
-import giddyhero.soccersystem.client.mobile.activities.basic.BasicViewImpl;
-
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -11,7 +8,7 @@ import com.google.gwt.user.client.ui.Widget;
 import com.googlecode.mgwt.dom.client.event.tap.HasTapHandlers;
 import com.googlecode.mgwt.ui.client.widget.button.Button;
 
-public class HomeViewImpl extends BasicViewImpl implements HomeView{
+public class HomeViewImpl extends MenuViewImpl implements HomeView{
 
 	private static HomeViewImplUiBinder uiBinder = GWT
 			.create(HomeViewImplUiBinder.class);
@@ -27,11 +24,12 @@ public class HomeViewImpl extends BasicViewImpl implements HomeView{
 	public HomeViewImpl() {
 		super();
 		this.layout.getScrollPanel().setWidget(uiBinder.createAndBindUi(this));
-		this.layout.getHeaderBackButton().setVisible(false);
-		homePanel.setHeight(ClientUtils.getHeight()
-				-this.layout.getHeaderPanel().getOffsetHeight() +"px");
+//		this.layout.getHeaderBackButton().setVisible(false);
+//		homePanel.setHeight(ClientUtils.getHeight()
+//				-this.layout.getHeaderPanel().getOffsetHeight() +"px");
 		
 	}
+
 
 
 	@Override

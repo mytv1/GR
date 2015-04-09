@@ -5,23 +5,22 @@ import giddyhero.soccersystem.client.manager.ui.league.LeagueService;
 import giddyhero.soccersystem.client.manager.ui.league.LeagueServiceAsync;
 import giddyhero.soccersystem.client.manager.ui.league.PanelCreateLeague;
 import giddyhero.soccersystem.client.manager.ui.league.PanelLeagueAll;
-import giddyhero.soccersystem.client.manager.ui.league.season.PanelSeasonOverView;
-import giddyhero.soccersystem.client.manager.ui.match.PanelMatchCreate;
+import giddyhero.soccersystem.client.manager.ui.league.season.PanelSeason;
 import giddyhero.soccersystem.client.manager.ui.match.WindowCreateMatch;
 import giddyhero.soccersystem.client.manager.ui.match.WindowUpdateMatch;
 import giddyhero.soccersystem.client.manager.ui.news.NewsService;
 import giddyhero.soccersystem.client.manager.ui.news.NewsServiceAsync;
-import giddyhero.soccersystem.client.manager.ui.news.PanelCreateNews;
 import giddyhero.soccersystem.client.manager.ui.news.PanelNewsAll;
+import giddyhero.soccersystem.client.manager.ui.news.WindowCreateNews;
 import giddyhero.soccersystem.client.manager.ui.player.PanelPlayerAll;
 import giddyhero.soccersystem.client.manager.ui.player.PlayerService;
 import giddyhero.soccersystem.client.manager.ui.player.PlayerServiceAsync;
 import giddyhero.soccersystem.client.manager.ui.player.WindowCreatePlayer;
 import giddyhero.soccersystem.client.manager.ui.team.PanelTeamAll;
-import giddyhero.soccersystem.client.manager.ui.team.PanelTeamAll2;
-import giddyhero.soccersystem.client.manager.ui.team.PanelTeamCreate;
 import giddyhero.soccersystem.client.manager.ui.team.TeamService;
 import giddyhero.soccersystem.client.manager.ui.team.TeamServiceAsync;
+import giddyhero.soccersystem.client.manager.ui.team.WindowCreateTeam;
+import giddyhero.soccersystem.shared.model.Season;
 import giddyhero.soccersystem.shared.model.Team;
 
 import java.util.List;
@@ -105,10 +104,7 @@ public class SystemManager implements EntryPoint {
 					mainPage.addNewCenterContent(new PanelCreateLeague());
 				} else if (historyToken.equalsIgnoreCase(HistoryToken.TEAM)) {
 					
-					mainPage.addNewCenterContent(new PanelTeamAll2());
-				} else if (historyToken.equalsIgnoreCase(HistoryToken.TEAM_CREATE)) {
-					
-					mainPage.addNewCenterContent(new PanelTeamCreate());
+					mainPage.addNewCenterContent(new PanelTeamAll());
 				} else if (historyToken.equalsIgnoreCase(HistoryToken.PLAYER)) {
 					
 					mainPage.addNewCenterContent(new PanelPlayerAll());
@@ -118,10 +114,8 @@ public class SystemManager implements EntryPoint {
 					mainPage.addNewCenterContent(new PanelNewsAll());
 				} else if (historyToken.equalsIgnoreCase(HistoryToken.NEWS_CREATE)) {
 					
-					mainPage.addNewCenterContent(new PanelCreateNews());
-				} else if (historyToken.equalsIgnoreCase(HistoryToken.MATCH_CREATE)) {
-					
-					mainPage.addNewCenterContent(new PanelMatchCreate());
+					RootLayoutPanel.get().clear();
+					RootLayoutPanel.get().add(new WindowCreateNews());
 				} else if (historyToken.equalsIgnoreCase(HistoryToken.TEST)) {
 					
 					mainPage.addNewCenterContent(new WindowUpdateMatch());
@@ -129,6 +123,10 @@ public class SystemManager implements EntryPoint {
 					
 					RootLayoutPanel.get().clear();
 					RootLayoutPanel.get().add(new WindowCreatePlayer());
+				}  else if (historyToken.equalsIgnoreCase(HistoryToken.WINDOW_CREATE_TEAM)) {
+					
+					RootLayoutPanel.get().clear();
+					RootLayoutPanel.get().add(new WindowCreateTeam());
 				}  
 				else if (historyToken.contains(HistoryToken.MATCH_UPDATE_WINDOW)) {
 					RootLayoutPanel.get().clear();
@@ -137,7 +135,7 @@ public class SystemManager implements EntryPoint {
 					RootLayoutPanel.get().clear();
 					RootLayoutPanel.get().add(new WindowCreateMatch());
 				} else if (historyToken.contains(HistoryToken.SEASON)) {
-					mainPage.addNewCenterContent(new PanelSeasonOverView());
+					mainPage.addNewCenterContent(new PanelSeason());
 				}
 
 				else {
@@ -179,8 +177,6 @@ public class SystemManager implements EntryPoint {
 	}
 
 	private void startApp() {
-//		RootLayoutPanel.get().add(new TestDataGrid());
-//		RootLayoutPanel.get().add(new PanelPlayerAll());
 		
 		String token = History.getToken();
 		RootLayoutPanel.get().add(mainPage);
@@ -188,7 +184,33 @@ public class SystemManager implements EntryPoint {
 			History.newItem(HistoryToken.BLANK);
 			History.newItem(token);
 		} 
-			
+		fix();	
 	}
 
+	private void fix() {
+		SystemManager.Service.league.getSeason(6579477580611584L, new AsyncCallback<Season>() {
+
+			@Override
+			public void onFailure(Throwable caught) {
+				Window.alert("fix fail 1");
+			}
+
+			@Override
+			public void onSuccess(Season season) {
+				season.matchIds.clear();
+				SystemManager.Service.league.saveSeason(season, new AsyncCallback<Season>() {
+
+					@Override
+					public void onFailure(Throwable caught) {
+						Window.alert("fix fail 2");
+					}
+
+					@Override
+					public void onSuccess(Season result) {
+						Window.alert("fix success "+result.scoreIds.size());						
+					}
+				});
+			}
+		});
+	}
 }

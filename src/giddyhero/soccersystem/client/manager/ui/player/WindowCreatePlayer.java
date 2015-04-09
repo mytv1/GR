@@ -125,19 +125,6 @@ public class WindowCreatePlayer extends FlowPanel {
 		add(tblCreated);
 	}
 
-//	private void initCreateButton() {
-//		btCreate.setPixelSize(150, 50);
-//		btCreate.addClickHandler(new ClickHandler() {
-//
-//			@Override
-//			public void onClick(ClickEvent event) {
-//				
-//			}
-//		});
-//		getElement().getStyle().setTextAlign(Style.TextAlign.CENTER);
-//		add(btCreate);
-//	}
-
 	class TablePlayerCreating extends TablePlayer {
 		Column<Player, String> colCreate;
 
@@ -145,8 +132,6 @@ public class WindowCreatePlayer extends FlowPanel {
 			super();
 		}
 		
-		
-
 		@Override
 		protected void startInit() {
 			super.startInit();

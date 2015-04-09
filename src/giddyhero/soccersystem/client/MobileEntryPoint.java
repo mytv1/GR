@@ -54,10 +54,10 @@ public class MobileEntryPoint implements EntryPoint {
 	public void onModuleLoad() {
 		initPhoneGap();
 		setMGWTSettings();
-		initManager();
+		start();
 	}
 
-	private void initManager() {
+	private void start() {
 		AppPlaceHistoryMapper historyMapper = GWT
 				.create(AppPlaceHistoryMapper.class);
 
@@ -80,12 +80,12 @@ public class MobileEntryPoint implements EntryPoint {
 				clientFactory.getEventBus());
 		activityManager.setDisplay(display);
 		RootPanel.get().add(display);
+//		RootPanel.get().setPixelSize(400, 640);
 	}
 
 	private void setMGWTSettings() {
 		ViewPort viewPort = new MGWTSettings.ViewPort();
-		viewPort.setUserScaleAble(false).setMinimumScale(1.0)
-				.setMinimumScale(1.0).setMaximumScale(1.0);
+		viewPort.setUserScaleAble(false).setMinimumScale(1.0).setMaximumScale(1.0);
 
 		MGWTSettings settings = new MGWTSettings();
 		settings.setViewPort(viewPort);
@@ -93,6 +93,7 @@ public class MobileEntryPoint implements EntryPoint {
 		settings.setFixIOS71BodyBug(true);
 		settings.setPreventScrolling(true);
 		MGWT.applySettings(settings);
+		
 	}
 
 	public static ClientFactory getClientFactory() {
@@ -101,21 +102,22 @@ public class MobileEntryPoint implements EntryPoint {
 
 	private void initPhoneGap() {
 		phoneGap = GWT.create(PhoneGap.class);
+		Window.alert("is phone gap device?: "+phoneGap.isPhoneGapDevice());
 		phoneGap.addHandler(new PhoneGapAvailableHandler() {
 			@Override
 			public void onPhoneGapAvailable(PhoneGapAvailableEvent event) {
 				if (phoneGap.isPhoneGapDevice()) {
 					PhonegapUtil.prepareService((ServiceDefTarget) Service.news,
-							"http://1-dot-mytv-ssm.appspot.com/",
+							"http://manager.mytv-ssm.appspot.com/",
 							"/mobileentrypoint/news");
 					PhonegapUtil.prepareService((ServiceDefTarget) Service.general,
-							"http://1-dot-mytv-ssm.appspot.com/",
+							"http://manager.mytv-ssm.appspot.com/",
 							"/mobileentrypoint/general");
 					PhonegapUtil.prepareService((ServiceDefTarget) Service.player,
-							"http://1-dot-mytv-ssm.appspot.com/",
+							"http://manager.mytv-ssm.appspot.com/",
 							"/mobileentrypoint/player");
 					PhonegapUtil.prepareService((ServiceDefTarget) Service.team,
-							"http://1-dot-mytv-ssm.appspot.com/",
+							"http://manager.mytv-ssm.appspot.com/",
 							"/mobileentrypoint/team");
 				} else {
 					Service.general.registerAllEntity(new AsyncCallback<Void>(){
@@ -131,28 +133,14 @@ public class MobileEntryPoint implements EntryPoint {
 						}
 						
 					});
-//					
-//					 Service.news.registerRelateEntity(new AsyncCallback<Void>() {
-//
-//						@Override
-//						public void onSuccess(Void result) {
-//							Window.alert("Register Success");
-//						}
-//
-//						@Override
-//						public void onFailure(Throwable caught) {
-//							Window.alert("Register Failure");
-//						}
-//					});
 				}
-//				Window.alert("on Phonegap Available");
 			}
 		});
 
 		phoneGap.addHandler(new PhoneGapTimeoutHandler() {
 			@Override
 			public void onPhoneGapTimeout(PhoneGapTimeoutEvent event) {
-				Window.alert("on PhoneGap Timeout");
+				Window.alert("on PhoneGap Timeout "+event.toDebugString());
 			}
 		});
 		phoneGap.initializePhoneGap();

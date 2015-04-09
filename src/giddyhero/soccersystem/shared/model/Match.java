@@ -1,12 +1,21 @@
 package giddyhero.soccersystem.shared.model;
 
 
+import com.google.gwt.view.client.ProvidesKey;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
 
 @Entity
 public class Match implements SerializableEntity {
+
+	  public static final ProvidesKey<Match> KEY_PROVIDER = new ProvidesKey<Match>() {
+	      @Override
+	      public Object getKey(Match item) {
+	        return item == null ? null : item.id;
+	      }
+	    };
+	
 	public @Id Long id;
 	@Index public long seasonId;
 	public long homeTeamId;
@@ -18,9 +27,9 @@ public class Match implements SerializableEntity {
 	public long[] eventCardIds;
 	public long[] eventGoalIds;
 	public long[] eventPlayerChangeIds;
-	public String status;
-	public String minutes;
-	public String dateString;
+	public String status = "";
+	public String minutes = "";
+	public String dateString = "";
 
 	public Match() {
 	}

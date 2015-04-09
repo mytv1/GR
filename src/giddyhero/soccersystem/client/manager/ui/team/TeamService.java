@@ -14,4 +14,6 @@ public interface TeamService extends RemoteService {
 	Team saveTeam(Team team);
 
 	Team getTeam(long teamId);
+	
+	void deleteTeam(long teamId);
 }

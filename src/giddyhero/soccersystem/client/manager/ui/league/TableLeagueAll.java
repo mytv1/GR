@@ -3,7 +3,7 @@ package giddyhero.soccersystem.client.manager.ui.league;
 import giddyhero.soccersystem.client.HistoryToken;
 import giddyhero.soccersystem.client.SystemManager;
 import giddyhero.soccersystem.client.manager.ui.league.season.PanelSeasonCreate;
-import giddyhero.soccersystem.client.manager.ui.league.season.PanelSeasonOverView;
+import giddyhero.soccersystem.client.manager.ui.league.season.PanelSeason;
 import giddyhero.soccersystem.client.manager.ui.widget.TableInfoDisplay;
 import giddyhero.soccersystem.shared.model.League;
 import giddyhero.soccersystem.shared.model.Season;

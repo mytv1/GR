@@ -31,7 +31,7 @@ import com.google.gwt.view.client.SelectionModel;
 
 public class TablePlayer extends DataGrid<Player> {
 
-	ListDataProvider<Player> playersProvider = new ListDataProvider<>(Player.KEY_PROVIDER);
+	public ListDataProvider<Player> playersProvider = new ListDataProvider<>(Player.KEY_PROVIDER);
 	public Column<Player, String> colHeight, colId, colAvatar, colName, colNation, colBirth,
 			colPosition, colTeam, colSave, colDelete, colAvatarUrl;
 	List<Team> teams;
@@ -360,7 +360,7 @@ public class TablePlayer extends DataGrid<Player> {
 	}
 
 	private void initTableBase() {
-		setSize("1000px", "500px");
+		setSize("1000px", "450px");
 		ListHandler<Player> sortHandler = new ListHandler<Player>(playersProvider.getList());
 		addColumnSortHandler(sortHandler);
 

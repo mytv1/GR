@@ -52,27 +52,16 @@ public class MainPage extends DockLayoutPanel {
 		style.setMarginRight(30, Unit.PX);
 		
 		add(pnCenter);
-//		FlowPanel flowPanel = new FlowPanel();
-//		pnCenter.add(flowPanel);
-//		SimpleLayoutPanel simpleLayoutPanel = new SimpleLayoutPanel();
-//		flowPanel.add(simpleLayoutPanel);
-//		simpleLayoutPanel.add(new TestDataGrid());
-		
-//		add(new TestDataGrid());
-//		pnCenter.setSize("900px", "600px");
-//		pnCenter.add(new PanelPlayerAll());
 	}
 
 	private void initWest() {
 		pnWest.setPostion("static");
-//		pnWest.setBackgroundColor("#DADADA");
 		addWest(pnWest,200);
 		
 		Style style = pnWest.getElement().getStyle();
 		style.setProperty("borderRight", "solid");
 		style.setProperty("borderRightWidth", "5px");
 		style.setProperty("borderRightColor", "#AAAAAA");
-//		style.setProperty("borderRightWidth", "5px");
 		
 		List<ButtonMenuLevel1> menu = new ArrayList<ButtonMenuLevel1>();
 		
@@ -98,7 +87,6 @@ public class MainPage extends DockLayoutPanel {
 	private void initTeamButtonFunction() {
 		btTeam = new ButtonMenuLevel1("Team");
 		ButtonMenuLevel2 btTeamShowAll = new ButtonMenuLevel2("Show All");
-		ButtonMenuLevel2 btTeamAdd = new ButtonMenuLevel2("Add New");
 		
 		btTeamShowAll.addClickHandler(new ClickHandler() {
 			
@@ -108,16 +96,8 @@ public class MainPage extends DockLayoutPanel {
 			}
 		});
 
-		btTeamAdd.addClickHandler(new ClickHandler() {
-			
-			@Override
-			public void onClick(ClickEvent event) {
-				History.newItem(HistoryToken.TEAM_CREATE);
-			}
-		});
 		
 		btTeam.addChildButton(btTeamShowAll);
-		btTeam.addChildButton(btTeamAdd);
 		
 		
 	}
@@ -151,7 +131,6 @@ public class MainPage extends DockLayoutPanel {
 	private void initPlayerButtonFunction() {
 		btPlayer = new ButtonMenuLevel1("Player");
 		ButtonMenuLevel2 btmPlayerShowAll = new ButtonMenuLevel2("Show All");
-		ButtonMenuLevel2 btmPlayerAdd = new ButtonMenuLevel2("Add New");
 		
 		btmPlayerShowAll.addClickHandler(new ClickHandler() {
 			
@@ -161,30 +140,13 @@ public class MainPage extends DockLayoutPanel {
 			}
 		});
 
-		btmPlayerAdd.addClickHandler(new ClickHandler() {
-			
-			@Override
-			public void onClick(ClickEvent event) {
-				History.newItem(HistoryToken.PLAYER_CREATE);
-			}
-		});
 		
 		btPlayer.addChildButton(btmPlayerShowAll);
-//		btPlayer.addChildButton(btmPlayerAdd);		
 	}
 	
 	private void initMatchButtonFunction() {
 		btMatch = new ButtonMenuLevel1("Match");
 		ButtonMenuLevel2 btmMatchShowAll = new ButtonMenuLevel2("Show All");
-		ButtonMenuLevel2 btmMatchAdd = new ButtonMenuLevel2("Add New");
-		
-		btmMatchAdd.addClickHandler(new ClickHandler() {
-			
-			@Override
-			public void onClick(ClickEvent event) {
-				History.newItem(HistoryToken.MATCH_CREATE);
-			}
-		});
 		
 		btmMatchShowAll.addClickHandler(new ClickHandler() {
 			
@@ -195,7 +157,6 @@ public class MainPage extends DockLayoutPanel {
 		});
 		
 		btMatch.addChildButton(btmMatchShowAll);
-		btMatch.addChildButton(btmMatchAdd);		
 	}
 
 	private void initNewsButtonFunction() {
@@ -210,15 +171,6 @@ public class MainPage extends DockLayoutPanel {
 		});
 		btNews.addChildButton(btmNewsShowAll);
 
-		ButtonMenuLevel2 btmNewsAdd = new ButtonMenuLevel2("Add New");
-		btmNewsAdd.addClickHandler(new ClickHandler() {
-			
-			@Override
-			public void onClick(ClickEvent event) {
-				History.newItem(HistoryToken.NEWS_CREATE);
-			}
-		});
-		btNews.addChildButton(btmNewsAdd);
 	}
 
 	private void initNorth() {

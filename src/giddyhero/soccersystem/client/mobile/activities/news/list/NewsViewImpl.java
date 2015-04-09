@@ -25,7 +25,6 @@ public class NewsViewImpl extends BasicViewImpl implements NewsView{
 	public NewsViewImpl() {
 		super();
 		this.layout.getScrollPanel().setWidget(uiBinder.createAndBindUi(this));
-		this.layout.getHeaderBackButton().setVisible(false);
 		mainPanel.setHeight(ClientUtils.getHeight()
 				-this.layout.getHeaderPanel().getOffsetHeight() +"px");
 		

@@ -84,7 +84,7 @@ public class TableCreateNews extends TableFormInput{
 //		long taggedPlayerId = getTaggedPlayer();
 		String content = taContent.getText();
 		
-		News news = new News(title, titleUrl, category, 0, content);
+		News news = new News(title, titleUrl, category,  content);
 		return news;
 	}
 	

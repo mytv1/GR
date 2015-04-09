@@ -1,11 +1,18 @@
 package giddyhero.soccersystem.client.mobile.activities.news.detail;
 
+import giddyhero.soccersystem.client.mobile.activities.AppPlaceHistoryMapper;
 import giddyhero.soccersystem.client.mobile.activities.ClientFactory;
 import giddyhero.soccersystem.client.mobile.activities.basic.BasicActivity;
 
 import com.google.gwt.place.shared.Place;
+import com.google.gwt.place.shared.PlaceController;
+import com.google.gwt.place.shared.PlaceHistoryHandler;
+import com.google.gwt.place.shared.PlaceHistoryMapper;
+import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.web.bindery.event.shared.EventBus;
+import com.googlecode.mgwt.dom.client.event.tap.TapEvent;
+import com.googlecode.mgwt.dom.client.event.tap.TapHandler;
 
 public class NewsDetailActivity extends BasicActivity{
 	

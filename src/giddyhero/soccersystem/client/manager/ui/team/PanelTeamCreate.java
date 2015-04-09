@@ -17,7 +17,7 @@ import com.google.gwt.user.client.ui.Label;
 
 public class PanelTeamCreate extends FlowPanel {
 
-	TableCreateTeam tblCreatePlayer = new TableCreateTeam();
+//	TableCreateTeam tblCreatePlayer = new TableCreateTeam();
 
 	public PanelTeamCreate() {
 		super();
@@ -26,7 +26,7 @@ public class PanelTeamCreate extends FlowPanel {
 
 	private void init() {
 		initLabelTitle();
-		add(tblCreatePlayer);
+//		add(tblCreatePlayer);
 		initConfirmButton();
 	}
 
@@ -34,27 +34,27 @@ public class PanelTeamCreate extends FlowPanel {
 		Button btConfirm = new Button("Create");
 		btConfirm.setSize("150px", "40px");
 		btConfirm.setStyleName("center");
-		btConfirm.addClickHandler(new ClickHandler() {
-
-			@Override
-			public void onClick(ClickEvent event) {
-				Team team = tblCreatePlayer.getTeam();
-				SystemManager.Service.team.saveTeam(team, new AsyncCallback<Team>() {
-					
-					@Override
-					public void onSuccess(Team team) {
-//						Window.alert("Success");		
-						Player[] selectedPlayers = tblCreatePlayer.getAllSelectedPlayer();
-						updateCurrentTeamOfSelectedPlayers(team,selectedPlayers);
-					}
-					
-					@Override
-					public void onFailure(Throwable caught) {
-						Window.alert("Failure"+caught.toString());				
-					}
-				});		
-			}
-		});
+//		btConfirm.addClickHandler(new ClickHandler() {
+//
+//			@Override
+//			public void onClick(ClickEvent event) {
+//				Team team = tblCreatePlayer.getTeam();
+//				SystemManager.Service.team.saveTeam(team, new AsyncCallback<Team>() {
+//					
+//					@Override
+//					public void onSuccess(Team team) {
+////						Window.alert("Success");		
+//						Player[] selectedPlayers = tblCreatePlayer.getAllSelectedPlayer();
+//						updateCurrentTeamOfSelectedPlayers(team,selectedPlayers);
+//					}
+//					
+//					@Override
+//					public void onFailure(Throwable caught) {
+//						Window.alert("Failure"+caught.toString());				
+//					}
+//				});		
+//			}
+//		});
 
 		add(btConfirm);
 	}

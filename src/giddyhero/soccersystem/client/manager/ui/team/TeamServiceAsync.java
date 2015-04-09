@@ -14,4 +14,6 @@ public interface TeamServiceAsync {
 
 	void getTeam(long teamId, AsyncCallback<Team> callback);
 
+	void deleteTeam(long teamId, AsyncCallback<Void> callback);
+
 }

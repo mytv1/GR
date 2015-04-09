@@ -31,12 +31,15 @@ public class WindowCreateMatch extends FlowPanel {
 	final int WIDTH = 1000;
 	List<Team> teams;
 	Button btCreate = new Button("Create");
+	Match match;
 
 	public WindowCreateMatch() {
 		super();
+//		getData();
 		getAllTeam();
 		init();
 	}
+
 
 	private void init() {
 		setPixelSize(1100, 500);

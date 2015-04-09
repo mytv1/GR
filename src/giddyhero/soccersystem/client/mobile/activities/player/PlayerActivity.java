@@ -35,9 +35,9 @@ public class PlayerActivity extends BasicActivity{
 	public void bind() {
 		long playerId = playerPlace.playerId;
 		
-		if (playerId != -1)
-			bindPlayerById(playerId);
-		else
+//		if (playerId != -1)
+//			bindPlayerById(playerId);
+//		else
 			bindFirstPlayerInDb();
 		
 	}

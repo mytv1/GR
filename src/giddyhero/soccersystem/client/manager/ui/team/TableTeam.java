@@ -29,7 +29,7 @@ import com.google.gwt.view.client.MultiSelectionModel;
 import com.google.gwt.view.client.SelectionModel;
 
 public class TableTeam extends DataGrid<Team>{
-	ListDataProvider<Team> playersProvider = new ListDataProvider<>(Team.KEY_PROVIDER);
+	ListDataProvider<Team> teamsProvider = new ListDataProvider<>(Team.KEY_PROVIDER);
 	public Column<Team, String> colHeight, colId, colAvatar, colName, colNation, colPosition, colTeam, colSave, colDelete, colAvatarUrl;
 	Column<Team, String> colEstablishYear;
 	List<Team> teams;
@@ -98,7 +98,7 @@ public class TableTeam extends DataGrid<Team>{
 			@Override
 			public void update(int index, Team object, String value) {
 				object.logoUrl = value;
-				playersProvider.getList().set(index, object);
+				teamsProvider.getList().set(index, object);
 			}
 		});
 		addColumn(colAvatarUrl, "Avatar Url");
@@ -118,7 +118,7 @@ public class TableTeam extends DataGrid<Team>{
 			@Override
 			public void update(int index, Team object, String value) {
 				object.establishYear = Integer.parseInt(value);
-				playersProvider.getList().set(index, object);
+				teamsProvider.getList().set(index, object);
 			}
 		});
 		addColumn(colEstablishYear, "Establish");
@@ -138,7 +138,7 @@ public class TableTeam extends DataGrid<Team>{
 			@Override
 			public void update(final int index, Team object, String value) {
 //				 Window.alert("U click on player : ");
-				SystemManager.Service.player.deletePlayer(object.id, new AsyncCallback<Void>() {
+				SystemManager.Service.team.deleteTeam(object.id, new AsyncCallback<Void>() {
 
 					@Override
 					public void onFailure(Throwable caught) {
@@ -148,7 +148,7 @@ public class TableTeam extends DataGrid<Team>{
 					@Override
 					public void onSuccess(Void result) {
 						Window.alert("Delete player success");
-						playersProvider.getList().remove(index);
+						teamsProvider.getList().remove(index);
 						redraw();
 					}
 				});
@@ -170,7 +170,6 @@ public class TableTeam extends DataGrid<Team>{
 
 			@Override
 			public void update(final int index, Team object, String value) {
-//				Window.alert("U click on player 1 : " + object.toString());
 				SystemManager.Service.team.saveTeam(object, new AsyncCallback<Team>() {
 
 					@Override
@@ -188,65 +187,6 @@ public class TableTeam extends DataGrid<Team>{
 		});
 		addColumn(colSave, "Save");
 	}
-//
-//	private void initTeamColumn() {
-//		ArrayList<String> listTeam = new ArrayList<String>();
-//		for (Team team : teams) {
-//			listTeam.add(""+team.name+" ("+team.id+")");
-//		}
-//		SelectionCell selectionCell = new SelectionCell(listTeam);
-//		colTeam = new Column<Player, String>(selectionCell) {
-//			@Override
-//			public String getValue(Player object) {
-//				for (Team team : teams) {
-//					if (team.id == object.currentTeamId)
-//						return ""+team.name+" ("+team.id+")";
-//				}
-//				return "N/A team";
-//			}
-//		};
-//		colTeam.setFieldUpdater(new FieldUpdater<Player, String>() {
-//
-//			@Override
-//			public void update(int index, Player object, String value) {
-//				int i = value.indexOf('(');
-//				String subStr = value.substring(i+1,value.indexOf(')'));
-//				Window.alert("substr : "+subStr);
-//				object.currentTeamId = Long.parseLong(subStr);
-//				playersProvider.getList().set(index, object);
-//			}
-//		});
-//		addColumn(colTeam, "Team");
-//	}
-//
-//	private void initPositionColumn() {
-//		ArrayList<String> listPos = new ArrayList<String>();
-//		for(Entry<Integer, String> entry : Position.positions.entrySet()) {
-//		    int key = entry.getKey();
-//		    String val = entry.getValue();
-//		    listPos.add(val+" ("+key+')');
-//		}
-//		SelectionCell selectionCell = new SelectionCell(listPos);
-//		colPosition = new Column<Player, String>(selectionCell) {
-//
-//			@Override
-//			public String getValue(Player object) {
-//				return ""+Position.getPositionNameById(object.positionId)+" ("+object.positionId;
-//			}
-//		};
-//		colPosition.setFieldUpdater(new FieldUpdater<Player, String>() {
-//
-//			@Override
-//			public void update(int index, Player object, String value) {
-//				int i = value.indexOf('(');
-//				String subStr = value.substring(i+1,value.indexOf(')'));
-//				Window.alert("substr : "+subStr);
-//				object.positionId = Integer.parseInt(subStr);
-//				playersProvider.getList().set(index, object);
-//			}
-//		});
-//		addColumn(colPosition, "Position");
-//	}
 
 	private void initNationColumn() {
 		ArrayList<String> listNation = new ArrayList<String>();
@@ -266,31 +206,12 @@ public class TableTeam extends DataGrid<Team>{
 			@Override
 			public void update(int index, Team object, String value) {
 				object.nation = value;
-				playersProvider.getList().set(index, object);
+				teamsProvider.getList().set(index, object);
 			}
 		});
 		addColumn(colNation, "Nation");
 	}
-//
-//	private void initHeighColumn() {
-//		colHeight = new Column<Player, String>(new EditTextCell()) {
-//
-//			@Override
-//			public String getValue(Player object) {
-//				return object.height + "";
-//			}
-//		};
-//		colHeight.setFieldUpdater(new FieldUpdater<Player, String>() {
-//
-//			@Override
-//			public void update(int index, Player object, String value) {
-//				object.height = Integer.parseInt(value);
-//				playersProvider.getList().set(index, object);
-//			}
-//		});
-//		addColumn(colHeight, " Height");
-//	}
-//
+	
 	private void initAvatarColumn() {
 		
 		ResizableImageCell imgCell = new ResizableImageCell("40px", "40px");
@@ -306,7 +227,7 @@ public class TableTeam extends DataGrid<Team>{
 			@Override
 			public void update(int index, Team object, String value) {
 				object.logoUrl = value;
-				playersProvider.getList().set(index, object);
+				teamsProvider.getList().set(index, object);
 			}
 		});
 		addColumn(colAvatar, "Avatar");
@@ -325,7 +246,7 @@ public class TableTeam extends DataGrid<Team>{
 			@Override
 			public void update(int index, Team object, String value) {
 				object.name = value;
-				playersProvider.getList().set(index, object);
+				teamsProvider.getList().set(index, object);
 			}
 		});
 		addColumn(colName, "Name");
@@ -343,21 +264,21 @@ public class TableTeam extends DataGrid<Team>{
 	}
 
 	private void initTableBase() {
-		setSize("1000px", "500px");
-		ListHandler<Team> sortHandler = new ListHandler<Team>(playersProvider.getList());
+		setSize("1000px", "450px");
+		ListHandler<Team> sortHandler = new ListHandler<Team>(teamsProvider.getList());
 		addColumnSortHandler(sortHandler);
 
 		final SelectionModel<Team> selectionModel = new MultiSelectionModel<Team>(Team.KEY_PROVIDER);
 		setSelectionModel(selectionModel, DefaultSelectionEventManager.<Team> createCheckboxManager());
 
 		setEmptyTableWidget(new Label("Empty"));
-		playersProvider.addDataDisplay(this);
+		teamsProvider.addDataDisplay(this);
 		setFocus(false);
 	}
 
 	public void setData(List<Team> listPlayer) {
-		playersProvider.setList(listPlayer);
-		setRowData(playersProvider.getList());
+		teamsProvider.setList(listPlayer);
+		setRowData(teamsProvider.getList());
 		redraw();
 	}
 }

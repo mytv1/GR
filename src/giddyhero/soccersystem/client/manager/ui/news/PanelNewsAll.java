@@ -1,101 +1,119 @@
 package giddyhero.soccersystem.client.manager.ui.news;
 
+import giddyhero.soccersystem.client.HistoryToken;
 import giddyhero.soccersystem.client.SystemManager;
-import giddyhero.soccersystem.client.WidgetUtils;
-import giddyhero.soccersystem.client.manager.ui.widget.TableInfoDisplay;
+import giddyhero.soccersystem.client.manager.ui.player.WindowCreatePlayer;
+import giddyhero.soccersystem.client.share.CSSUtils;
 import giddyhero.soccersystem.shared.model.News;
-import giddyhero.soccersystem.shared.model.SerializableEntity;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.google.gwt.dom.client.Style;
+import com.google.gwt.dom.client.Style.Position;
+import com.google.gwt.event.dom.client.ChangeEvent;
+import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.ui.Image;
-import com.google.gwt.user.client.ui.ScrollPanel;
+import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.FlowPanel;
+import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.TextArea;
+import com.google.gwt.view.client.SelectionChangeEvent;
+import com.google.gwt.view.client.SelectionChangeEvent.Handler;
+import com.google.gwt.view.client.SingleSelectionModel;
 
-public class PanelNewsAll extends TableInfoDisplay{
+public class PanelNewsAll extends FlowPanel {
 
-
+	Button btCreate = new Button("New News");
+	TableNews tableNews;
+	TextArea taNewsContent = new TextArea();
+	HorizontalPanel hp = new HorizontalPanel();
+	
 	public PanelNewsAll() {
 		super();
-		initNewsTable();
+		init();
+		style();
 	}
 
-	private void initNewsTable() {
-		initHeader();
-		initContent();
+	private void style() {
+		Style style = getElement().getStyle();
+		style.setPosition(Position.ABSOLUTE);
 	}
-	
-	private void initContent() {
+
+	private void init() {
+		initButtonCreate();
+		
+		initTableNews();
+		
+		initContentTextArea();
+		add(hp);
+	}
+
+	private void initTableNews() {
+		tableNews = new TableNews();
+		tableNews.setSize("600px", "400px");
+		CSSUtils.setMargin(tableNews, 0);
+		setAllPlayerData();
+		hp.add(tableNews);		
+	}
+
+	private void initContentTextArea() {
+		taNewsContent.setSize("350px", "400px");
+		CSSUtils.setMargin(taNewsContent, 20);
+		tableNews.getSelectionModel().addSelectionChangeHandler(new  Handler() {
+			
+			@Override
+			public void onSelectionChange(SelectionChangeEvent event) {
+				final News news = ((SingleSelectionModel<News>)tableNews.getSelectionModel()).getSelectedObject();
+				taNewsContent.setText(news.content);
+				taNewsContent.addChangeHandler(new ChangeHandler() {
+					
+					@Override
+					public void onChange(ChangeEvent event) {
+						news.content = taNewsContent.getText();
+					}
+				});
+			}
+		});
+		
+		hp.add(taNewsContent);	
+	}
+
+	private void initButtonCreate() {
+		CSSUtils.setMarginTop(btCreate, 10);
+		CSSUtils.setMarginBottom(btCreate, 20);
+		btCreate.setPixelSize(120, 40);
+		btCreate.addClickHandler(new ClickHandler() {
+			
+			@Override
+			public void onClick(ClickEvent event) {
+				Window.open("Manager.html#"+HistoryToken.NEWS_CREATE, "window name", "width="+WindowCreatePlayer.WIDTH+", height="+WindowCreatePlayer.HEIGHT);
+			}
+		});
+		add(btCreate);		
+	}
+
+	public void setAllPlayerData() {
 		SystemManager.Service.news.getAllNews(new AsyncCallback<News[]>() {
 
 			@Override
-			public void onSuccess(News[] result) {
-				News[] newsList = result;
-				for (int i = 0; i < newsList.length; i++) {
-					final News news = newsList[i];
-					ScrollPanel scrollPanel = new ScrollPanel();
-					TextArea tbContent = new TextArea();
-					tbContent.setText(news.content);
-					tbContent.setPixelSize(300, 150);
-					scrollPanel.add(tbContent);
-					
-					setWidget(1 + i, 0, WidgetUtils.createIdLabel(news.id, 40, 30)); 
-					setText(1 + i, 1, "" + news.title);
-					setWidget(1+i, 2, getImageOfNews(news.titleImageUrl));
-					setText(1 + i, 3, "" + news.category);
-					setWidget(1 + i, 4,  WidgetUtils.createIdLabel(news.taggedPlayer, 40, 30));
-					setWidget(1+i, 5, scrollPanel);
-					ActionPanel actionPanel = new ActionPanel();
-					actionPanel.btDelete.addClickHandler(new ClickHandler() {
-						
-						@Override
-						public void onClick(ClickEvent event) {
-							SystemManager.Service.general.deleteEntity(SerializableEntity.NEWS, news.id, new AsyncCallback<Boolean>() {
-
-								@Override
-								public void onFailure(Throwable caught) {
-									Window.alert("Delete failure");
-								}
-
-								@Override
-								public void onSuccess(Boolean result) {
-									Window.alert("Delete success");							
-								}
-								
-							});
-						}
-					});
-					setWidget(1+i, 6, actionPanel);
-				}
+			public void onFailure(Throwable caught) {
+				Window.alert("get all news fail : "+caught.toString());
 			}
 
 			@Override
-			public void onFailure(Throwable caught) {
-				Window.alert("Get all news failure"
-						+ caught.toString());
+			public void onSuccess(News[] result) {
+				List<News> news = new ArrayList<News>();
+				for (int i = 0; i < result.length; i++) {
+					news.add(result[i]);
+				}
+				tableNews.setData(news);
+				
 			}
-		});		
+		});
 	}
 
-	private void initHeader() {
-		setText(0, 0, "ID");
-		setText(0, 1, "Title");
-		setText(0, 2, "Title Image");
-		setText(0, 3, "Category");
-		setText(0, 4, "Tagged");
-		setText(0, 5, "Content");
-		setText(0, 6, "Action");		
-	}
-
-	private Image getImageOfNews(String url){
-		Image image = new Image();
-		image.setPixelSize(240, 120);
-		if (url != null)
-			image.setUrl(url);
-		return image;
-	}
-	
-	
 }
