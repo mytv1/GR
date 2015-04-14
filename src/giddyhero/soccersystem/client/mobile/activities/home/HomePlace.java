@@ -4,11 +4,11 @@ import giddyhero.soccersystem.client.mobile.activities.basic.BasicPlace;
 
 import com.google.gwt.place.shared.PlaceTokenizer;
 
-public class HomePlace extends BasicPlace{
+public class HomePlace extends BasicPlace {
 	
-	public HomePlace() {
+	public HomePlace(){
 		super();
-		setToken("home");
+		setToken("news");
 	}
 	
 	public static class HomePlaceTokenizer implements PlaceTokenizer<HomePlace>{
@@ -22,7 +22,5 @@ public class HomePlace extends BasicPlace{
 		public String getToken(HomePlace place) {
 			return place.getToken();
 		}
-		
 	}
-
 }

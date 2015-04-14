@@ -1,22 +1,14 @@
 package giddyhero.soccersystem.client.mobile.activities.home;
 
 import giddyhero.soccersystem.client.mobile.activities.basic.BasicView;
+import giddyhero.soccersystem.client.mobile.activities.basic.PanelMenu;
+import giddyhero.soccersystem.client.mobile.activities.home.HomeViewImpl.PanelNews;
+import giddyhero.soccersystem.shared.model.News;
 
-import com.googlecode.mgwt.dom.client.event.tap.HasTapHandlers;
+import java.util.List;
 
-public interface HomeView extends BasicView{
+public interface HomeView  extends BasicView {
 	
-	public HasTapHandlers getButtonNews();
+	List<PanelNews>  addNews(List<News> news);
 
-	public HasTapHandlers getButtonLeague();
-	
-	public HasTapHandlers getButtonTeam();
-	
-	public HasTapHandlers getButtonPlayer();
-
-	public HasTapHandlers getButtonAccount();
-	
-	public HasTapHandlers getButtonGames();
-	
-	public HasTapHandlers getButtonStore();
 }

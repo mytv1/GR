@@ -1,134 +1,145 @@
 package giddyhero.soccersystem.client.mobile.activities.basic;
 
-import com.google.gwt.core.client.GWT;
-import com.google.gwt.uibinder.client.UiBinder;
-import com.google.gwt.uibinder.client.UiField;
+import giddyhero.soccersystem.client.MobileEntryPoint;
+import giddyhero.soccersystem.client.mobile.activities.home.HomePlace;
+import giddyhero.soccersystem.client.mobile.activities.home.HomeView;
+import giddyhero.soccersystem.client.mobile.activities.livescore.LiveScorePlace;
+import giddyhero.soccersystem.client.mobile.resources.ClientBundleMobile;
+
+import com.google.gwt.dom.client.Style.Unit;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.History;
-import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.FlowPanel;
-import com.google.gwt.user.client.ui.HasText;
+import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.VerticalPanel;
-import com.google.gwt.user.client.ui.Widget;
-import com.googlecode.mgwt.dom.client.event.tap.HasTapHandlers;
-import com.googlecode.mgwt.dom.client.event.tap.TapEvent;
-import com.googlecode.mgwt.dom.client.event.tap.TapHandler;
-import com.googlecode.mgwt.ui.client.widget.button.image.PreviousitemImageButton;
-import com.googlecode.mgwt.ui.client.widget.header.HeaderPanel;
-import com.googlecode.mgwt.ui.client.widget.header.HeaderTitle;
-import com.googlecode.mgwt.ui.client.widget.panel.flex.RootFlexPanel;
-import com.googlecode.mgwt.ui.client.widget.panel.scroll.ScrollEndEvent;
-import com.googlecode.mgwt.ui.client.widget.panel.scroll.ScrollEndEvent.Handler;
-import com.googlecode.mgwt.ui.client.widget.panel.scroll.ScrollPanel;
 
-public class BasicViewImpl extends Composite implements BasicView {
+public class BasicViewImpl extends HorizontalPanel implements BasicView {
 
+	public static PanelMenu pnMenu = new PanelMenu();
+	public static PanelMain pnMain = new PanelMain();
+	public static PanelSetting pnSetting = new PanelSetting();
+	public static HandlerRegistration hrMenuClick, hrBackClick;
+	static {
 
-	private static BasicViewImplUiBinder uiBinder = GWT
-			.create(BasicViewImplUiBinder.class);
+		pnMain.pnHeader.imgSetting.addClickHandler(new ClickHandler() {
 
-	interface BasicViewImplUiBinder extends UiBinder<Widget, Layout> {
-	}
-	
-	protected final Layout layout;
-	
-	public static class Layout{
-		private final BasicViewImpl basicView;
-		@UiField
-		protected RootFlexPanel main;
-		@UiField
-		protected ScrollPanel scrollPanel;
-		@UiField
-		protected HeaderPanel headerPanel;
-		@UiField
-		protected HeaderTitle title;
-		@UiField
-		protected PreviousitemImageButton headerBackButton;
-		
-		public Layout(BasicViewImpl basicView) {
-			this.basicView = basicView;
-		}
-		
-		public RootFlexPanel getMain() {
-			return main;
-		}
-		
-		public void setMain(RootFlexPanel main) {
-			this.main = main;
-		}
-		
-		public void setHeaderBackButton(PreviousitemImageButton headerBackButton) {
-			this.headerBackButton = headerBackButton;
-		}
-		
-		public void setHeaderPanel(HeaderPanel headerPanel) {
-			this.headerPanel = headerPanel;
-		}
-		
-		public void setScrollPanel(ScrollPanel scrollPanel) {
-			this.scrollPanel = scrollPanel;
-		}
-		
-		public void setTitle(HeaderTitle title) {
-			this.title = title;
-		}
-		
-		public BasicViewImpl getBasicView() {
-			return basicView;
-		}
-		
-		public PreviousitemImageButton getHeaderBackButton() {
-			return headerBackButton;
-		}
-		
-		public HeaderPanel getHeaderPanel() {
-			return headerPanel;
-		}
-		
-		public ScrollPanel getScrollPanel() {
-			return scrollPanel;
-		}
-		
-		public HeaderTitle getTitle() {
-			return title;
-		}
+			@Override
+			public void onClick(ClickEvent event) {
+				boolean isVisible = pnSetting.isVisible();
+				pnSetting.setVisible(!isVisible);
+				if (!isVisible) {
+					pnMain.getElement().getStyle().setMarginLeft(-60, Unit.PCT);
+				} else
+					pnMain.getElement().getStyle().setMarginLeft(0, Unit.PCT);
+			}
+		});
+
+		pnMenu.pnSelectors[2].img.addClickHandler(new ClickHandler() {
+
+			@Override
+			public void onClick(ClickEvent event) {
+				MobileEntryPoint.clientFactory.getPlaceController().goTo(new LiveScorePlace());
+				pnMenu.setHighlight("livescore");
+			
+			}
+		});
+
+		pnMenu.pnSelectors[1].img.addClickHandler(new ClickHandler() {
+
+			@Override
+			public void onClick(ClickEvent event) {
+				MobileEntryPoint.clientFactory.getPlaceController().goTo(new HomePlace());
+				pnMenu.setHighlight("news");
+			}
+		});
 	}
 
 	public BasicViewImpl() {
-		this.layout = new Layout(this);
-		uiBinder.createAndBindUi(this.layout);
-		this.layout.getScrollPanel().addScrollEndHandler(new Handler() {
-			
-			@Override
-			public void onScrollEnd(ScrollEndEvent event) {
-				layout.getScrollPanel().refresh();
-			}
-		});
-		
-		getButtonBack().addTapHandler(new TapHandler() {
-			
-			@Override
-			public void onTap(TapEvent event) {
-				History.back();
-			}
-		});
+		super();
+		initPanelMenu();
+		initPanelMain();
+		initPanelSetting();
+		setHasMenuButtonMode();
+		setDefaultState();
 	}
-	
-	
+
+	public static void setHasMenuButtonMode() {
+		if (hrMenuClick == null) {
+			pnMain.pnHeader.imgMenu.setResource(ClientBundleMobile.INST.get().icMenu());
+			hrMenuClick = pnMain.pnHeader.imgMenu.addClickHandler(new ClickHandler() {
+
+				@Override
+				public void onClick(ClickEvent event) {
+					pnMenu.setVisible(!pnMenu.isVisible());
+				}
+			});
+		}
+		if (hrBackClick != null) {
+			hrBackClick.removeHandler();
+			hrBackClick = null;
+		}
+	}
+
+	public static void setStandAloneViewMode() {
+		if (hrMenuClick != null)
+		{
+			hrMenuClick.removeHandler();
+			hrMenuClick = null;
+		}
+		if (hrBackClick == null) {
+			pnMain.pnHeader.imgMenu.setResource(ClientBundleMobile.INST.get().icBack());
+			hrBackClick = pnMain.pnHeader.imgMenu.addClickHandler(new ClickHandler() {
+
+				@Override
+				public void onClick(ClickEvent event) {
+					History.back();
+				}
+			});
+
+		}
+	}
+
+	private void initPanelSetting() {
+		pnSetting.setVisible(false);
+		add(pnSetting);
+
+	}
+
+	private void initPanelMain() {
+		pnMain.pnMiddle.clear();
+		add(pnMain);
+
+	}
+
+	private void initPanelMenu() {
+		add(pnMenu);
+	}
 
 	@Override
-	public Widget asWidget() {
-		return layout.main;
-	}
-
-
-
-	@Override
-	public HasTapHandlers getButtonBack() {
-		return layout.headerBackButton;
+	public VerticalPanel getPanelMiddle() {
+		return pnMain.pnMiddle;
 	}
 
 	@Override
-	public HasText getHeader() {
-		return layout.title;
+	public Image getImageMenu() {
+		return pnMain.pnHeader.imgMenu;
 	}
+
+	public static void setDefaultState() {
+		pnMenu.setVisible(false);
+	}
+
+	@Override
+	public PanelMenu getPanelMenu() {
+		return pnMenu;
+	}
+
+	@Override
+	public void setHeaderTitle(String str) {
+		pnMain.pnHeader.lbTitle.setText(str);
+	}
+
 }

@@ -4,10 +4,44 @@ import com.google.gwt.dom.client.Style;
 import com.google.gwt.dom.client.Style.Float;
 import com.google.gwt.dom.client.Style.TextAlign;
 import com.google.gwt.dom.client.Style.Unit;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.Widget;
 
 public class CSSUtils {
+	
+	public static class Mobile{
+		public static int WIDTH_DESIGN = 800, HEIGHT_DESIGN = 1280;
+		public static int WIDTH_DEVICE = 0, HEIGHT_DEVICE = 0;
+		
+		static{
+			WIDTH_DEVICE = Window.getClientWidth();
+			HEIGHT_DEVICE = Window.getClientHeight();
+		}
+		
+		public static void setPixelSize(Widget widget, int w, int h){
+			widget.setPixelSize(w*WIDTH_DEVICE/WIDTH_DESIGN, h*HEIGHT_DEVICE/HEIGHT_DESIGN);
+		}
+		
+		/**
+		 * 
+		 * @param widget
+		 * @param w (0.0 - 1.0)
+		 * @param h (0.0 - 1.0)
+		 */
+		public static void setSizePercent(Widget widget, float w, float h){
+			int wP = (int)(w*WIDTH_DEVICE);
+			int wH = (int)(h*HEIGHT_DEVICE);
+			widget.setPixelSize(wP, wH);
+		}
+		
+		public static void setWidthPercent(Widget widget, float w){
+			int wP = (int)(w*WIDTH_DEVICE);
+			widget.setWidth(wP+"px");
+		}
+		
+	}
 	
 	public static String COLOR_DIV = "#DADADA";
 	

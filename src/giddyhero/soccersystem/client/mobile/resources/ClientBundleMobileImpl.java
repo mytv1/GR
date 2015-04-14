@@ -21,7 +21,7 @@ public class ClientBundleMobileImpl {
     		}
 	    }
 	    
-	    public ClientBundleMobile getBundle() {
+	    public ClientBundleMobile get() {
 			return bundle;
 		}
 	    

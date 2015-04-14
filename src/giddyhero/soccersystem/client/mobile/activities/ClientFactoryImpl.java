@@ -1,17 +1,11 @@
 package giddyhero.soccersystem.client.mobile.activities;
 
-import giddyhero.soccersystem.client.mobile.activities.greeting.GreetingView;
-import giddyhero.soccersystem.client.mobile.activities.greeting.GreetingViewImpl;
 import giddyhero.soccersystem.client.mobile.activities.home.HomeView;
 import giddyhero.soccersystem.client.mobile.activities.home.HomeViewImpl;
-import giddyhero.soccersystem.client.mobile.activities.news.detail.NewsDetailView;
-import giddyhero.soccersystem.client.mobile.activities.news.detail.NewsDetailViewImpl;
-import giddyhero.soccersystem.client.mobile.activities.news.list.NewsView;
-import giddyhero.soccersystem.client.mobile.activities.news.list.NewsViewImpl;
-import giddyhero.soccersystem.client.mobile.activities.player.PlayerView;
-import giddyhero.soccersystem.client.mobile.activities.player.PlayerViewImpl;
-import giddyhero.soccersystem.client.mobile.activities.team.TeamView;
-import giddyhero.soccersystem.client.mobile.activities.team.TeamViewImpl;
+import giddyhero.soccersystem.client.mobile.activities.livescore.LiveScoreView;
+import giddyhero.soccersystem.client.mobile.activities.livescore.LiveScoreViewImpl;
+import giddyhero.soccersystem.client.mobile.activities.news.NewsView;
+import giddyhero.soccersystem.client.mobile.activities.news.NewsViewImpl;
 
 import com.google.gwt.place.shared.PlaceController;
 import com.google.web.bindery.event.shared.EventBus;
@@ -42,28 +36,33 @@ public class ClientFactoryImpl  implements ClientFactory  {
 		return new HomeViewImpl();
 	}
 
-	@Override
-	public GreetingView getGreetingView() {
-		return new GreetingViewImpl();
-	}
+//	@Override
+//	public GreetingView getGreetingView() {
+//		return new GreetingViewImpl();
+//	}
 
 	@Override
 	public NewsView getNewsView() {
 		return new NewsViewImpl();
 	}
+//
+//	@Override
+//	public NewsDetailView getNewsDetailView() {
+//		return new NewsDetailViewImpl();
+//	}
+//
+//	@Override
+//	public PlayerView getPlayerView() {
+//		return new PlayerViewImpl();
+//	}
+//
+//	@Override
+//	public TeamView getTeamView() {
+//		return new TeamViewImpl();
+//	}
 
 	@Override
-	public NewsDetailView getNewsDetailView() {
-		return new NewsDetailViewImpl();
-	}
-
-	@Override
-	public PlayerView getPlayerView() {
-		return new PlayerViewImpl();
-	}
-
-	@Override
-	public TeamView getTeamView() {
-		return new TeamViewImpl();
+	public LiveScoreView getLiveScoreView() {
+		return new LiveScoreViewImpl();
 	}
 }

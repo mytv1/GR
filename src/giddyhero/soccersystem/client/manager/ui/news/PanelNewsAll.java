@@ -97,7 +97,7 @@ public class PanelNewsAll extends FlowPanel {
 	}
 
 	public void setAllPlayerData() {
-		SystemManager.Service.news.getAllNews(new AsyncCallback<News[]>() {
+		SystemManager.Service.news.getAllNews(new AsyncCallback<List<News>>() {
 
 			@Override
 			public void onFailure(Throwable caught) {
@@ -105,10 +105,10 @@ public class PanelNewsAll extends FlowPanel {
 			}
 
 			@Override
-			public void onSuccess(News[] result) {
+			public void onSuccess(List<News> result) {
 				List<News> news = new ArrayList<News>();
-				for (int i = 0; i < result.length; i++) {
-					news.add(result[i]);
+				for (int i = 0; i < result.size(); i++) {
+					news.add(result.get(i));
 				}
 				tableNews.setData(news);
 				

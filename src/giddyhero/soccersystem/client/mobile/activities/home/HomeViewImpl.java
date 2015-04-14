@@ -1,70 +1,70 @@
 package giddyhero.soccersystem.client.mobile.activities.home;
 
-import com.google.gwt.core.client.GWT;
-import com.google.gwt.uibinder.client.UiBinder;
-import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.user.client.ui.FlowPanel;
-import com.google.gwt.user.client.ui.Widget;
-import com.googlecode.mgwt.dom.client.event.tap.HasTapHandlers;
-import com.googlecode.mgwt.ui.client.widget.button.Button;
+import giddyhero.soccersystem.client.mobile.activities.basic.BasicViewImpl;
+import giddyhero.soccersystem.client.share.CSSUtils;
+import giddyhero.soccersystem.shared.model.News;
 
-public class HomeViewImpl extends MenuViewImpl implements HomeView{
+import java.util.ArrayList;
+import java.util.List;
 
-	private static HomeViewImplUiBinder uiBinder = GWT
-			.create(HomeViewImplUiBinder.class);
+import com.google.gwt.dom.client.Style.Unit;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.Image;
+import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.VerticalPanel;
 
-	interface HomeViewImplUiBinder extends UiBinder<Widget, HomeViewImpl> {
-	}
+public class HomeViewImpl extends BasicViewImpl implements HomeView {
 	
-	@UiField
-	protected FlowPanel homePanel;
-	@UiField
-	protected Button btNews, btLeague, btTeam, btPlayer, btAccount, btGame, btStore;
-
 	public HomeViewImpl() {
 		super();
-		this.layout.getScrollPanel().setWidget(uiBinder.createAndBindUi(this));
-//		this.layout.getHeaderBackButton().setVisible(false);
-//		homePanel.setHeight(ClientUtils.getHeight()
-//				-this.layout.getHeaderPanel().getOffsetHeight() +"px");
+	}
+
+	
+	class PanelNews extends VerticalPanel{
+		public Image imgMain = new Image();
+		Label lbTitle = new Label(), lbAuthor = new Label();
+		Image imgLike = new Image(), imgShare = new Image(), imgComment = new Image();
+		public News news;
 		
-	}
+		public PanelNews(News news) {
+			super();
+			this.news = news;
+			initBaseParam();
+			init(news);
+		}
+		
+		private void initBaseParam() {
+			CSSUtils.Mobile.setSizePercent(PanelNews.this, 0.9f, 0.4f);
+			getElement().getStyle().setMargin(5, Unit.PCT);
+		}
 
+		private void init(News news) {
+			imgMain.setUrl(news.titleImageUrl);
+			CSSUtils.Mobile.setSizePercent(imgMain, 0.9f, 0.3f);
+			add(imgMain);
+			
+			lbTitle.setText(news.title);
+			lbTitle.getElement().getStyle().setFontSize(150, Unit.PCT);
+			add(lbTitle);
+			
+			lbAuthor.setText("Author : Anonymous");
+			lbAuthor.getElement().getStyle().setFontSize(120, Unit.PCT);
+			add(lbAuthor);
+		}
+	}
 
 
 	@Override
-	public HasTapHandlers getButtonNews() {
-		return btNews;
+	public List<PanelNews> addNews(List<News> newsList) {
+		List<PanelNews> panelNews = new ArrayList<PanelNews>();
+		for (News news : newsList) {
+			PanelNews pnNews = new PanelNews(news);
+			super.pnMain.pnMiddle.add(pnNews);
+			panelNews.add(pnNews);
+		}
+		return panelNews;
 	}
-
-	@Override
-	public HasTapHandlers getButtonLeague() {
-		return btLeague;
-	}
-
-	@Override
-	public HasTapHandlers getButtonTeam() {
-		return btTeam;
-	}
-
-	@Override
-	public HasTapHandlers getButtonPlayer() {
-		return btPlayer;
-	}
-
-	@Override
-	public HasTapHandlers getButtonAccount() {
-		return btAccount;
-	}
-
-	@Override
-	public HasTapHandlers getButtonGames() {
-		return btGame;
-	}
-
-	@Override
-	public HasTapHandlers getButtonStore() {
-		return btStore;
-	}
-
 }
+

@@ -2,9 +2,15 @@ package giddyhero.soccersystem.client.mobile.activities.basic;
 
 
 import giddyhero.soccersystem.client.mobile.activities.ClientFactory;
+import giddyhero.soccersystem.client.mobile.activities.home.HomePlace;
+import giddyhero.soccersystem.client.mobile.activities.livescore.LiveScorePlace;
+import giddyhero.soccersystem.client.mobile.activities.news.NewsPlace;
 
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.History;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.web.bindery.event.shared.EventBus;
 import com.googlecode.mgwt.dom.client.event.tap.TapEvent;
@@ -25,6 +31,7 @@ public class BasicActivity extends MGWTAbstractActivity {
 		super.start(panel, eventBus);
 	}
 	
+
 	public void bind(){
 		
 	}

@@ -1,5 +1,7 @@
 package giddyhero.soccersystem.client.manager.ui.news;
 
+import java.util.List;
+
 import giddyhero.soccersystem.shared.model.News;
 
 import com.google.gwt.user.client.rpc.RemoteService;
@@ -11,7 +13,7 @@ public interface NewsService extends RemoteService{
 	
 	void deleteNews(long newsId);
 	
-	News[] getAllNews();
+	List<News> getAllNews();
 	
 	void registerRelateEntity();
 }
