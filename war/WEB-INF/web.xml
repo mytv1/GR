@@ -7,14 +7,28 @@
 	<!-- Servlets -->
 	<!-- Servlets Greeting -->
 	<servlet>
-		<servlet-name>greetServlet</servlet-name>
-		<servlet-class>giddyhero.soccersystem.server.GreetingServiceImpl
+		<servlet-name>generalServlet</servlet-name>
+		<servlet-class>giddyhero.soccersystem.server.GeneralServiceImpl
 		</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
-		<servlet-name>greetServlet</servlet-name>
-		<url-pattern>/soccersystem/greet</url-pattern>
+		<servlet-name>generalServlet</servlet-name>
+		<url-pattern>/soccersystem/general</url-pattern>
+		<url-pattern>/mobileentrypoint/general</url-pattern>
+	</servlet-mapping>
+	
+	<!-- Servlets League -->
+	<servlet>
+		<servlet-name>leagueServlet</servlet-name>
+		<servlet-class>giddyhero.soccersystem.server.LeagueServiceImpl
+		</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>leagueServlet</servlet-name>
+		<url-pattern>/soccersystem/league</url-pattern>
+		<url-pattern>/mobileentrypoint/league</url-pattern>
 	</servlet-mapping>
 
 	<!-- Servlets Player -->
@@ -27,6 +41,7 @@
 	<servlet-mapping>
 		<servlet-name>playerServlet</servlet-name>
 		<url-pattern>/soccersystem/player</url-pattern>
+		<url-pattern>/mobileentrypoint/player</url-pattern>
 	</servlet-mapping>
 
 	<!-- Servlets Team -->
@@ -39,9 +54,10 @@
 	<servlet-mapping>
 		<servlet-name>teamServlet</servlet-name>
 		<url-pattern>/soccersystem/team</url-pattern>
+		<url-pattern>/mobileentrypoint/team</url-pattern>
 	</servlet-mapping>
 
-	<!-- Servlets Team -->
+	<!-- Servlets News -->
 	<servlet>
 		<servlet-name>newsServlet</servlet-name>
 		<servlet-class>giddyhero.soccersystem.server.NewsServiceImpl
@@ -53,11 +69,15 @@
 		<url-pattern>
 			/soccersystem/news
 		</url-pattern>
+		<url-pattern>
+			/mobileentrypoint/news
+		</url-pattern>
 	</servlet-mapping>
 
 	<!-- Default page to serve -->
 	<welcome-file-list>
-		<welcome-file>SoccerSystem.html</welcome-file>
+		<welcome-file>Manager.html</welcome-file>
+		<welcome-file>Mobile.html</welcome-file>
 	</welcome-file-list>
 
 </web-app>

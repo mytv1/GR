@@ -33,6 +33,8 @@ public class PanelMenu extends FlowPanel{
 		PanelSelector pnSelector = null;
 		if (place.equalsIgnoreCase("news"))
 			pnSelector = pnSelectors[1];
+		else if (place.equalsIgnoreCase("mypage"))
+			pnSelector = pnSelectors[0];
 		else if (place.equalsIgnoreCase("livescore"))
 			pnSelector = pnSelectors[2];
 		else if (place.equalsIgnoreCase("league"))

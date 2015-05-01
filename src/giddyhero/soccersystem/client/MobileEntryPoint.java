@@ -12,6 +12,7 @@ import giddyhero.soccersystem.client.mobile.activities.AppPlaceHistoryMapper;
 import giddyhero.soccersystem.client.mobile.activities.ClientFactory;
 import giddyhero.soccersystem.client.mobile.activities.ClientFactoryImpl;
 import giddyhero.soccersystem.client.mobile.activities.home.HomePlace;
+import giddyhero.soccersystem.client.mobile.resources.ClientBundleMobile;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
@@ -67,6 +68,13 @@ public class MobileEntryPoint implements EntryPoint {
 		historyHandler.register(clientFactory.getPlaceController(),
 				clientFactory.getEventBus(), new HomePlace());
 		historyHandler.handleCurrentHistory();
+		
+		ensureInjectedStyle();
+	}
+
+	private void ensureInjectedStyle() {
+		ClientBundleMobile.INST.get().style().ensureInjected();
+    	ClientBundleMobile.INST.get().styleNextMatch().ensureInjected();		
 	}
 
 	private void createPhoneDisplay() {
@@ -79,6 +87,7 @@ public class MobileEntryPoint implements EntryPoint {
 				clientFactory.getEventBus());
 		activityManager.setDisplay(display);
 		RootPanel.get().add(display);
+//		RootPanel.get().getElement().getStyle().setBackgroundColor("#FFFFFF");
 	}
 
 	private void setMGWTSettings() {
@@ -131,7 +140,7 @@ public class MobileEntryPoint implements EntryPoint {
 
 						@Override
 						public void onSuccess(Void result) {
-							Window.alert("Register Success");
+//							Window.alert("Register Success");
 							setMGWTSettings();
 							start();
 						}

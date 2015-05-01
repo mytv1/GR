@@ -1,0 +1,2 @@
+serviceClass: giddyhero.soccersystem.client.manager.ui.player.PlayerService
+path: 729F6CBB0C5D5FAA1E761495A76345F7.gwt.rpc

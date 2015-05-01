@@ -1,25 +1,25 @@
-32DC01C306EFD205E94A964E21222FE5.cache.js
-phonegap.env no
-user.agent ie8
-
-367E4ECCC63C1D79D5650145389A12EA.cache.js
-phonegap.env no
-user.agent ie10
-
-43CE9F8CBDE87157B56A57E72D06A2E1.cache.js
+4A1B7420F006CC1119472BD9D4C4FD50.cache.js
+mgwt.density high
 phonegap.env yes
-user.agent safari
 
-618118BC9FD89E49392FBC81C6BBC75F.cache.js
-phonegap.env no
-user.agent ie9
+64531E3BA664DD5B22A115ED83961D4F.cache.js
+mgwt.density xhigh
+phonegap.env yes
 
-73233B2B293C707FB06BA00207D85AA9.cache.js
+98A41C06943DB6B0F2249EAED3240A94.cache.js
+mgwt.density high
 phonegap.env no
-user.agent gecko1_8
 
-8EF76A944F01D1F82DF32D9307F8C1D0.cache.js
+B639CEF56AB87C11807ED93139EBF164.cache.js
+mgwt.density mid
+phonegap.env yes
+
+BE61A12E63F714DC3778088CF459AE90.cache.js
+mgwt.density mid
 phonegap.env no
-user.agent safari
+
+C3173CF1513F7EDC2705BFBA5018E5AF.cache.js
+mgwt.density xhigh
+phonegap.env no
 
 Devmode:devmode.js

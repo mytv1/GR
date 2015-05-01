@@ -8,13 +8,13 @@
 <module rename-to='soccersystem'>
 	<!-- Inherit the core Web Toolkit stuff.                        -->
 	<inherits name='com.google.gwt.user.User' />
-
+	<inherits name="com.google.gwt.logging.Logging"/>
 	<!-- Inherit the default GWT style sheet.  You can change       -->
-	<!-- the theme of your GWT application by uncommenting          -->	
+	<!-- the theme of your GWT application by uncommenting          -->
 	<!-- any one of the following lines.                            -->
 	<inherits name="com.googlecode.objectify.Objectify" />
-	<inherits name="com.googlecode.gwtphonegap.PhoneGap" />
-<!-- 	<inherits name="com.googlecode.objectify.ObjectifyService" /> -->
+	<!--    <inherits name="com.googlecode.gwtphonegap.PhoneGap" /> -->
+	<!-- 	<inherits name="com.googlecode.objectify.ObjectifyService" /> -->
 	<inherits name='com.google.gwt.user.theme.clean.Clean' />
 	<!-- <inherits name='com.google.gwt.user.theme.standard.Standard'/> -->
 	<!-- <inherits name='com.google.gwt.user.theme.chrome.Chrome'/> -->
@@ -23,14 +23,14 @@
 	<!-- Other module inherits                                      -->
 
 	<!-- Specify the app entry point class.                         -->
-
+ 	<inherits name="giddyhero.soccersystem.MobileEntryPoint"/> 
 	<!-- Specify the paths for translatable code                    -->
 	<source path='client' />
 	<source path='shared' />
 
 	<!-- allow Super Dev Mode -->
 	<add-linker name="xsiframe" />
-	<entry-point
-		class="giddyhero.soccersystem.client.SoccerSystem">
+	 <entry-point class="giddyhero.soccersystem.client.MobileEntryPoint"> 
+	<!-- <entry-point class="giddyhero.soccersystem.client.SystemManager"> -->
 	</entry-point>
 </module>

@@ -19,6 +19,7 @@ public class HomeViewImpl extends BasicViewImpl implements HomeView {
 	
 	public HomeViewImpl() {
 		super();
+		pnMenu.setHighlight("news");
 	}
 
 	

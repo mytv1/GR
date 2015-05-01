@@ -1,9 +1,12 @@
 package giddyhero.soccersystem.client.mobile.activities.basic;
 
 import giddyhero.soccersystem.client.MobileEntryPoint;
+import giddyhero.soccersystem.client.mobile.activities.games.GamesPlace;
 import giddyhero.soccersystem.client.mobile.activities.home.HomePlace;
-import giddyhero.soccersystem.client.mobile.activities.home.HomeView;
+import giddyhero.soccersystem.client.mobile.activities.league.LeaguePlace;
 import giddyhero.soccersystem.client.mobile.activities.livescore.LiveScorePlace;
+import giddyhero.soccersystem.client.mobile.activities.mypage.MyPagePlace;
+import giddyhero.soccersystem.client.mobile.activities.teams.TeamPlace;
 import giddyhero.soccersystem.client.mobile.resources.ClientBundleMobile;
 
 import com.google.gwt.dom.client.Style.Unit;
@@ -11,7 +14,6 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.History;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.VerticalPanel;
@@ -53,6 +55,43 @@ public class BasicViewImpl extends HorizontalPanel implements BasicView {
 			public void onClick(ClickEvent event) {
 				MobileEntryPoint.clientFactory.getPlaceController().goTo(new HomePlace());
 				pnMenu.setHighlight("news");
+			}
+		});
+		
+		pnMenu.pnSelectors[5].img.addClickHandler(new ClickHandler() {
+
+			@Override
+			public void onClick(ClickEvent event) {
+				MobileEntryPoint.clientFactory.getPlaceController().goTo(new GamesPlace());
+				pnMenu.setHighlight("games");
+			}
+		});
+		
+		pnMenu.pnSelectors[4].img.addClickHandler(new ClickHandler() {
+
+			@Override
+			public void onClick(ClickEvent event) {
+				MobileEntryPoint.clientFactory.getPlaceController().goTo(new TeamPlace());
+				pnMenu.setHighlight("teams");
+			}
+		});
+		
+		pnMenu.pnSelectors[0].img.addClickHandler(new ClickHandler() {
+
+			@Override
+			public void onClick(ClickEvent event) {
+				MobileEntryPoint.clientFactory.getPlaceController().goTo(new MyPagePlace());
+				pnMenu.setHighlight("mypage");
+			}
+		});
+		
+		
+		pnMenu.pnSelectors[3].img.addClickHandler(new ClickHandler() {
+
+			@Override
+			public void onClick(ClickEvent event) {
+				MobileEntryPoint.clientFactory.getPlaceController().goTo(new LeaguePlace());
+				pnMenu.setHighlight("league");
 			}
 		});
 	}
@@ -130,6 +169,7 @@ public class BasicViewImpl extends HorizontalPanel implements BasicView {
 
 	public static void setDefaultState() {
 		pnMenu.setVisible(false);
+		pnMain.pnScroll.setScrollingEnabledY(true);
 	}
 
 	@Override

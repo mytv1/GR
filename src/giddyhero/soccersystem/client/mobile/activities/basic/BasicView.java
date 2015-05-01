@@ -13,7 +13,6 @@ public interface BasicView extends IsWidget{
 	Image getImageMenu();
 	
 	PanelMenu getPanelMenu();
-	
 
 	void setHeaderTitle(String str);
 	

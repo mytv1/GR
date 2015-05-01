@@ -1,0 +1,2 @@
+serviceClass: giddyhero.soccersystem.client.manager.ui.team.TeamService
+path: 470579E1A1142D22210036167302CAE5.gwt.rpc

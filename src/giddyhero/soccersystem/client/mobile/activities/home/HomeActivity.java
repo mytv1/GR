@@ -5,6 +5,7 @@ import giddyhero.soccersystem.client.mobile.activities.ClientFactory;
 import giddyhero.soccersystem.client.mobile.activities.basic.BasicActivity;
 import giddyhero.soccersystem.client.mobile.activities.basic.BasicPlace;
 import giddyhero.soccersystem.client.mobile.activities.home.HomeViewImpl.PanelNews;
+import giddyhero.soccersystem.client.mobile.activities.league.LeaguePlace;
 import giddyhero.soccersystem.client.mobile.activities.news.NewsPlace;
 import giddyhero.soccersystem.shared.model.News;
 import giddyhero.soccersystem.shared.model.Team;
@@ -67,7 +68,6 @@ public class HomeActivity extends BasicActivity{
 	public void bind() {
 		view.setHeaderTitle("News");
 		setData();
-		
 	}
 
 }

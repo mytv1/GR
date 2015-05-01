@@ -36,14 +36,29 @@ public class CSSUtils {
 			widget.setPixelSize(wP, wH);
 		}
 		
+		
 		public static void setWidthPercent(Widget widget, float w){
 			int wP = (int)(w*WIDTH_DEVICE);
 			widget.setWidth(wP+"px");
+		}
+
+		public static void setHeightPercent(Widget widget, float h) {
+			int hP = (int)(h*HEIGHT_DEVICE);
+			widget.setHeight(hP+"px");
+//			Window.alert("hp : "+hP+" - h "+h+" Height device : "+HEIGHT_DEVICE);
 		}
 		
 	}
 	
 	public static String COLOR_DIV = "#DADADA";
+	
+	public static void setBorderRadius(Widget widget, String radius){
+		Style style = widget.getElement().getStyle();
+		style.setProperty("borderTopLeftRadius", radius);
+		style.setProperty("borderTopRightRadius", radius);
+		style.setProperty("borderBottomLeftRadius", radius);
+		style.setProperty("borderBottomRightRadius", radius);
+	}
 	
 	public static void setMarginCenter(Widget widget){
 		Style style = widget.getElement().getStyle();

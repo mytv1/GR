@@ -3,8 +3,8 @@ package giddyhero.soccersystem.client.mobile.activities.basic;
 
 import giddyhero.soccersystem.client.mobile.activities.ClientFactory;
 import giddyhero.soccersystem.client.mobile.activities.home.HomePlace;
+import giddyhero.soccersystem.client.mobile.activities.league.LeaguePlace;
 import giddyhero.soccersystem.client.mobile.activities.livescore.LiveScorePlace;
-import giddyhero.soccersystem.client.mobile.activities.news.NewsPlace;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
