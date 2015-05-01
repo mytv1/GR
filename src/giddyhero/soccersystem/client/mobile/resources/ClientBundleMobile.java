@@ -194,6 +194,9 @@ public interface ClientBundleMobile extends ClientBundle {
 		
 		@Source("lbTitleLineUp")
 		String lbTitleLineUp();
+		
+		@Source("pnInfoColTitle")
+		String pnInfoColTitle();
 	}
 	
 	public interface StyleNextMatch extends CssResource{

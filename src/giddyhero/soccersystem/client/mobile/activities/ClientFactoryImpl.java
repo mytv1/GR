@@ -16,6 +16,8 @@ import giddyhero.soccersystem.client.mobile.activities.mypage.MyPageView;
 import giddyhero.soccersystem.client.mobile.activities.mypage.MyPageViewImpl;
 import giddyhero.soccersystem.client.mobile.activities.news.NewsView;
 import giddyhero.soccersystem.client.mobile.activities.news.NewsViewImpl;
+import giddyhero.soccersystem.client.mobile.activities.player.PlayerView;
+import giddyhero.soccersystem.client.mobile.activities.player.PlayerViewImpl;
 import giddyhero.soccersystem.client.mobile.activities.teams.TeamView;
 import giddyhero.soccersystem.client.mobile.activities.teams.TeamViewImpl;
 
@@ -108,5 +110,10 @@ public class ClientFactoryImpl  implements ClientFactory  {
 	@Override
 	public MatchView getMatchView() {
 		return new MatchViewImpl();
+	}
+
+	@Override
+	public PlayerView getPlayerView() {
+		return new PlayerViewImpl();
 	}
 }

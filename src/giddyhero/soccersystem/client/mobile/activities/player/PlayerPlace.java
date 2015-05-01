@@ -1,23 +1,15 @@
 package giddyhero.soccersystem.client.mobile.activities.player;
 
 import giddyhero.soccersystem.client.mobile.activities.basic.BasicPlace;
+import giddyhero.soccersystem.shared.model.News;
 
 import com.google.gwt.place.shared.PlaceTokenizer;
 
-public class PlayerPlace extends BasicPlace{
-	long playerId;
+public class PlayerPlace extends BasicPlace {
 	
-	public PlayerPlace() {
+	public PlayerPlace(){
 		super();
 		setToken("player");
-	}
-	
-	public void setPlayerId(long playerId) {
-		this.playerId = playerId;
-	}
-	
-	public long getPlayerId() {
-		return playerId;
 	}
 	
 	public static class PlayerPlaceTokenizer implements PlaceTokenizer<PlayerPlace>{
@@ -31,7 +23,5 @@ public class PlayerPlace extends BasicPlace{
 		public String getToken(PlayerPlace place) {
 			return place.getToken();
 		}
-		
 	}
-
 }

@@ -1,75 +1,33 @@
 package giddyhero.soccersystem.client.mobile.activities.player;
 
-import giddyhero.soccersystem.client.ClientUtils;
-import giddyhero.soccersystem.client.mobile.activities.basic.BasicViewImpl;
-
-import com.google.gwt.core.client.GWT;
-import com.google.gwt.uibinder.client.UiBinder;
-import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.VerticalPanel;
-import com.google.gwt.user.client.ui.Widget;
+
+import giddyhero.soccersystem.client.mobile.activities.basic.BasicViewImpl;
+import giddyhero.soccersystem.client.mobile.resources.ClientBundleMobile;
+import giddyhero.soccersystem.client.share.CSSUtils;
 
 public class PlayerViewImpl extends BasicViewImpl implements PlayerView {
 
-	private static PlayerViewImplUiBinder uiBinder = GWT
-			.create(PlayerViewImplUiBinder.class);
-
-	interface PlayerViewImplUiBinder extends
-			UiBinder<Widget, PlayerViewImpl> {
-	}
-
-	@UiField
-	VerticalPanel mainPanel;
-	@UiField
-	Image imgAvatar;
-	@UiField
-	Label lbName, lbBirth, lbCurrentTeam, lbNationality, lbPosition, lbHeight;
-
+	Label lbTitle = new Label("Info"), lbStatistics = new Label("Statistics");
+	PanelPlayerInfo pnInfo = new PanelPlayerInfo();
+	
 	public PlayerViewImpl() {
 		super();
-		baseImpl();
-		int avatarWidth = (int) (ClientUtils.getWidth()*0.4f);
-		int avatarHeight = (int) (ClientUtils.getWidth()*0.4f);
-		imgAvatar.setPixelSize(avatarWidth, avatarHeight);
-	}
-	
-
-	private void baseImpl() {
-		this.layout.getScrollPanel().setWidget(uiBinder.createAndBindUi(this));
-		this.layout.getHeaderBackButton().setVisible(false);
-		mainPanel.setHeight(ClientUtils.getHeight()
-				- this.layout.getHeaderPanel().getOffsetHeight() + "px");		
-	}
-	
-	public Image getImgAvatar() {
-		return imgAvatar;
-	}
-	
-	public Label getLbBirth() {
-		return lbBirth;
-	}
-	
-	public Label getLbCurrentTeam() {
-		return lbCurrentTeam;
-	}
-	
-	public Label getLbNationality() {
-		return lbNationality;
-	}
-	
-	public Label getLbHeight() {
-		return lbHeight;
-	}
-	
-	public Label getLbName() {
-		return lbName;
-	}
-	
-	public Label getLbPosition() {
-		return lbPosition;
+		init();
+		style();
 	}
 
+	private void style() {
+		CSSUtils.Mobile.setWidthPercent(lbTitle, 0.9f);
+		CSSUtils.Mobile.setWidthPercent(lbStatistics, 0.9f);
+		lbTitle.addStyleName(ClientBundleMobile.INST.get().style().lbTitle());
+		lbStatistics.addStyleName(ClientBundleMobile.INST.get().style().lbTitle());
+	}
+
+	private void init() {
+		pnMain.pnMiddle.add(lbTitle);
+		pnMain.pnMiddle.add(pnInfo);
+		pnMain.pnMiddle.add(lbStatistics);
+	}
 
 }

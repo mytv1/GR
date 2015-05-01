@@ -16,6 +16,8 @@ import giddyhero.soccersystem.client.mobile.activities.mypage.MyPageActivity;
 import giddyhero.soccersystem.client.mobile.activities.mypage.MyPagePlace;
 import giddyhero.soccersystem.client.mobile.activities.news.NewsActivity;
 import giddyhero.soccersystem.client.mobile.activities.news.NewsPlace;
+import giddyhero.soccersystem.client.mobile.activities.player.PlayerActivity;
+import giddyhero.soccersystem.client.mobile.activities.player.PlayerPlace;
 import giddyhero.soccersystem.client.mobile.activities.teams.TeamActivity;
 import giddyhero.soccersystem.client.mobile.activities.teams.TeamPlace;
 
@@ -51,6 +53,8 @@ public class AppActivityMapper implements ActivityMapper {
 			return new LeagueTableActivity(clientFactory, place);
 		else if (place instanceof MatchPlace)
 			return new MatchActivity(clientFactory, place);
+		else if (place instanceof PlayerPlace)
+			return new PlayerActivity(clientFactory, place);
 //		return new HomeActivity(clientFactory, place);
 		return null;
 	}

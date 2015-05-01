@@ -1,12 +1,16 @@
 package giddyhero.soccersystem.client.mobile.activities.teams;
 
 
+import giddyhero.soccersystem.client.MobileEntryPoint;
 import giddyhero.soccersystem.client.mobile.activities.mypage.PanelInfo.PanelLineInfo;
+import giddyhero.soccersystem.client.mobile.activities.player.PlayerPlace;
 import giddyhero.soccersystem.client.mobile.resources.ClientBundleMobile;
 import giddyhero.soccersystem.client.share.CSSUtils;
 
 import com.google.gwt.dom.client.Style;
 import com.google.gwt.dom.client.Style.Unit;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Image;
@@ -175,7 +179,15 @@ public class PanelTeamInfo extends VerticalPanel{
 				Image imgTeamLogoTemp = new Image(ClientBundleMobile.INST.get().icPlayerTemp1());
 				CSSUtils.Mobile.setSizePercent(imgTeamLogoTemp, 0.05f, 0.025f);
 				tblPlayer.setWidget(i, 1, imgTeamLogoTemp);
-				tblPlayer.setText(i, 2, "Lionel Messi");
+				Label lbName = new Label("Lionel Messi");
+				lbName.addClickHandler(new ClickHandler() {
+					
+					@Override
+					public void onClick(ClickEvent event) {
+						MobileEntryPoint.clientFactory.getPlaceController().goTo(new PlayerPlace());
+					}
+				});
+				tblPlayer.setWidget(i, 2, lbName);
 				tblPlayer.setText(i, 3, "8/8/1987");
 				tblPlayer.setText(i, 4, "33");
 				tblPlayer.setText(i, 5, "15");

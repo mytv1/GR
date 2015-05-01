@@ -8,13 +8,16 @@ import giddyhero.soccersystem.client.mobile.activities.livescore.LiveScorePlace.
 import giddyhero.soccersystem.client.mobile.activities.match.MatchViewImpl;
 import giddyhero.soccersystem.client.mobile.activities.match.MatchPlace.MatchPlaceTokenizer;
 import giddyhero.soccersystem.client.mobile.activities.mypage.MyPagePlace.MyPagePlaceTokenizer;
+import giddyhero.soccersystem.client.mobile.activities.player.PlayerPlace;
+import giddyhero.soccersystem.client.mobile.activities.player.PlayerPlace.PlayerPlaceTokenizer;
 import giddyhero.soccersystem.client.mobile.activities.teams.TeamPlace.TeamPlaceTokenizer;
+import giddyhero.soccersystem.shared.model.Player;
 
 import com.google.gwt.place.shared.PlaceHistoryMapper;
 import com.google.gwt.place.shared.WithTokenizers;
 
 @WithTokenizers({ HomePlaceTokenizer.class, LeaguePlaceTokenizer.class, LiveScorePlaceTokenizer.class,
 		GamesPlaceTokenizer.class, MyPagePlaceTokenizer.class, LeaguePlaceTokenizer.class, TeamPlaceTokenizer.class,
-		LeagueTablePlaceTokenizer.class, MatchPlaceTokenizer.class })
+		LeagueTablePlaceTokenizer.class, MatchPlaceTokenizer.class, PlayerPlaceTokenizer.class })
 public interface AppPlaceHistoryMapper extends PlaceHistoryMapper {
 }
