@@ -12,9 +12,11 @@ import com.googlecode.mgwt.ui.client.widget.tabbar.TabPanel;
 
 public class MatchViewImpl extends BasicViewImpl implements MatchView {
 	
-	PanelMatchInfo pnMatchInfo = new PanelMatchInfo();
-	PanelMatchLineUpEvent pnMatchDetail = new PanelMatchLineUpEvent();
-	PanelMatchStatistics pnMatchStatistics = new PanelMatchStatistics();
+	PanelMatchInfo pnInfo = new PanelMatchInfo();
+	PanelMatchLineUpEvent pnDetail = new PanelMatchLineUpEvent();
+	PanelMatchStatistics pnStatistics = new PanelMatchStatistics();
+	PanelMatchBetting pnBetting = new PanelMatchBetting();
+	PanelMatchChatRoom pnChatRoom = new PanelMatchChatRoom();
 	
 	public MatchViewImpl() {
 		super();
@@ -29,19 +31,27 @@ public class MatchViewImpl extends BasicViewImpl implements MatchView {
 		CSSUtils.Mobile.setSizePercent(tabPanel, 1f, 0.9f);
 		
 		ScrollPanel sp = new ScrollPanel(); 
-		sp.setWidget(pnMatchInfo);
+		sp.setWidget(pnInfo);
 		CSSUtils.Mobile.setSizePercent(sp, 1f, 0.82f);
 		tabPanel.add(new ButtonMatchInfo(), sp);
 		
 		sp = new ScrollPanel();
-		sp.setWidget(pnMatchDetail);
+		sp.setWidget(pnDetail);
 		CSSUtils.Mobile.setSizePercent(sp, 1f, 0.82f);
 		tabPanel.add(new ButtonMatchDetail(),sp);
 		
 		sp = new ScrollPanel();
-		sp.setWidget(pnMatchStatistics);
+		sp.setWidget(pnStatistics);
 		CSSUtils.Mobile.setSizePercent(sp, 1f, 0.82f);
 		tabPanel.add(new ButtonMatchStatistics(),sp);
+		
+		sp = new ScrollPanel();
+		sp.setWidget(pnBetting);
+		CSSUtils.Mobile.setSizePercent(sp, 1f, 0.82f);
+		tabPanel.add(new ButtonMatchBetting(),sp);
+		
+		CSSUtils.Mobile.setSizePercent(sp, 1f, 0.82f);
+		tabPanel.add(new ButtonMatchChatRoom(),pnChatRoom);
 		
 		pnMain.pnMiddle.add(tabPanel);
 	}
@@ -87,6 +97,36 @@ public class MatchViewImpl extends BasicViewImpl implements MatchView {
 					 ClientBundleMobile.INST.get().liveScorePlayingBack());
 
 			setText("Statistics");
+			text.getStyle().setTop(2, Unit.PX);
+		}
+	}
+	
+	class ButtonMatchBetting  extends TabBarButton {
+
+		public ButtonMatchBetting() {
+			this(TabPanel.DEFAULT_APPEARANCE);
+		}
+
+		public ButtonMatchBetting(TabBarAppearance appearance) {
+			super(appearance, ClientBundleMobile.INST.get().icBetting(),
+					 ClientBundleMobile.INST.get().icBettingBack());
+
+			setText("Betting");
+			text.getStyle().setTop(2, Unit.PX);
+		}
+	}
+	
+	class ButtonMatchChatRoom  extends TabBarButton {
+
+		public ButtonMatchChatRoom() {
+			this(TabPanel.DEFAULT_APPEARANCE);
+		}
+
+		public ButtonMatchChatRoom(TabBarAppearance appearance) {
+			super(appearance, ClientBundleMobile.INST.get().icChatRoom(),
+					 ClientBundleMobile.INST.get().icChatRoomBack());
+
+			setText("ChatRoom");
 			text.getStyle().setTop(2, Unit.PX);
 		}
 	}

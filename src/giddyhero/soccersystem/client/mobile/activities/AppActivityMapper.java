@@ -2,6 +2,8 @@ package giddyhero.soccersystem.client.mobile.activities;
 
 import giddyhero.soccersystem.client.mobile.activities.games.GamesActivity;
 import giddyhero.soccersystem.client.mobile.activities.games.GamesPlace;
+import giddyhero.soccersystem.client.mobile.activities.games.knowledgechallenge.GameKCActivity;
+import giddyhero.soccersystem.client.mobile.activities.games.knowledgechallenge.GameKCPlace;
 import giddyhero.soccersystem.client.mobile.activities.home.HomeActivity;
 import giddyhero.soccersystem.client.mobile.activities.home.HomePlace;
 import giddyhero.soccersystem.client.mobile.activities.league.LeagueActivity;
@@ -18,6 +20,8 @@ import giddyhero.soccersystem.client.mobile.activities.news.NewsActivity;
 import giddyhero.soccersystem.client.mobile.activities.news.NewsPlace;
 import giddyhero.soccersystem.client.mobile.activities.player.PlayerActivity;
 import giddyhero.soccersystem.client.mobile.activities.player.PlayerPlace;
+import giddyhero.soccersystem.client.mobile.activities.store.StoreActivity;
+import giddyhero.soccersystem.client.mobile.activities.store.StorePlace;
 import giddyhero.soccersystem.client.mobile.activities.teams.TeamActivity;
 import giddyhero.soccersystem.client.mobile.activities.teams.TeamPlace;
 
@@ -55,6 +59,10 @@ public class AppActivityMapper implements ActivityMapper {
 			return new MatchActivity(clientFactory, place);
 		else if (place instanceof PlayerPlace)
 			return new PlayerActivity(clientFactory, place);
+		else if (place instanceof StorePlace)
+			return new StoreActivity(clientFactory, place);
+		else if (place instanceof GameKCPlace)
+			return new GameKCActivity(clientFactory, place);
 //		return new HomeActivity(clientFactory, place);
 		return null;
 	}

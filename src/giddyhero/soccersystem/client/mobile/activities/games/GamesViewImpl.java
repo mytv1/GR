@@ -1,17 +1,22 @@
 package giddyhero.soccersystem.client.mobile.activities.games;
 
+import giddyhero.soccersystem.client.MobileEntryPoint;
 import giddyhero.soccersystem.client.mobile.activities.basic.BasicViewImpl;
+import giddyhero.soccersystem.client.mobile.activities.games.knowledgechallenge.GameKCPlace;
 import giddyhero.soccersystem.client.mobile.resources.ClientBundleMobile;
 import giddyhero.soccersystem.client.share.CSSUtils;
+import giddyhero.soccersystem.client.share.CSSUtils.Mobile;
 import giddyhero.soccersystem.shared.model.News;
 
 import com.google.gwt.dom.client.Style;
+import com.google.gwt.dom.client.Style.BorderStyle;
 import com.google.gwt.dom.client.Style.FontWeight;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.resources.client.ImageResource;
 import com.google.gwt.user.client.History;
+import com.google.gwt.user.client.ui.FocusPanel;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
@@ -38,11 +43,29 @@ public class GamesViewImpl extends BasicViewImpl implements GamesView {
 		Game game5 = new Game(ClientBundleMobile.INST.get().game2(), "Predict (Online)",
 				"You know which score will be, let's predict for free and get the points.");
 		
-		pnMain.pnMiddle.add(new PanelGameIntro(game1));
-		pnMain.pnMiddle.add(new PanelGameIntro(game2));
-		pnMain.pnMiddle.add(new PanelGameIntro(game3));
-		pnMain.pnMiddle.add(new PanelGameIntro(game4));
-		pnMain.pnMiddle.add(new PanelGameIntro(game5));
+		pnMain.pnMiddle.add(new ClickableContainer(game1));
+		pnMain.pnMiddle.add(new ClickableContainer(game2));
+		pnMain.pnMiddle.add(new ClickableContainer(game3));
+		pnMain.pnMiddle.add(new ClickableContainer(game4));
+		pnMain.pnMiddle.add(new ClickableContainer(game5));
+	}
+	
+	class ClickableContainer extends FocusPanel{
+		PanelGameIntro pnGameIntro;
+		
+		public ClickableContainer(Game game) {
+			super();
+			pnGameIntro = new PanelGameIntro(game);
+			add(pnGameIntro);
+			addClickHandler(new ClickHandler() {
+				
+				@Override
+				public void onClick(ClickEvent event) {
+					MobileEntryPoint.clientFactory.getPlaceController().goTo(new GameKCPlace());
+				}
+			});
+		}
+		
 	}
 
 	class PanelGameIntro extends HorizontalPanel {
@@ -52,11 +75,16 @@ public class GamesViewImpl extends BasicViewImpl implements GamesView {
 
 		public PanelGameIntro(Game game) {
 			super();
-
-			Style style = imgIcon.getElement().getStyle();
+			
+			CSSUtils.Mobile.setWidthPercent(PanelGameIntro.this, 0.95f);
+			Style style = getElement().getStyle();
+			style.setBorderStyle(BorderStyle.SOLID);
+			style.setMargin(2, Unit.PCT);
+			
+			style = imgIcon.getElement().getStyle();
 			imgIcon.setResource(game.imgIcon);
 			add(imgIcon);
-			CSSUtils.Mobile.setSizePercent(imgIcon, 0.3f, 0.2f);
+			CSSUtils.Mobile.setSizePercent(imgIcon, 0.25f, 0.15f);
 			style.setPadding(5, Unit.PCT);
 
 			VerticalPanel vp = new VerticalPanel();
@@ -74,6 +102,7 @@ public class GamesViewImpl extends BasicViewImpl implements GamesView {
 			style = lbDescription.getElement().getStyle();
 			style.setPaddingTop(5, Unit.PCT);
 			vp.add(lbDescription);
+			
 		}
 	}
 

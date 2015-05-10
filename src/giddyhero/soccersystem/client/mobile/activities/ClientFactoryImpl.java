@@ -2,6 +2,8 @@ package giddyhero.soccersystem.client.mobile.activities;
 
 import giddyhero.soccersystem.client.mobile.activities.games.GamesView;
 import giddyhero.soccersystem.client.mobile.activities.games.GamesViewImpl;
+import giddyhero.soccersystem.client.mobile.activities.games.knowledgechallenge.GameKCView;
+import giddyhero.soccersystem.client.mobile.activities.games.knowledgechallenge.GameKCViewImpl;
 import giddyhero.soccersystem.client.mobile.activities.home.HomeView;
 import giddyhero.soccersystem.client.mobile.activities.home.HomeViewImpl;
 import giddyhero.soccersystem.client.mobile.activities.league.LeagueView;
@@ -18,6 +20,8 @@ import giddyhero.soccersystem.client.mobile.activities.news.NewsView;
 import giddyhero.soccersystem.client.mobile.activities.news.NewsViewImpl;
 import giddyhero.soccersystem.client.mobile.activities.player.PlayerView;
 import giddyhero.soccersystem.client.mobile.activities.player.PlayerViewImpl;
+import giddyhero.soccersystem.client.mobile.activities.store.StoreView;
+import giddyhero.soccersystem.client.mobile.activities.store.StoreViewImpl;
 import giddyhero.soccersystem.client.mobile.activities.teams.TeamView;
 import giddyhero.soccersystem.client.mobile.activities.teams.TeamViewImpl;
 
@@ -115,5 +119,15 @@ public class ClientFactoryImpl  implements ClientFactory  {
 	@Override
 	public PlayerView getPlayerView() {
 		return new PlayerViewImpl();
+	}
+
+	@Override
+	public StoreView getStoreView() {
+		return new StoreViewImpl();
+	}
+
+	@Override
+	public GameKCView getGamesKCView() {
+		return new GameKCViewImpl();
 	}
 }

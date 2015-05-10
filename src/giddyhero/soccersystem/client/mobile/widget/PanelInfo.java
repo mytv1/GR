@@ -44,11 +44,9 @@ public class PanelInfo extends HorizontalPanel{
 		CSSUtils.Mobile.setWidthPercent(lbTitle, 0.2f);
 		Style style = lbTitle.getElement().getStyle();
 		style.setFontWeight(FontWeight.BOLD);
-		style.setFontSize(120, Unit.PCT);
 		
 		Label lbContent = new Label(": "+content);
 		 style = lbContent.getElement().getStyle();
-		style.setFontSize(120, Unit.PCT);
 		int count = tblInfo.getRowCount();
 		tblInfo.setWidget(count, 0, lbTitle);
 		tblInfo.setWidget(count, 1, lbContent);

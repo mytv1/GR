@@ -60,7 +60,23 @@
 	margin-top: 2%;
 }
 
-.pnInfoColTitle{
+.pnInfoColTitle {
 	font-weight: bold;
 }
 
+.tblInfoRow {
+	margin-left: 15%;
+	font-size: 150%;
+	margin-top: 3%;
+}
+
+/* word wrap */
+.wordWrap {
+	word-wrap: break-word;
+}
+
+/* Team */
+.hyperlink {
+	color: #0000EE;
+	text-decoration: underline;
+}

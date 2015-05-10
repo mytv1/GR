@@ -10,6 +10,7 @@ public class PlayerViewImpl extends BasicViewImpl implements PlayerView {
 
 	Label lbTitle = new Label("Info"), lbStatistics = new Label("Statistics");
 	PanelPlayerInfo pnInfo = new PanelPlayerInfo();
+	PanelPlayerStatistics pnStatistics = new PanelPlayerStatistics();
 	
 	public PlayerViewImpl() {
 		super();
@@ -28,6 +29,7 @@ public class PlayerViewImpl extends BasicViewImpl implements PlayerView {
 		pnMain.pnMiddle.add(lbTitle);
 		pnMain.pnMiddle.add(pnInfo);
 		pnMain.pnMiddle.add(lbStatistics);
+		pnMain.pnMiddle.add(pnStatistics);
 	}
 
 }

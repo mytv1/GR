@@ -47,6 +47,9 @@ public interface ClientBundleMobile extends ClientBundle {
 	@Source("image/mypage.png")
 	public ImageResource btMyPage();
 	
+	@Source("image/store.png")
+	public ImageResource icMenuStore();
+	
 
 	@Source("image/playing.png")
 	public ImageResource liveScorePlaying();
@@ -142,6 +145,21 @@ public interface ClientBundleMobile extends ClientBundle {
 	@Source("image/change-player.png")
 	public ImageResource icChangePlayer();
 	
+	@Source("image/ic-chat.png")
+	public ImageResource icChatRoom();
+	
+	@Source("image/ic-chat-back.png")
+	public ImageResource icChatRoomBack();
+	
+	@Source("image/ic-bet.png")
+	public ImageResource icBetting();
+	
+	@Source("image/ic-bet-back.png")
+	public ImageResource icBettingBack();
+	
+	@Source("image/ic-smile.png")
+	public ImageResource icSmile();
+	
 	/* Game */
 	@Source("image/games/icon-1.png")
 	public ImageResource game1();
@@ -157,6 +175,46 @@ public interface ClientBundleMobile extends ClientBundle {
 	
 	@Source("image/games/icon-5.png")
 	public ImageResource game5();
+	
+	@Source("image/games/pack-rule.jpg")
+	public ImageResource gamePackRule();
+	
+	@Source("image/games/pack-league.jpg")
+	public ImageResource gamePackLeague();
+	
+	@Source("image/games/pack-news.jpg")
+	public ImageResource gamePackNews();
+	
+	/* Store */
+	@Source("image/ic-inventory.png")
+	public ImageResource icInventory();
+	
+	@Source("image/ic-inventory-back.png")
+	public ImageResource icInventoryBack();
+
+	@Source("image/ic-store.png")
+	public ImageResource icStore();
+	
+	@Source("image/ic-store-back.png")
+	public ImageResource icStoreBack();
+	
+	@Source("image/ball.jpg")
+	public ImageResource icItemBall();
+	
+	@Source("image/football-whistle.jpg")
+	public ImageResource icItemWhistle();
+	
+	@Source("image/jacket.jpg")
+	public ImageResource icItemJacket();
+	
+	@Source("image/shoe.jpg")
+	public ImageResource icItemShoe();
+	
+	@Source("image/stadium.jpg")
+	public ImageResource icItemStadium();
+	
+	@Source("image/trophy.jpg")
+	public ImageResource icItemTrophy();
 	
 	@Source("css/myStyle.css")
 	MyStyle style();
@@ -197,6 +255,15 @@ public interface ClientBundleMobile extends ClientBundle {
 		
 		@Source("pnInfoColTitle")
 		String pnInfoColTitle();
+
+		@Source("tblInfoRow")
+		String tblInfoRow();
+		
+		@Source("wordWrap")
+		String wordWrap();
+		
+		@Source("hyperlink")
+		String hyperlink();
 	}
 	
 	public interface StyleNextMatch extends CssResource{
@@ -219,6 +286,12 @@ public interface ClientBundleMobile extends ClientBundle {
 		@ClassName("lbCenter")
 		String lbCenter();
 	}
+
+	@Source("image/ronaldo-shirt.jpg")
+	public ImageResource playerShirtTemp();
+
+	@Source("image/ic-search.png")
+	public ImageResource icSearch();
 
 
 }

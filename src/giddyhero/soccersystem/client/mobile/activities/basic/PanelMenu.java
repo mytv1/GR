@@ -39,9 +39,11 @@ public class PanelMenu extends FlowPanel{
 			pnSelector = pnSelectors[2];
 		else if (place.equalsIgnoreCase("league"))
 			pnSelector = pnSelectors[3];
-		else if (place.equalsIgnoreCase("teams"))
-			pnSelector = pnSelectors[4];
+//		else if (place.equalsIgnoreCase("teams"))
+//			pnSelector = pnSelectors[4];
 		else if (place.equalsIgnoreCase("games"))
+			pnSelector = pnSelectors[4];
+		else if (place.equalsIgnoreCase("store"))
 			pnSelector = pnSelectors[5];
 		if (pnSelector != null)
 		{
@@ -71,10 +73,13 @@ public class PanelMenu extends FlowPanel{
 		pnSelectors[3] = new PanelSelector(ClientBundleMobile.INST.get().icMenuLeague());
 		add(pnSelectors[3]);
 		add(new Line());
-		pnSelectors[4] = new PanelSelector(ClientBundleMobile.INST.get().icMenuTeams());
+//		pnSelectors[4] = new PanelSelector(ClientBundleMobile.INST.get().icMenuTeams());
+//		add(pnSelectors[4]);
+//		add(new Line());
+		pnSelectors[4] = new PanelSelector(ClientBundleMobile.INST.get().icMenuGames());
 		add(pnSelectors[4]);
 		add(new Line());
-		pnSelectors[5] = new PanelSelector(ClientBundleMobile.INST.get().icMenuGames());
+		pnSelectors[5] = new PanelSelector(ClientBundleMobile.INST.get().icMenuStore());
 		add(pnSelectors[5]);
 		add(new Line());
 	}
@@ -112,9 +117,9 @@ public class PanelMenu extends FlowPanel{
 		}
 
 		private void style() {
-			CSSUtils.Mobile.setSizePercent(Line.this, 0.54f, 0.005f);
-			getElement().getStyle().setMarginLeft(3, Unit.PCT);
-			getElement().getStyle().setMarginRight(3, Unit.PCT);
+			CSSUtils.Mobile.setSizePercent(Line.this, 0.6f, 0.005f);
+//			getElement().getStyle().setMarginLeft(3, Unit.PCT);
+//			getElement().getStyle().setMarginRight(3, Unit.PCT);
 		}
 	}
 

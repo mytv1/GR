@@ -187,6 +187,7 @@ public class PanelTeamInfo extends VerticalPanel{
 						MobileEntryPoint.clientFactory.getPlaceController().goTo(new PlayerPlace());
 					}
 				});
+				lbName.addStyleName(ClientBundleMobile.INST.get().style().hyperlink());
 				tblPlayer.setWidget(i, 2, lbName);
 				tblPlayer.setText(i, 3, "8/8/1987");
 				tblPlayer.setText(i, 4, "33");

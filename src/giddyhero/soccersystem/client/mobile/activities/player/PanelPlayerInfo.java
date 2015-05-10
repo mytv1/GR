@@ -23,6 +23,7 @@ public class PanelPlayerInfo extends PanelInfo{
 		addRow("Position", "Center Foward");
 		addRow("Nationality", "Argentina");
 		addRow("Height", "172");
+		addRow("Shirt Number", "10");
 	}
 
 	private void style() {

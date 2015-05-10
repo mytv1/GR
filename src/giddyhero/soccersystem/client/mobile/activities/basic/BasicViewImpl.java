@@ -6,6 +6,7 @@ import giddyhero.soccersystem.client.mobile.activities.home.HomePlace;
 import giddyhero.soccersystem.client.mobile.activities.league.LeaguePlace;
 import giddyhero.soccersystem.client.mobile.activities.livescore.LiveScorePlace;
 import giddyhero.soccersystem.client.mobile.activities.mypage.MyPagePlace;
+import giddyhero.soccersystem.client.mobile.activities.store.StorePlace;
 import giddyhero.soccersystem.client.mobile.activities.teams.TeamPlace;
 import giddyhero.soccersystem.client.mobile.resources.ClientBundleMobile;
 
@@ -39,13 +40,13 @@ public class BasicViewImpl extends HorizontalPanel implements BasicView {
 			}
 		});
 
-		pnMenu.pnSelectors[2].img.addClickHandler(new ClickHandler() {
+		
+		pnMenu.pnSelectors[0].img.addClickHandler(new ClickHandler() {
 
 			@Override
 			public void onClick(ClickEvent event) {
-				MobileEntryPoint.clientFactory.getPlaceController().goTo(new LiveScorePlace());
-				pnMenu.setHighlight("livescore");
-			
+				MobileEntryPoint.clientFactory.getPlaceController().goTo(new MyPagePlace());
+				pnMenu.setHighlight("mypage");
 			}
 		});
 
@@ -58,33 +59,15 @@ public class BasicViewImpl extends HorizontalPanel implements BasicView {
 			}
 		});
 		
-		pnMenu.pnSelectors[5].img.addClickHandler(new ClickHandler() {
+		pnMenu.pnSelectors[2].img.addClickHandler(new ClickHandler() {
 
 			@Override
 			public void onClick(ClickEvent event) {
-				MobileEntryPoint.clientFactory.getPlaceController().goTo(new GamesPlace());
-				pnMenu.setHighlight("games");
+				MobileEntryPoint.clientFactory.getPlaceController().goTo(new LiveScorePlace());
+				pnMenu.setHighlight("livescore");
+			
 			}
 		});
-		
-		pnMenu.pnSelectors[4].img.addClickHandler(new ClickHandler() {
-
-			@Override
-			public void onClick(ClickEvent event) {
-				MobileEntryPoint.clientFactory.getPlaceController().goTo(new TeamPlace());
-				pnMenu.setHighlight("teams");
-			}
-		});
-		
-		pnMenu.pnSelectors[0].img.addClickHandler(new ClickHandler() {
-
-			@Override
-			public void onClick(ClickEvent event) {
-				MobileEntryPoint.clientFactory.getPlaceController().goTo(new MyPagePlace());
-				pnMenu.setHighlight("mypage");
-			}
-		});
-		
 		
 		pnMenu.pnSelectors[3].img.addClickHandler(new ClickHandler() {
 
@@ -94,6 +77,34 @@ public class BasicViewImpl extends HorizontalPanel implements BasicView {
 				pnMenu.setHighlight("league");
 			}
 		});
+		
+		pnMenu.pnSelectors[4].img.addClickHandler(new ClickHandler() {
+
+			@Override
+			public void onClick(ClickEvent event) {
+				MobileEntryPoint.clientFactory.getPlaceController().goTo(new GamesPlace());
+				pnMenu.setHighlight("games");
+			}
+		});
+		
+		pnMenu.pnSelectors[5].img.addClickHandler(new ClickHandler() {
+
+			@Override
+			public void onClick(ClickEvent event) {
+				MobileEntryPoint.clientFactory.getPlaceController().goTo(new StorePlace());
+				pnMenu.setHighlight("store");
+			}
+		});
+		
+//		pnMenu.pnSelectors[4].img.addClickHandler(new ClickHandler() {
+//
+//			@Override
+//			public void onClick(ClickEvent event) {
+//				MobileEntryPoint.clientFactory.getPlaceController().goTo(new TeamPlace());
+//				pnMenu.setHighlight("teams");
+//			}
+//		});
+		
 	}
 
 	public BasicViewImpl() {
@@ -180,6 +191,11 @@ public class BasicViewImpl extends HorizontalPanel implements BasicView {
 	@Override
 	public void setHeaderTitle(String str) {
 		pnMain.pnHeader.lbTitle.setText(str);
+		if (str.equalsIgnoreCase("Knowledge Challenge"))
+		{
+			pnMain.pnHeader.lbTitle.getElement().getStyle().setFontSize(230, Unit.PCT);
+		}else
+			pnMain.pnHeader.lbTitle.getElement().getStyle().setFontSize(300, Unit.PCT);
 	}
 
 }

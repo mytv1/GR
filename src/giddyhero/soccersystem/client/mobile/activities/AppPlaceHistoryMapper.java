@@ -1,6 +1,8 @@
 package giddyhero.soccersystem.client.mobile.activities;
 
 import giddyhero.soccersystem.client.mobile.activities.games.GamesPlace.GamesPlaceTokenizer;
+import giddyhero.soccersystem.client.mobile.activities.games.knowledgechallenge.GameKCPlace;
+import giddyhero.soccersystem.client.mobile.activities.games.knowledgechallenge.GameKCPlace.GamesKCPlaceTokenizer;
 import giddyhero.soccersystem.client.mobile.activities.home.HomePlace.HomePlaceTokenizer;
 import giddyhero.soccersystem.client.mobile.activities.league.LeaguePlace.LeaguePlaceTokenizer;
 import giddyhero.soccersystem.client.mobile.activities.league.table.LeagueTablePlace.LeagueTablePlaceTokenizer;
@@ -10,6 +12,7 @@ import giddyhero.soccersystem.client.mobile.activities.match.MatchPlace.MatchPla
 import giddyhero.soccersystem.client.mobile.activities.mypage.MyPagePlace.MyPagePlaceTokenizer;
 import giddyhero.soccersystem.client.mobile.activities.player.PlayerPlace;
 import giddyhero.soccersystem.client.mobile.activities.player.PlayerPlace.PlayerPlaceTokenizer;
+import giddyhero.soccersystem.client.mobile.activities.store.StorePlace.StorePlaceTokenizer;
 import giddyhero.soccersystem.client.mobile.activities.teams.TeamPlace.TeamPlaceTokenizer;
 import giddyhero.soccersystem.shared.model.Player;
 
@@ -18,6 +21,6 @@ import com.google.gwt.place.shared.WithTokenizers;
 
 @WithTokenizers({ HomePlaceTokenizer.class, LeaguePlaceTokenizer.class, LiveScorePlaceTokenizer.class,
 		GamesPlaceTokenizer.class, MyPagePlaceTokenizer.class, LeaguePlaceTokenizer.class, TeamPlaceTokenizer.class,
-		LeagueTablePlaceTokenizer.class, MatchPlaceTokenizer.class, PlayerPlaceTokenizer.class })
+		LeagueTablePlaceTokenizer.class, MatchPlaceTokenizer.class, PlayerPlaceTokenizer.class, StorePlaceTokenizer.class, GamesKCPlaceTokenizer.class })
 public interface AppPlaceHistoryMapper extends PlaceHistoryMapper {
 }
