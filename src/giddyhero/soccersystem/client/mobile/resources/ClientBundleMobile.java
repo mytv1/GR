@@ -222,6 +222,7 @@ public interface ClientBundleMobile extends ClientBundle {
 	@Source("css/nextMatch.css")
 	StyleNextMatch styleNextMatch();
 	
+	
 	public interface MyStyle extends CssResource {
 		@ClassName("button")
 		String buttonClass();
@@ -264,6 +265,18 @@ public interface ClientBundleMobile extends ClientBundle {
 		
 		@Source("hyperlink")
 		String hyperlink();
+		
+		@Source("lbGameStaringPn")
+		String lbGameStaringPn();
+		
+		@Source("lbGameStaringPnValue")
+		String lbGameStaringPnValue();
+		
+		@Source("imgGameKCQuestion")
+		String imgGameKCQuestion();
+		
+		@Source("lbGameKCQuestion")
+		String lbGameKCQuestion();
 	}
 	
 	public interface StyleNextMatch extends CssResource{

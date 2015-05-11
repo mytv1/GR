@@ -12,11 +12,15 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.resources.client.ImageResource;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.FocusPanel;
+import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
+import com.google.gwt.user.client.ui.Widget;
+import com.googlecode.mgwt.ui.client.widget.button.Button;
 
 public class PanelGameKCPackList extends VerticalPanel {
 
@@ -37,14 +41,14 @@ public class PanelGameKCPackList extends VerticalPanel {
 
 		public PanelKnowledgePack(ImageResource resource, String title, String description) {
 			super();
-			
+
 			add(container);
-			
+
 			CSSUtils.Mobile.setWidthPercent(container, 0.95f);
 			Style style = container.getElement().getStyle();
 			style.setBorderStyle(BorderStyle.SOLID);
 			style.setMargin(2, Unit.PCT);
-			
+
 			style = imgIcon.getElement().getStyle();
 			imgIcon.setResource(resource);
 			container.add(imgIcon);
@@ -69,18 +73,21 @@ public class PanelGameKCPackList extends VerticalPanel {
 			vp.add(lbDescription);
 
 			container.add(new PanelPackInfo());
-			
+
 			addClickHandler(new ClickHandler() {
-				
+
 				@Override
 				public void onClick(ClickEvent event) {
-					Window.alert("Click");
+					VerticalPanel parent = (VerticalPanel) PanelGameKCPackList.this.getParent();
+					PanelGameKCPackList.this.removeFromParent();
+					parent.add(new PanelGameStarting());
 				}
 			});
 		}
 
 		class PanelPackInfo extends VerticalPanel {
-			Label lbPercent = new Label("80%"), lbQuesNum = new Label("Question : 20"), lbPoint = new Label("Point : 5"), lbTitle = new Label("Challenge");
+			Label lbPercent = new Label("80%"), lbQuesNum = new Label("Question : 20"),
+					lbPoint = new Label("Point : 5"), lbTitle = new Label("Challenge");
 
 			public PanelPackInfo() {
 				super();
@@ -90,20 +97,20 @@ public class PanelGameKCPackList extends VerticalPanel {
 				style.setBorderColor("#343434");
 				style.setColor("FFFFFF");
 				style.setBackgroundColor("#787878");
-				
+
 				style = lbTitle.getElement().getStyle();
 				style.setTextAlign(TextAlign.CENTER);
 				add(lbTitle);
-				
+
 				style = lbPercent.getElement().getStyle();
 				style.setTextAlign(TextAlign.CENTER);
 				style.setFontSize(200, Unit.PCT);
 				add(lbPercent);
-				
+
 				style = lbQuesNum.getElement().getStyle();
 				style.setTextAlign(TextAlign.CENTER);
 				add(lbQuesNum);
-				
+
 				style = lbPoint.getElement().getStyle();
 				style.setTextAlign(TextAlign.CENTER);
 				add(lbPoint);
@@ -111,4 +118,5 @@ public class PanelGameKCPackList extends VerticalPanel {
 		}
 	}
 
+	
 }

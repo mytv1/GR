@@ -90,15 +90,17 @@ public class PanelStore extends VerticalPanel {
 					"Christiano Ronaldo - Real Mandrid - Home - 14-15"));
 			pnContainer.add(new PanelItem(ClientBundleMobile.INST.get().icItemBall(), "Worldcup 14-15's ball"));
 			pnContainer.add(new PanelItem(ClientBundleMobile.INST.get().icItemJacket(), "Arsenal - Jacket - 14-15"));
-			pnContainer.add(new PanelItem(ClientBundleMobile.INST.get().icItemShoe(),
-					"Messi - Barcalona - Shoe - 14-15"));
-			pnContainer.add(new PanelItem(ClientBundleMobile.INST.get().icItemStadium(), "Stadium - Real Madrid"));
-			pnContainer.add(new PanelItem(ClientBundleMobile.INST.get().icItemTrophy(), "Trophy - Premier League"));
-			pnContainer.add(new PanelItem(ClientBundleMobile.INST.get().icItemWhistle(), "Whistle - Colina - 14-15"));
+//			pnContainer.add(new PanelItem(ClientBundleMobile.INST.get().icItemShoe(),
+//					"Messi - Barcalona - Shoe - 14-15"));
+//			pnContainer.add(new PanelItem(ClientBundleMobile.INST.get().icItemStadium(), "Stadium - Real Madrid"));
+//			pnContainer.add(new PanelItem(ClientBundleMobile.INST.get().icItemTrophy(), "Trophy - Premier League"));
+//			pnContainer.add(new PanelItem(ClientBundleMobile.INST.get().icItemWhistle(), "Whistle - Colina - 14-15"));
 		}
 
 		private void init() {
 			add(pnContainer);
+			setScrollingEnabledX(false);
+			setScrollingEnabledX(false);
 		}
 
 		private void style() {
