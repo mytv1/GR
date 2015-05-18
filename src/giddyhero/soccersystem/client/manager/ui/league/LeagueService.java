@@ -9,7 +9,7 @@ import giddyhero.soccersystem.shared.model.EventChangePlayer;
 import giddyhero.soccersystem.shared.model.EventGoal;
 import giddyhero.soccersystem.shared.model.League;
 import giddyhero.soccersystem.shared.model.Match;
-import giddyhero.soccersystem.shared.model.ScoreInfo;
+import giddyhero.soccersystem.shared.model.Standing;
 import giddyhero.soccersystem.shared.model.Season;
 
 import com.google.gwt.user.client.rpc.RemoteService;
@@ -21,46 +21,56 @@ public interface LeagueService extends RemoteService {
 	void saveLeague(League league);
 
 	League[] getAllLeague();
-	
-	public League getLeague(long id);
 
-	/*<--------------------  Season  -------------------->*/
+	League getLeague(long id);
+	
+	void deleteLeague(long id);
+
+	/* <-------------------- Season --------------------> */
 	Season[] getAllSeason();
 
 	Season createNewSeason(League league, Season season);
-	
+
 	List<Season> getSeasonsById(List<Long> ids);
 
-	public Season getSeason(long id);
-	
-	public Season saveSeason(Season season);
+	Season getSeason(long id);
 
-	/*<--------------------  Season  -------------------->*/
-	/*<-------------------- Match  -------------------->*/
-
-	Match saveMatch(Match match, EventCard[] eventCards, EventGoal[] eventGoals,
-			EventChangePlayer[] eventChangePlayers);
+	Season saveSeason(Season season);
 	
+	void deleteSeason(long id);
+
+	/* <-------------------- Season --------------------> */
+	/* <-------------------- Match --------------------> */
+
+	Match saveMatch(Match match, EventCard[] eventCards, EventGoal[] eventGoals, EventChangePlayer[] eventChangePlayers);
+
 	Match saveMatch(Match match, long seasonId);
+	
 
 	List<Match> getMatchOfSeason(long seasonId);
+	
+	List<Match> getAllMatches();
 
 	long[] saveEventCard(EventCard[] eventCards);
 
-	public void deleteMatch(long id);
+	void deleteMatch(long id);
 
-	public int saveMatches(Match[] matches);
+	int saveMatches(Season season,Match[] matches);
+
+	Match getMatch(long matchId);
 	
-	public Match getMatch(long matchId);
+	int clearMatchesOfSeason(long seasonId);
+
+	/* <-------------------- Match --------------------> */
+	/* <-------------------- Table Score --------------------> */
+	Standing saveStanding(Standing scoreInfo, long seasonId);
 	
-	/*<-------------------- Match  -------------------->*/
-	/*<-------------------- Table Score  -------------------->*/
-	ScoreInfo saveScoreInfo(ScoreInfo scoreInfo, long seasonId);
-	
-	List<ScoreInfo> getScoreInfosById(List<Long> ids);
-	
-	ScoreInfo getScoreInfo(long id);
-	
+	List<Standing> saveStandings(long seasonId,List<Standing>  standings);
+
+	List<Standing> getStandingsById(long id);
+
+	Standing getScoreInfo(long id);
+
 	void deleteScoreInfo(long id);
-	/*<-------------------- Table Score  -------------------->*/
+	/* <-------------------- Table Score --------------------> */
 }

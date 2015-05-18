@@ -10,14 +10,14 @@ import com.googlecode.objectify.annotation.Index;
 
 @Entity
 public class Player implements SerializableEntity{
-	private static final long serialVersionUID = 1L;
 	public @Id Long id;
-	public String name;
-	public String birth;
+	public String name = "";
+	public String birth = "";
 	public int height;
-	public int positionId;
-	public String nationality;
-	public String avatarUrl;
+	public String position = "";
+	public int jerseyNumber = 0;
+	public String nationality = "";
+	public String avatarUrl = "";
 	@Index public long currentTeamId;
 
 	public Player() {
@@ -28,23 +28,31 @@ public class Player implements SerializableEntity{
 		this.name = name;
 		this.birth = birthStr;
 		this.height = height;
-		this.positionId = positionId;
+		this.position = positionId+"";
 		this.nationality = nationality;
 		this.avatarUrl = avatarUrl;
 	}
 	
 
-	@Override
-	public String toString() {
-		return "name " + name +
-				"\n " + birth + 
-				"\nheight "+ height + 
-				"\n position id : " + positionId
-				+ "\n nationality : " + nationality + 
-				"\n Avatar Url : "+ avatarUrl+
-				"\nTeam Id : "+currentTeamId;
+	public Player(String name, String position, int jerseyNumber, String dateOfBirth, String nationality) {
+		this.name = name;
+		this.birth = dateOfBirth;
+		this.position = position;
+		this.nationality = nationality;
+		this.jerseyNumber = jerseyNumber;
 	}
-	
+
+//	@Override
+//	public String toString() {
+//		return "name " + name +
+//				"\n " + birth + 
+//				"\nheight "+ height + 
+//				"\n position id : " + position
+//				+ "\n nationality : " + nationality + 
+//				"\n Avatar Url : "+ avatarUrl+
+//				"\nTeam Id : "+currentTeamId;
+//	}
+//	
 
 	public Image getAvatar() {
 		Image image = new Image();
@@ -60,4 +68,10 @@ public class Player implements SerializableEntity{
 	        return item == null ? null : item.id;
 	      }
 	    };
+
+//	public boolean isEqual(Player comparablePlayer) {
+//		if (name.equalsIgnoreCase(comparablePlayer.name) && birth.equalsIgnoreCase(comparablePlayer.birth))
+//			return true;
+//		return false;
+//	}
 }

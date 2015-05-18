@@ -55,18 +55,18 @@ public class WindowCreateMatch extends FlowPanel {
 			@Override
 			public void onClick(ClickEvent event) {
 				Match[] matches = tblCreatedMatch.getAllMatch();
-				SystemManager.Service.league.saveMatches(matches, new AsyncCallback<Integer>() {
-
-					@Override
-					public void onFailure(Throwable caught) {
-						Window.alert("Create match failure : "+caught.toString());
-					}
-
-					@Override
-					public void onSuccess(Integer result) {
-						Window.alert("Create "+result+" match success : ");						
-					}
-				});
+//				SystemManager.Service.league.saveMatches(matches, new AsyncCallback<Integer>() {
+//
+//					@Override
+//					public void onFailure(Throwable caught) {
+//						Window.alert("Create match failure : "+caught.toString());
+//					}
+//
+//					@Override
+//					public void onSuccess(Integer result) {
+//						Window.alert("Create "+result+" match success : ");						
+//					}
+//				});
 			}
 		});
 		getElement().getStyle().setTextAlign(Style.TextAlign.CENTER);

@@ -248,17 +248,19 @@ public class TablePlayer extends DataGrid<Player> {
 
 			@Override
 			public String getValue(Player object) {
-				return ""+Position.getPositionNameById(object.positionId)+" ("+object.positionId;
+//				return ""+Position.getPositionNameById(object.positionId)+" ("+object.positionId;
+				return object.position;
 			}
 		};
 		colPosition.setFieldUpdater(new FieldUpdater<Player, String>() {
 
 			@Override
 			public void update(int index, Player object, String value) {
-				int i = value.indexOf('(');
-				String subStr = value.substring(i+1,value.indexOf(')'));
-				Window.alert("substr : "+subStr);
-				object.positionId = Integer.parseInt(subStr);
+//				int i = value.indexOf('(');
+//				String subStr = value.substring(i+1,value.indexOf(')'));
+//				Window.alert("substr : "+subStr);
+				object.position = value;
+//				object.positionId = Integer.parseInt(subStr);
 				playersProvider.getList().set(index, object);
 			}
 		});

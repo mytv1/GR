@@ -51,6 +51,7 @@ import com.sun.media.sound.DataPusher;
 public class PanelPlayerAll extends FlowPanel {
 
 	Button btCreate = new Button("New Player");
+	Button btDelete = new Button("Delete All Players");
 	TablePlayer tablePlayer;
 
 	public PanelPlayerAll() {
@@ -59,17 +60,40 @@ public class PanelPlayerAll extends FlowPanel {
 	}
 
 	private void init() {
-		initButtonCreate();
+		initButton();
 		tablePlayer = new TablePlayer();
 		setAllPlayerData();
 		add(tablePlayer);
 		
 	}
 
-	private void initButtonCreate() {
-		CSSUtils.setMarginTop(btCreate, 10);
-		CSSUtils.setMarginBottom(btCreate, 20);
+	private void initButton() {
+		CSSUtils.setMargin(btCreate, 10);
 		btCreate.setPixelSize(120, 40);
+		
+		CSSUtils.setMargin(btDelete, 10);
+		btDelete.setPixelSize(120, 40);
+		btDelete.addClickHandler(new ClickHandler() {
+			
+			@Override
+			public void onClick(ClickEvent event) {
+				SystemManager.Service.player.clearAllPlayers(new AsyncCallback<Integer>() {
+
+					@Override
+					public void onFailure(Throwable caught) {
+						Window.alert("Delete all player fail "+caught.toString());
+					}
+
+					@Override
+					public void onSuccess(Integer result) {
+						Window.alert("Delete all players success ");
+						SystemManager.DataCache.PlayerUtils.players.clear();
+						tablePlayer.playersProvider.getList().clear();
+					}
+				});
+			}
+		});
+		
 		btCreate.addClickHandler(new ClickHandler() {
 			
 			@Override
@@ -78,10 +102,11 @@ public class PanelPlayerAll extends FlowPanel {
 			}
 		});
 		add(btCreate);		
+		add(btDelete);
 	}
 
 	public void setAllPlayerData() {
-		SystemManager.Service.player.getAllPlayers(new AsyncCallback<Player[]>() {
+		SystemManager.Service.player.getAllPlayers(new AsyncCallback<List<Player>>() {
 
 			@Override
 			public void onFailure(Throwable caught) {
@@ -89,12 +114,8 @@ public class PanelPlayerAll extends FlowPanel {
 			}
 
 			@Override
-			public void onSuccess(Player[] result) {
-//				Window.alert("get player success " + result.length);
-				List<Player> players = new ArrayList<Player>();
-				for (int i = 0; i < result.length; i++) {
-					players.add(result[i]);
-				}
+			public void onSuccess(List<Player> players) {
+				Window.alert("get "+players.size()+" player  success!");
 				tablePlayer.setData(players);
 			}
 

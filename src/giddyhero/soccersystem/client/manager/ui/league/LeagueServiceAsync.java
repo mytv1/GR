@@ -7,7 +7,7 @@ import giddyhero.soccersystem.shared.model.EventChangePlayer;
 import giddyhero.soccersystem.shared.model.EventGoal;
 import giddyhero.soccersystem.shared.model.League;
 import giddyhero.soccersystem.shared.model.Match;
-import giddyhero.soccersystem.shared.model.ScoreInfo;
+import giddyhero.soccersystem.shared.model.Standing;
 import giddyhero.soccersystem.shared.model.Season;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -33,7 +33,6 @@ public interface LeagueServiceAsync {
 	void saveEventCard(EventCard[] eventCards, AsyncCallback<long[]> callback);
 
 
-	void saveMatches(Match[] matches, AsyncCallback<Integer> callback);
 
 	void getMatchOfSeason(long seasonId, AsyncCallback<List<Match>> callback);
 
@@ -48,13 +47,25 @@ public interface LeagueServiceAsync {
 
 	void getSeasonsById(List<Long> ids, AsyncCallback<List<Season>> callback);
 
-	void getScoreInfosById(List<Long> ids, AsyncCallback<List<ScoreInfo>> callback);
+	void getStandingsById(long id, AsyncCallback<List<Standing>> callback);
 
-	void getScoreInfo(long id, AsyncCallback<ScoreInfo> callback);
+	void getScoreInfo(long id, AsyncCallback<Standing> callback);
 
 	void deleteScoreInfo(long id, AsyncCallback<Void> callback);
 
-	void saveScoreInfo(ScoreInfo scoreInfo, long seasonId, AsyncCallback<ScoreInfo> callback);
+	void saveStanding(Standing scoreInfo, long seasonId, AsyncCallback<Standing> callback);
+
+	void deleteLeague(long id, AsyncCallback<Void> callback);
+
+	void deleteSeason(long id, AsyncCallback<Void> callback);
+
+	void clearMatchesOfSeason(long seasonId, AsyncCallback<Integer> callback);
+
+	void saveMatches(Season season, Match[] matches, AsyncCallback<Integer> callback);
+
+	void saveStandings(long seasonId, List<Standing> standings, AsyncCallback<List<Standing>> callback);
+
+	void getAllMatches(AsyncCallback<List<Match>> callback);
 
 
 

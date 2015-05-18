@@ -2,10 +2,11 @@ package giddyhero.soccersystem.client.manager.ui.league.season;
 
 import giddyhero.soccersystem.client.HistoryToken;
 import giddyhero.soccersystem.client.SystemManager;
+import giddyhero.soccersystem.client.manager.ui.league.season.PanelSeasonMatch.TableMatchCreated;
 import giddyhero.soccersystem.client.manager.ui.widget.ResizableImageCell;
 import giddyhero.soccersystem.client.share.CSSUtils;
 import giddyhero.soccersystem.shared.model.Match;
-import giddyhero.soccersystem.shared.model.ScoreInfo;
+import giddyhero.soccersystem.shared.model.Standing;
 import giddyhero.soccersystem.shared.model.Team;
 
 import java.util.ArrayList;
@@ -34,8 +35,6 @@ public class TableMatch extends DataGrid<Match> {
 	public Column<Match, String> colId,  colName, colTeam, colSave, colDetail,
 			colDelete, colStatus,  colMinutes, colDate;
 	List<Team> teams;
-
-	// List<Team> teams;
 
 	public TableMatch(List<Team> teams) {
 		super(Match.KEY_PROVIDER);
@@ -81,7 +80,7 @@ public class TableMatch extends DataGrid<Match> {
 				Window.open("Manager.html#"+HistoryToken.MATCH_UPDATE_WINDOW+object.id, "window name", "width=1100, height=500");
 			}
 		});
-		addColumn(colDetail, "Delete");
+		addColumn(colDetail, "Detail");
 	}
 
 	private void initStatusColumn() {
@@ -123,22 +122,17 @@ public class TableMatch extends DataGrid<Match> {
 	}
 
 	private void initMinutesColumn() {
-		colMinutes = new Column<Match, String>(new EditTextCell()) {
+		colMinutes = new Column<Match, String>(new TextCell()) {
 
 			@Override
 			public String getValue(Match object) {
-				return object.minutes;
+				if (object.status.equalsIgnoreCase ("FINISHED"))
+					return object.goalsHomeTeam+" - "+object.goalsAwayTeam;
+				return "Upcoming";
+				
 			}
 		};
-		colMinutes.setFieldUpdater(new FieldUpdater<Match, String>() {
-
-			@Override
-			public void update(int index, Match object, String value) {
-				object.minutes = value;
-				matchProvider.getList().set(index, object);
-			}
-		});
-		addColumn(colMinutes, "Minutes");
+		addColumn(colMinutes, "Score");
 	}
 
 	private void initDeleteColumn() {
@@ -267,8 +261,12 @@ public class TableMatch extends DataGrid<Match> {
 		setFocus(false);
 	}
 
-	public void setData(List<Match> listPlayer) {
-		matchProvider.setList(listPlayer);
+	public void setData(List<Match> listMatch) {
+//		Window.alert("Set data : "+listMatch.size());
+//		if (listMatch.size() >= 11)
+//			matchProvider.setList(listMatch.subList(0, 10));
+//		else
+			matchProvider.setList(listMatch);
 		setRowData(matchProvider.getList());
 		redraw();
 	}

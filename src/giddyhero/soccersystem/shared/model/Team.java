@@ -15,12 +15,12 @@ public class Team implements SerializableEntity {
 
 	@Id
 	public Long id;
-	public String name;
-	public String stadiumName;
+	public String name = "";
+	public String stadiumName = "";
 	public int establishYear;
-	public String nation;
+	public String nation = "";
 	public String logoUrl = "";
-	public long[] playerIds;
+	private String code = "";
 
 	private Team() {
 
@@ -32,6 +32,12 @@ public class Team implements SerializableEntity {
 		this.stadiumName = stadiumName;
 		this.establishYear = establishYear;
 		this.nation = nation;
+	}
+
+	public Team(String name, String logoUrl, String code) {
+		this.name = name;
+		this.logoUrl = logoUrl;
+		this.code = code;
 	}
 
 	@Override

@@ -8,12 +8,13 @@ import giddyhero.soccersystem.client.manager.ui.player.TablePlayer;
 import giddyhero.soccersystem.client.share.CSSUtils;
 import giddyhero.soccersystem.shared.model.Match;
 import giddyhero.soccersystem.shared.model.Player;
-import giddyhero.soccersystem.shared.model.ScoreInfo;
+import giddyhero.soccersystem.shared.model.Standing;
 import giddyhero.soccersystem.shared.model.Team;
 
 import com.google.gwt.cell.client.ButtonCell;
 import com.google.gwt.cell.client.FieldUpdater;
 import com.google.gwt.dom.client.TableSectionElement;
+import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.cellview.client.Column;
@@ -21,16 +22,19 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FlowPanel;
+import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ToggleButton;
 
 public class PanelSeasonMatch extends FlowPanel {
 	TableMatchCreating tblCreating;
 	TableMatchCreated tblCreated;
-	Label lbCreated = new Label("Table"), lbCreating = new Label("Add New Match");
+	Label lbCreated = new Label("Table"), lbCreating = new Label("Add New Match"), lbClearMatch = new Label(
+			"Clear matches");
 	long seasonId;
 	List<Team> teams;
 	List<Match> matches;
+	Button btClearMatch = new Button("Clear Matches");
 
 	public PanelSeasonMatch(List<Team> teams) {
 		super();
@@ -58,10 +62,46 @@ public class PanelSeasonMatch extends FlowPanel {
 	}
 
 	private void initTable() {
+		initComponentClearMatch();
 		initLabelCreating();
 		initTableCreating();
 		initLabelCreated();
 		initTableCreated();
+	}
+
+	private void initComponentClearMatch() {
+		CSSUtils.setFontSize(lbClearMatch, "medium");
+		CSSUtils.setPadding(lbClearMatch, 10);
+		add(lbClearMatch);
+		
+		HorizontalPanel hp = new HorizontalPanel();
+		add(hp);
+		btClearMatch.setPixelSize(250, 40);
+		btClearMatch.getElement().getStyle().setMarginLeft(20, Unit.PX);
+		btClearMatch.addClickHandler(new ClickHandler() {
+
+			@Override
+			public void onClick(ClickEvent event) {
+				SystemManager.Service.league.clearMatchesOfSeason(seasonId,new AsyncCallback<Integer>() {
+
+					@Override
+					public void onFailure(Throwable caught) {
+						Window.alert("Delete fail " + caught.toString());
+
+					}
+
+					@Override
+					public void onSuccess(Integer result) {
+						Window.alert("Delete successful " + result + " matches");
+					}
+				});
+			}
+		});
+		hp.add(btClearMatch);
+		
+		Label lbNotice = new Label("Becareful!");
+		lbNotice.getElement().getStyle().setMarginLeft(40, Unit.PX);
+		hp.add(lbNotice);
 	}
 
 	private void initLabelCreated() {
@@ -94,6 +134,7 @@ public class PanelSeasonMatch extends FlowPanel {
 		public TableMatchCreated(List<Team> teams) {
 			super(teams);
 			addHandlerToSaveButton();
+			CSSUtils.setMarginBottom(TableMatchCreated.this, 100);
 		}
 
 		private void addHandlerToSaveButton() {
@@ -110,7 +151,7 @@ public class PanelSeasonMatch extends FlowPanel {
 
 						@Override
 						public void onSuccess(Match result) {
-							Window.alert("Save match success " );
+							Window.alert("Save match success ");
 						}
 
 					});
@@ -175,7 +216,7 @@ public class PanelSeasonMatch extends FlowPanel {
 
 						@Override
 						public void onSuccess(Match result) {
-							Window.alert("Save match success  " );
+							Window.alert("Save match success  ");
 							ArrayList<Match> cloneList = new ArrayList<Match>();
 							List<Match> targetList = tblCreated.matchProvider.getList();
 							for (Match scoreInfo : targetList) {

@@ -9,6 +9,7 @@
 	<!-- Inherit the core Web Toolkit stuff.                        -->
 	<inherits name='com.google.gwt.user.User' />
 	<inherits name="com.google.gwt.logging.Logging"/>
+	<inherits name="com.google.gwt.http.HTTP" />
 	<!-- Inherit the default GWT style sheet.  You can change       -->
 	<!-- the theme of your GWT application by uncommenting          -->
 	<!-- any one of the following lines.                            -->
@@ -30,7 +31,7 @@
 
 	<!-- allow Super Dev Mode -->
 	<add-linker name="xsiframe" />
-	 <entry-point class="giddyhero.soccersystem.client.MobileEntryPoint"> 
-	<!-- <entry-point class="giddyhero.soccersystem.client.SystemManager"> -->
+	<!-- <entry-point class="giddyhero.soccersystem.client.MobileEntryPoint"> -->
+	 <entry-point class="giddyhero.soccersystem.client.SystemManager"> 
 	</entry-point>
 </module>

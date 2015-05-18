@@ -1,5 +1,8 @@
 package giddyhero.soccersystem.client.manager.ui.team;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import giddyhero.soccersystem.client.SystemManager;
 import giddyhero.soccersystem.client.share.CSSUtils;
 import giddyhero.soccersystem.shared.model.Player;
@@ -60,10 +63,13 @@ public class PanelTeamCreate extends FlowPanel {
 	}
 	
 	private void updateCurrentTeamOfSelectedPlayers(Team team,Player[] selectedPlayers) {
+		ArrayList<Player> list = new ArrayList<Player>();
 		for (Player player : selectedPlayers) {
 			player.currentTeamId = team.id;
+			list.add(player);
 		}
-		SystemManager.Service.player.savePlayers(selectedPlayers, new AsyncCallback<Void>() {
+		
+		SystemManager.Service.player.savePlayers(list, new AsyncCallback<List<Player>>() {
 
 			@Override
 			public void onFailure(Throwable caught) {
@@ -71,7 +77,7 @@ public class PanelTeamCreate extends FlowPanel {
 			}
 
 			@Override
-			public void onSuccess(Void result) {
+			public void onSuccess(List<Player> players) {
 				// TODO Auto-generated method stub
 				
 			}

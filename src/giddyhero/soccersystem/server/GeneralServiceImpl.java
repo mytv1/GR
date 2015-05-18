@@ -11,7 +11,7 @@ import giddyhero.soccersystem.shared.model.Match;
 import giddyhero.soccersystem.shared.model.Nation;
 import giddyhero.soccersystem.shared.model.News;
 import giddyhero.soccersystem.shared.model.Player;
-import giddyhero.soccersystem.shared.model.ScoreInfo;
+import giddyhero.soccersystem.shared.model.Standing;
 import giddyhero.soccersystem.shared.model.Season;
 import giddyhero.soccersystem.shared.model.SerializableEntity;
 import giddyhero.soccersystem.shared.model.Team;
@@ -77,7 +77,7 @@ public class GeneralServiceImpl extends RemoteServiceServlet implements
 		ObjectifyService.register(EventCard.class);
 		ObjectifyService.register(EventChangePlayer.class);
 		ObjectifyService.register(EventGoal.class);
-		ObjectifyService.register(ScoreInfo.class);
+		ObjectifyService.register(Standing.class);
 	}
 
 	@Override

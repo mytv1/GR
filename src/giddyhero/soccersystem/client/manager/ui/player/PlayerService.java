@@ -1,6 +1,9 @@
 package giddyhero.soccersystem.client.manager.ui.player;
 
+import java.util.List;
+
 import giddyhero.soccersystem.shared.model.Player;
+import giddyhero.soccersystem.shared.model.Team;
 
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
@@ -12,15 +15,17 @@ public interface PlayerService  extends RemoteService{
 	
 	void deletePlayer(long id);
 	
+	int clearAllPlayers();
+	
 	Player getFirstPlayer();
 	
-	Player[] getAllPlayers();
+	List<Player> getAllPlayers();
 	
 	Player getPlayer(long id);
 	
-	Player[] getPlayers(long[] ids);
+	List<Player>  getPlayers(long[] ids);
 	
-	Player[] getAllPlayerOfTeam(long teamId);
+	List<Player> getAllPlayerOfTeam(long teamId);
 	
-	void savePlayers(Player[] players);
+	List<Player>  savePlayers(List<Player> players);
 }

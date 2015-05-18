@@ -12,6 +12,8 @@ public interface TeamService extends RemoteService {
 	List<Team> getAllTeams();
 	
 	Team saveTeam(Team team);
+	
+	List<Team> saveTeams(List<Team> teams);
 
 	Team getTeam(long teamId);
 	

@@ -89,7 +89,7 @@ public class MatchTeamPanel extends Composite{
 	private void initLineUpAndSubstitude() {
 		long teamId = Long.parseLong(lbxTeamChoose.getValue(lbxTeamChoose.getSelectedIndex()));
 //		Window.alert("team Id : "+teamId);
-		SystemManager.Service.player.getAllPlayerOfTeam(teamId, new AsyncCallback<Player[]>() {
+		SystemManager.Service.player.getAllPlayerOfTeam(teamId, new AsyncCallback<List<Player>>() {
 
 			@Override
 			public void onFailure(Throwable caught) {
@@ -97,10 +97,11 @@ public class MatchTeamPanel extends Composite{
 			}
 
 			@Override
-			public void onSuccess(Player[] result) {
+			public void onSuccess(List<Player> result) {
 //				Window.alert(result.length+"---");
-				initPlayerListBox(result);
-				teamChoose.onTeamChange(teams.get(lbxTeamChoose.getSelectedIndex()), result);
+				Player[] players = new Player[result.size()];
+				initPlayerListBox(result.toArray(players));
+				teamChoose.onTeamChange(teams.get(lbxTeamChoose.getSelectedIndex()), players);
 			}
 		});
 		

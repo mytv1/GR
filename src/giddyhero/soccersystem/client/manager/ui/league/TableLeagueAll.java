@@ -1,5 +1,7 @@
 package giddyhero.soccersystem.client.manager.ui.league;
 
+import java.util.List;
+
 import giddyhero.soccersystem.client.HistoryToken;
 import giddyhero.soccersystem.client.SystemManager;
 import giddyhero.soccersystem.client.manager.ui.league.season.PanelSeasonCreate;
@@ -54,7 +56,7 @@ public class TableLeagueAll extends TableInfoDisplay {
 
 			@Override
 			public void onFailure(Throwable caught) {
-				Window.alert("get All season failure");
+				Window.alert("get All season failure "+caught.toString());
 			}
 
 			@Override
@@ -88,8 +90,8 @@ public class TableLeagueAll extends TableInfoDisplay {
 
 						@Override
 						public void onClick(ClickEvent event) {
-							SystemManager.Service.general.deleteEntity(SerializableEntity.LEAGUE, league.id,
-									new AsyncCallback<Boolean>() {
+							SystemManager.Service.league.deleteLeague(league.id,
+									new AsyncCallback<Void>() {
 
 										@Override
 										public void onFailure(Throwable caught) {
@@ -97,21 +99,8 @@ public class TableLeagueAll extends TableInfoDisplay {
 										}
 
 										@Override
-										public void onSuccess(Boolean result) {
-
-											SystemManager.Service.general.deleteEntities(SerializableEntity.SEASON,
-													league.seasonIds, new AsyncCallback<Void>() {
-
-														@Override
-														public void onFailure(Throwable caught) {
-															Window.alert("Delete league but not delete season of that league");
-														}
-
-														@Override
-														public void onSuccess(Void result) {
-															Window.alert("Delete league success");
-														}
-													});
+										public void onSuccess(Void result) {
+											Window.alert("Delete league success");
 										}
 									});
 						}
@@ -129,7 +118,7 @@ public class TableLeagueAll extends TableInfoDisplay {
 		Button btView;
 		Button btNew;
 		League league;
-		long[] seasonIds;
+		List<Long>  seasonIds;
 		Season[] seasons;
 
 		public LeagueSeasonEditGroup(League league) {
@@ -144,9 +133,9 @@ public class TableLeagueAll extends TableInfoDisplay {
 			if (seasonIds != null) {
 				lbSeasons = new ListBox();
 				add(lbSeasons);
-				seasons = new Season[seasonIds.length];
-				for (int i = 0; i < seasonIds.length; i++) {
-					long id = seasonIds[i];
+				seasons = new Season[seasonIds.size()];
+				for (int i = 0; i < seasonIds.size(); i++) {
+					long id = seasonIds.get(i);
 					seasons[i] = getSeasonOfId(id);
 					if (seasons[i] != null)
 					lbSeasons.addItem("" + seasons[i].year, "" + id);

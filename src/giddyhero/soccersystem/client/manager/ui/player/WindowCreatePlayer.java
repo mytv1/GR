@@ -72,7 +72,7 @@ public class WindowCreatePlayer extends FlowPanel {
 	}
 
 	public void setAllPlayerData() {
-		SystemManager.Service.player.getAllPlayers(new AsyncCallback<Player[]>() {
+		SystemManager.Service.player.getAllPlayers(new AsyncCallback<List<Player>>() {
 
 			@Override
 			public void onFailure(Throwable caught) {
@@ -80,12 +80,8 @@ public class WindowCreatePlayer extends FlowPanel {
 			}
 
 			@Override
-			public void onSuccess(Player[] result) {
+			public void onSuccess(List<Player> players) {
 				// Window.alert("get player success " + result.length);
-				List<Player> players = new ArrayList<Player>();
-				for (int i = 0; i < result.length; i++) {
-					players.add(result[i]);
-				}
 				tblCreated.setData(players);
 			}
 

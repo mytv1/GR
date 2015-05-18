@@ -10,8 +10,8 @@ import giddyhero.soccersystem.shared.model.Player;
 import giddyhero.soccersystem.shared.model.Team;
 
 import java.util.Date;
+import java.util.List;
 
-import com.google.gwt.canvas.dom.client.Context2d.TextAlign;
 import com.google.gwt.dom.client.Style;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -19,7 +19,6 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
@@ -62,7 +61,7 @@ public class WindowUpdateMatch extends HorizontalPanel {
 						teamHome = result;
 						pnMatchCreateTeamHome.setTeam(teamHome);
 						SystemManager.Service.player.getAllPlayerOfTeam(match.homeTeamId,
-								new AsyncCallback<Player[]>() {
+								new AsyncCallback<List<Player>>() {
 
 									@Override
 									public void onFailure(Throwable caught) {
@@ -70,8 +69,9 @@ public class WindowUpdateMatch extends HorizontalPanel {
 									}
 
 									@Override
-									public void onSuccess(Player[] result) {
-										playerHome = result;
+									public void onSuccess(List<Player> result) {
+										Player[] players = new Player[result.size()];
+										playerHome = players;
 										pnMatchCreateTeamHome.setPlayers(playerHome);
 										pnMatchInfo.cardWidget.setHome(teamHome, playerHome);
 										pnMatchInfo.changePlayerWidget.setHome(teamHome, playerHome);
@@ -93,7 +93,7 @@ public class WindowUpdateMatch extends HorizontalPanel {
 						teamAway = result;
 						pnMatchCreateTeamAway.setTeam(teamAway);
 						SystemManager.Service.player.getAllPlayerOfTeam(match.awayTeamId,
-								new AsyncCallback<Player[]>() {
+								new AsyncCallback<List<Player>>() {
 
 									@Override
 									public void onFailure(Throwable caught) {
@@ -101,9 +101,9 @@ public class WindowUpdateMatch extends HorizontalPanel {
 									}
 
 									@Override
-									public void onSuccess(Player[] result) {
-
-										playerAway = result;
+									public void onSuccess(List<Player> result) {
+										Player[] players = new Player[result.size()];
+										playerAway = players;
 										pnMatchCreateTeamAway.setPlayers(playerAway);
 										pnMatchInfo.cardWidget.setAway(teamAway, playerAway);
 										pnMatchInfo.changePlayerWidget.setAway(teamAway, playerAway);

@@ -33,49 +33,45 @@ public class TestDataGrid extends FlowPanel{
 
 	private void init() {
 		add(new Label("West"));
-		SystemManager.Service.player.getAllPlayers(new AsyncCallback<Player[]>() {
-
-			@Override
-			public void onFailure(Throwable caught) {
-				Window.alert("get player fail");
-			}
-
-			@Override
-			public void onSuccess(Player[] result) {
-				Window.alert("get player success "+result.length);
-				List<Player> players = new ArrayList<Player>();
-				for (int i = 0; i < result.length; i++) {
-					players.add(result[i]);
-				}
-				DataGrid<Player> dataGrid = new DataGrid<Player>(Player.KEY_PROVIDER);
-				dataGrid.setSize("600px", "300px");
-				ListHandler<Player> sortHandler = new ListHandler<Player>(players);
-				dataGrid.addColumnSortHandler(sortHandler);
-
-//				final SelectionModel<Player> selectionModel = new MultiSelectionModel<Player>(Player.KEY_PROVIDER);
-//				dataGrid.setSelectionModel(selectionModel,
-//						DefaultSelectionEventManager.<Player> createCheckboxManager());
-
-				Column<Player, String> nameColum = new Column<Player, String>(new EditTextCell()) {
-
-					@Override
-					public String getValue(Player object) {
-						return object.name;
-					}
-				};
-				
-				Column<Player, String> idColum = new Column<Player, String>(new EditTextCell()) {
-
-					@Override
-					public String getValue(Player object) {
-						return object.avatarUrl;
-					}
-				};
-				dataGrid.addColumn(nameColum,"Name");
-				dataGrid.addColumn(idColum,"Id");
-				  dataGrid.setEmptyTableWidget(new Label("Empty"));
-				  dataGrid.setRowData(players);
-				add(dataGrid);
+//		SystemManager.Service.player.getAllPlayers(new AsyncCallback<Player[]>() {
+//
+//			@Override
+//			public void onFailure(Throwable caught) {
+//				Window.alert("get player fail");
+//			}
+//
+//			@Override
+//			public void onSuccess(Player[] result) {
+//				Window.alert("get player success "+result.length);
+//				List<Player> players = new ArrayList<Player>();
+//				for (int i = 0; i < result.length; i++) {
+//					players.add(result[i]);
+//				}
+//				DataGrid<Player> dataGrid = new DataGrid<Player>(Player.KEY_PROVIDER);
+//				dataGrid.setSize("600px", "300px");
+//				ListHandler<Player> sortHandler = new ListHandler<Player>(players);
+//				dataGrid.addColumnSortHandler(sortHandler);
+//
+//				Column<Player, String> nameColum = new Column<Player, String>(new EditTextCell()) {
+//
+//					@Override
+//					public String getValue(Player object) {
+//						return object.name;
+//					}
+//				};
+//				
+//				Column<Player, String> idColum = new Column<Player, String>(new EditTextCell()) {
+//
+//					@Override
+//					public String getValue(Player object) {
+//						return object.avatarUrl;
+//					}
+//				};
+//				dataGrid.addColumn(nameColum,"Name");
+//				dataGrid.addColumn(idColum,"Id");
+//				  dataGrid.setEmptyTableWidget(new Label("Empty"));
+//				  dataGrid.setRowData(players);
+//				add(dataGrid);
 				
 //				DataGrid<String> dataGrid = new DataGrid<String>();
 //				dataGrid.addColumn(new TextColumn<String>() {
@@ -96,8 +92,8 @@ public class TestDataGrid extends FlowPanel{
 //				strings.add("ghi");
 //				dataGrid.setRowData(strings);
 //				add(dataGrid);
-			}
-		});		
+//			}
+//		});		
 	}
 
 }

@@ -9,10 +9,12 @@ import com.googlecode.objectify.annotation.Id;
 @Entity
 public class Season implements SerializableEntity{
 	public @Id Long id;
+	public String caption = "";
 	public int year;
 	public List<Long> matchIds = new ArrayList<Long>();
 	public long leagueId;
-	public List<Long> scoreIds = new ArrayList<Long>(40);
+	public String lastUpdated = "";
+	public List<Long> standings = new ArrayList<Long>();
 	
 	public Season() {
 		// TODO Auto-generated constructor stub

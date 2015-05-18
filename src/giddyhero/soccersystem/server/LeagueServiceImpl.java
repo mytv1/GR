@@ -7,7 +7,7 @@ import giddyhero.soccersystem.shared.model.EventChangePlayer;
 import giddyhero.soccersystem.shared.model.EventGoal;
 import giddyhero.soccersystem.shared.model.League;
 import giddyhero.soccersystem.shared.model.Match;
-import giddyhero.soccersystem.shared.model.ScoreInfo;
+import giddyhero.soccersystem.shared.model.Standing;
 import giddyhero.soccersystem.shared.model.Season;
 
 import java.util.ArrayList;
@@ -16,6 +16,7 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.google.appengine.labs.repackaged.com.google.common.collect.Multiset.Entry;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.googlecode.objectify.Key;
 import com.googlecode.objectify.Ref;
@@ -28,10 +29,6 @@ public class LeagueServiceImpl extends RemoteServiceServlet implements LeagueSer
 		ofy().save().entity(league);
 	}
 
-	public int saveMatches(Match[] matches) {
-		Map<Key<Match>, Match> map = ofy().save().entities(matches).now();
-		return map.size();
-	}
 
 	@Override
 	public League[] getAllLeague() {
@@ -42,7 +39,29 @@ public class LeagueServiceImpl extends RemoteServiceServlet implements LeagueSer
 		}
 		return leagues;
 	}
+	
+	@Override
+	public void deleteLeague(long id) {
+		
+		League league = getLeague(id);
+		
+		List<Long> seasonIds = league.seasonIds;
+		for (int i = 0; i < seasonIds.size(); i++) {
+			long seasonId = seasonIds.get(i);
+			deleteSeason(seasonId);
+		}
+		
+		ofy().delete().type(League.class).id(id);
+	}
 
+	/************************************* Season ************************************/
+
+	@Override
+	public void deleteSeason(long id) {
+		ofy().delete().type(Season.class).id(id);
+	}
+	
+	
 	@Override
 	public Season[] getAllSeason() {
 		List<Season> seasonList = ofy().load().type(Season.class).list();
@@ -89,20 +108,22 @@ public class LeagueServiceImpl extends RemoteServiceServlet implements LeagueSer
 	}
 
 
+	/*************************************************** Standing ************************************************/
+	
 	@Override
-	public ScoreInfo saveScoreInfo(ScoreInfo scoreInfo, long seasonId) {
+	public Standing saveStanding(Standing scoreInfo, long seasonId) {
 		scoreInfo.seasonId = seasonId;
-		Key<ScoreInfo> key = ofy().save().entity(scoreInfo).now();
+		Key<Standing> key = ofy().save().entity(scoreInfo).now();
 		long id = key.getId();
 		scoreInfo.id = id;
 		Season season = getSeason(seasonId);
-		season.scoreIds.add(id);
+		season.standings.add(id);
 		saveSeason(season);
 		return scoreInfo;
 	}
 
 	boolean isScoreInfoExist(Season season, long scoreInfoId) {
-		for (long id : season.scoreIds) {
+		for (long id : season.standings) {
 			if (id == scoreInfoId)
 				return true;
 		}
@@ -127,31 +148,42 @@ public class LeagueServiceImpl extends RemoteServiceServlet implements LeagueSer
 	}
 
 	@Override
-	public List<ScoreInfo> getScoreInfosById(List<Long> ids) {
-		List<ScoreInfo> scoreInfos = new ArrayList<ScoreInfo>();
-		for (Long id : ids) {
-			ScoreInfo scoreInfo = getScoreInfo(id);
-			scoreInfos.add(scoreInfo);
-		}
-		return scoreInfos;
+	public List<Standing> getStandingsById(long seasonId) {
+		List<Standing> result = ofy().load().type(Standing.class).filter("seasonId", seasonId).list();
+		List<Standing> list = new ArrayList<Standing>(result);
+		return list;
 	}
 
 	@Override
-	public ScoreInfo getScoreInfo(long id) {
-		Ref<ScoreInfo> key = ofy().load().type(ScoreInfo.class).id(id);
+	public Standing getScoreInfo(long id) {
+		Ref<Standing> key = ofy().load().type(Standing.class).id(id);
 		return key.get();
 	}
 
 	@Override
 	public void deleteScoreInfo(long id) {
-		ScoreInfo scoreInfo = getScoreInfo(id);
-		ofy().delete().type(ScoreInfo.class).id(id);
+		Standing scoreInfo = getScoreInfo(id);
+		ofy().delete().type(Standing.class).id(id);
 		if (scoreInfo != null && scoreInfo.seasonId != 0 ) {
 			Season season = getSeason(scoreInfo.seasonId);
-			season.scoreIds.remove(id);
+			season.standings.remove(id);
 			saveSeason(season);
 		}
 	}
+	
+
+	@Override
+	public List<Standing> saveStandings(long seasonId,List<Standing> standings) {
+		Season season = getSeason(seasonId);
+		Map<Key<Standing>, Standing> map = ofy().save().entities(standings).now();
+
+		for (java.util.Map.Entry<Key<Standing>, Standing> standing : map.entrySet()) {
+			season.standings.add(standing.getValue().id);
+		}
+		List<Standing> standingsNew = new ArrayList<Standing>(map.values());
+		return standingsNew;
+	}
+
 
 	/* <----------------------------------- Match -----------------------------------> */
 	@Override
@@ -225,7 +257,32 @@ public class LeagueServiceImpl extends RemoteServiceServlet implements LeagueSer
 		return match;
 	}
 
-	
+	@Override
+	public int clearMatchesOfSeason(long seasonId) {
+		List<Match> keys = ofy().load().type(Match.class).filter("seasonId", seasonId).list();
+		ofy().delete().entities(keys.toArray()).now();
+		return keys.size();
+	}
+
+	@Override
+	public int saveMatches(Season season,Match[] matches) {
+		for (Match match : matches) {
+			match.seasonId = season.id;
+		}
+		Map<Key<Match>, Match> map = ofy().save().entities(matches).now();
+		
+		for (java.util.Map.Entry<Key<Match>, Match> match : map.entrySet()) {
+			season.matchIds.add(match.getValue().id);
+		}
+		return map.size();
+	}
+
+
+	@Override
+	public List<Match> getAllMatches() {
+		return  new ArrayList<Match>(ofy().load().type(Match.class).list());
+	}
+
 	/* <----------------------------------- Match -----------------------------------> */
 
 }
