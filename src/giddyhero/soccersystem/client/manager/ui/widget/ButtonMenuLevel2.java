@@ -4,6 +4,7 @@ import giddyhero.soccersystem.client.manager.widget.GHFlowPanel;
 import giddyhero.soccersystem.client.share.CSSUtils;
 
 import com.google.gwt.dom.client.Style;
+import com.google.gwt.dom.client.Style.BorderStyle;
 import com.google.gwt.dom.client.Style.Cursor;
 import com.google.gwt.event.dom.client.MouseOutEvent;
 import com.google.gwt.event.dom.client.MouseOutHandler;
@@ -16,12 +17,21 @@ public class ButtonMenuLevel2 extends FocusPanel {
 
 	protected Label lbName = null;
 	protected GHFlowPanel ghFlowPanel = new GHFlowPanel();
+	final String BACKGROUND_COLOR = "darkgray";
 
 	public ButtonMenuLevel2(String name) {
 		super();
+		style();
 		init();
 		initGHFlowPanel();
 		initNameLabel(name);
+	}
+
+	private void style() {
+		Style style = ghFlowPanel.getElement().getStyle();
+		style.setBackgroundColor(CSSUtils.Manager.MENU_BACKGROUND_COLOR);
+		style.setColor(CSSUtils.Manager.MENU_TEXT_COLOR);
+	
 	}
 
 	public Style getFlowPanelStyle() {
@@ -33,7 +43,7 @@ public class ButtonMenuLevel2 extends FocusPanel {
 
 			@Override
 			public void onMouseOut(MouseOutEvent event) {
-				ghFlowPanel.setBackgroundColor("#FFFFFF");
+				ghFlowPanel.setBackgroundColor(CSSUtils.Manager.MENU_BACKGROUND_COLOR);
 			}
 		});
 
@@ -41,7 +51,7 @@ public class ButtonMenuLevel2 extends FocusPanel {
 
 			@Override
 			public void onMouseOver(MouseOverEvent event) {
-				ghFlowPanel.setBackgroundColor("#EEEEEE");
+				ghFlowPanel.setBackgroundColor(CSSUtils.Manager.MENU_BACKGROUND_HIGH_LIGHT);
 
 			}
 		});

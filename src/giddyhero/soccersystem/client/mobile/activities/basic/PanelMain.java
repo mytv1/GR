@@ -9,6 +9,7 @@ import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.googlecode.mgwt.ui.client.widget.panel.scroll.ScrollEndEvent;
 import com.googlecode.mgwt.ui.client.widget.panel.scroll.ScrollEndEvent.Handler;
@@ -59,23 +60,31 @@ public class PanelMain extends VerticalPanel {
 
 		public PanelHeader() {
 			super();
+			style();
 			initBaseParam();
 			initMenuImage();
 			initLabelTitle();
 			initImageSetting();
 		}
 
+		private void style() {
+			Style style = getElement().getStyle();
+			style.setBackgroundColor("green");
+			style.setColor("white");
+		}
+
 		private void initImageSetting() {
 			imgSetting = new Image(ClientBundleMobile.INST.get().icSetting());
 			CSSUtils.Mobile.setSizePercent(imgSetting, 0.1f, HEIGHT);
-			add(imgSetting);
+//			add(imgSetting);
 		}
 
 		private void initLabelTitle() {
 			lbTitle = new Label("News");
-			CSSUtils.Mobile.setSizePercent(lbTitle, 0.75f, HEIGHT);
+			CSSUtils.Mobile.setWidthPercent(lbTitle, 0.75f);
 			lbTitle.getElement().getStyle().setTextAlign(Style.TextAlign.CENTER);
-			lbTitle.getElement().getStyle().setFontSize(300, Unit.PCT);
+			lbTitle.getElement().getStyle().setFontSize(200, Unit.PCT);
+			lbTitle.getElement().getStyle().setPaddingTop(3, Unit.PCT);
 			add(lbTitle);
 		}
 

@@ -180,6 +180,7 @@ public class LeagueServiceImpl extends RemoteServiceServlet implements LeagueSer
 		for (java.util.Map.Entry<Key<Standing>, Standing> standing : map.entrySet()) {
 			season.standings.add(standing.getValue().id);
 		}
+		saveSeason(season);
 		List<Standing> standingsNew = new ArrayList<Standing>(map.values());
 		return standingsNew;
 	}
@@ -274,6 +275,7 @@ public class LeagueServiceImpl extends RemoteServiceServlet implements LeagueSer
 		for (java.util.Map.Entry<Key<Match>, Match> match : map.entrySet()) {
 			season.matchIds.add(match.getValue().id);
 		}
+		saveSeason(season);
 		return map.size();
 	}
 
@@ -281,6 +283,13 @@ public class LeagueServiceImpl extends RemoteServiceServlet implements LeagueSer
 	@Override
 	public List<Match> getAllMatches() {
 		return  new ArrayList<Match>(ofy().load().type(Match.class).list());
+	}
+
+
+	@Override
+	public Season getRecentSeasonName(String seasonName) {
+		Ref<Season> ref = ofy().load().type(Season.class).filter("caption", seasonName).first();
+		return ref.get();
 	}
 
 	/* <----------------------------------- Match -----------------------------------> */

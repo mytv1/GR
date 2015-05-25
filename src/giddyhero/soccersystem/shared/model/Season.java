@@ -5,12 +5,13 @@ import java.util.List;
 
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
+import com.googlecode.objectify.annotation.Index;
 
 @Entity
 public class Season implements SerializableEntity{
 	public @Id Long id;
-	public String caption = "";
-	public int year;
+	public @Index String caption = "";
+	public @Index int year;
 	public List<Long> matchIds = new ArrayList<Long>();
 	public long leagueId;
 	public String lastUpdated = "";

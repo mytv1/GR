@@ -6,6 +6,7 @@ import giddyhero.soccersystem.shared.model.News;
 import com.google.gwt.place.shared.PlaceTokenizer;
 
 public class LeagueTablePlace extends BasicPlace {
+	public String leagueName = "";
 	
 	public LeagueTablePlace(){
 		super();
@@ -23,5 +24,10 @@ public class LeagueTablePlace extends BasicPlace {
 		public String getToken(LeagueTablePlace place) {
 			return place.getToken();
 		}
+	}
+
+
+	public void setLeagueName(String text) {
+		leagueName = text;
 	}
 }

@@ -18,4 +18,7 @@ public interface TeamService extends RemoteService {
 	Team getTeam(long teamId);
 	
 	void deleteTeam(long teamId);
+	
+
+	List<Team> getTeamsOfIds(List<Long> ids);
 }

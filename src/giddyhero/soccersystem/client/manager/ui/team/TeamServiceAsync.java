@@ -18,4 +18,6 @@ public interface TeamServiceAsync {
 
 	void saveTeams(List<Team> teams, AsyncCallback<List<Team>> callback);
 
+	void getTeamsOfIds(List<Long> ids, AsyncCallback<List<Team>> callback);
+
 }

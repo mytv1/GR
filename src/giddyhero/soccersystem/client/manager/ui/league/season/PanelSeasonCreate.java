@@ -22,8 +22,7 @@ import com.google.gwt.user.client.ui.Widget;
 
 public class PanelSeasonCreate extends TableFormInput {
 
-	TextBox tbYear = new TextBoxStandard("100px");
-	Label lbLeagueName = new Label();
+	TextBox tbYear = new TextBoxStandard("100px"), tbLeagueCaption = new TextBoxStandard("200px");
 	Button btConfirm = new Button("Create");
 	League league;
 
@@ -39,19 +38,21 @@ public class PanelSeasonCreate extends TableFormInput {
 	
 	private void initLabelColumn() {
 		setWidget(0, 0, new LabelStandard("New Season"));
-		setWidget(0, 1, lbLeagueName);
-		setWidget(1, 0, new LabelStandard("Year"));
+		setWidget(1, 0, new LabelStandard("Season's Caption"));
+		setWidget(1, 1, tbLeagueCaption);
+		setWidget(2, 0, new LabelStandard("Year"));
 	}
 
 	private void initContentColumn() {
-		setWidget(1, 1, tbYear);
-		setWidget(2, 1, btConfirm);
+		setWidget(2, 1, tbYear);
+		setWidget(3, 1, btConfirm);
 		btConfirm.addClickHandler(new ClickHandler() {
 			
 			@Override
 			public void onClick(ClickEvent event) {
 				int year = Integer.parseInt(tbYear.getText());
 				Season season = new Season(year);
+				season.caption = tbLeagueCaption.getText();
 				season.leagueId = league.id;
 				SystemManager.Service.league.createNewSeason(league, season, new AsyncCallback<Season>() {
 					
@@ -71,7 +72,7 @@ public class PanelSeasonCreate extends TableFormInput {
 
 	public void setLeague(League league) {
 		this.league = league;
-		lbLeagueName.setText(league.name);
+//		lbLeagueName.setText(league.name);
 	}
 	
 }

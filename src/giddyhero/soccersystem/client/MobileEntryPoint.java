@@ -1,5 +1,7 @@
 package giddyhero.soccersystem.client;
 
+import giddyhero.soccersystem.client.manager.ui.league.LeagueService;
+import giddyhero.soccersystem.client.manager.ui.league.LeagueServiceAsync;
 import giddyhero.soccersystem.client.manager.ui.news.NewsService;
 import giddyhero.soccersystem.client.manager.ui.news.NewsServiceAsync;
 import giddyhero.soccersystem.client.manager.ui.player.PlayerService;
@@ -44,6 +46,8 @@ public class MobileEntryPoint implements EntryPoint {
 	
 		public static GeneralServiceAsync general = GWT
 				.create(GeneralService.class);
+		public static LeagueServiceAsync league = GWT
+				.create(LeagueService.class);
 		public final static NewsServiceAsync news = GWT
 				.create(NewsService.class);
 		public final static PlayerServiceAsync player = GWT
@@ -87,6 +91,7 @@ public class MobileEntryPoint implements EntryPoint {
 				clientFactory.getEventBus());
 		activityManager.setDisplay(display);
 		RootPanel.get().add(display);
+		RootPanel.get().getElement().getStyle().setBackgroundColor("white");
 //		RootPanel.get().getElement().getStyle().setBackgroundColor("#FFFFFF");
 	}
 
@@ -120,6 +125,9 @@ public class MobileEntryPoint implements EntryPoint {
 		PhonegapUtil.prepareService((ServiceDefTarget) Service.team,
 				LINK,
 				"/mobileentrypoint/team");
+		PhonegapUtil.prepareService((ServiceDefTarget) Service.league,
+				LINK,
+				"/mobileentrypoint/league");
 	}
 
 	private void initPhoneGap() {

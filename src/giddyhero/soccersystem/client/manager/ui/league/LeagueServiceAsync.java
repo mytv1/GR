@@ -67,6 +67,8 @@ public interface LeagueServiceAsync {
 
 	void getAllMatches(AsyncCallback<List<Match>> callback);
 
+	void getRecentSeasonName(String seasonName, AsyncCallback<Season> callback);
+
 
 
 }

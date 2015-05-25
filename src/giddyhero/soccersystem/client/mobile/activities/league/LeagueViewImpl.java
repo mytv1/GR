@@ -2,6 +2,7 @@ package giddyhero.soccersystem.client.mobile.activities.league;
 
 import giddyhero.soccersystem.client.manager.widget.FocusParentPanel;
 import giddyhero.soccersystem.client.mobile.activities.basic.BasicViewImpl;
+import giddyhero.soccersystem.client.mobile.activities.league.LeagueViewImpl.PanelNationLeague.PanelLeague;
 import giddyhero.soccersystem.client.mobile.resources.ClientBundleMobile;
 import giddyhero.soccersystem.client.share.CSSUtils;
 
@@ -12,7 +13,7 @@ import com.google.gwt.dom.client.Style;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.event.dom.client.HasClickHandlers;
+import com.google.gwt.resources.client.ImageResource;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Image;
@@ -22,7 +23,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 
 public class LeagueViewImpl extends BasicViewImpl implements LeagueView {
 
-	List<HasClickHandlers>  pnLeagues = new ArrayList<>();
+	List<PanelLeague>  pnLeagues = new ArrayList<>();
 	
 	public LeagueViewImpl() {
 		super();
@@ -33,7 +34,7 @@ public class LeagueViewImpl extends BasicViewImpl implements LeagueView {
 
 
 	@Override
-	public List<HasClickHandlers> setData(List<MModelNation> nations) {
+	public List<PanelLeague> setData(List<MModelNation> nations) {
 
 		for (MModelNation nation : nations) {
 			PanelNationLeague pnNation = new PanelNationLeague();
@@ -59,11 +60,11 @@ public class LeagueViewImpl extends BasicViewImpl implements LeagueView {
 
 		public void setNation(MModelNation nation) {
 			pnHeader.lbTitle.setText(nation.name);
-			pnHeader.imgLogo.setUrl(nation.urlLogo);
+			pnHeader.imgLogo.setResource(nation.resource);
 
 			for (int i = 0; i < nation.leagues.size(); i++) {
 				MModelLeague league = nation.leagues.get(i);
-				PanelLeague pnLeague = new PanelLeague(league.name, league.urlLogo);
+				PanelLeague pnLeague = new PanelLeague(league.name, league.resource);
 				pnHeader.vpLeagues.add(pnLeague);
 				pnLeagues.add(pnLeague);
 			}
@@ -73,7 +74,7 @@ public class LeagueViewImpl extends BasicViewImpl implements LeagueView {
 
 		private void style() {
 			Style style = getElement().getStyle();
-			style.setBackgroundColor("#eeeeee");
+//			style.setBackgroundColor("#eeeeee");
 			style.setMarginTop(1, Unit.PCT);
 			style.setMarginBottom(1, Unit.PCT);
 		}
@@ -101,7 +102,7 @@ public class LeagueViewImpl extends BasicViewImpl implements LeagueView {
 			private void style() {
 				CSSUtils.Mobile.setSizePercent(hp, 0.95f, 0.05f);
 				Style style = hp.getElement().getStyle();
-				style.setBackgroundColor("#666666");
+				style.setBackgroundColor("green");
 				style.setMarginLeft(2.5, Unit.PCT);
 				style.setPaddingTop(2, Unit.PCT);
 				style.setPaddingLeft(4, Unit.PCT);
@@ -155,10 +156,10 @@ public class LeagueViewImpl extends BasicViewImpl implements LeagueView {
 				style();
 			}
 
-			public PanelLeague(String text, String urlLogo) {
+			public PanelLeague(String text, ImageResource resource) {
 				this();
 				lbLeague.setText(text);
-				imgLeague.setUrl(urlLogo);
+				imgLeague.setResource(resource);
 			}
 
 			private void init() {
@@ -171,7 +172,7 @@ public class LeagueViewImpl extends BasicViewImpl implements LeagueView {
 				CSSUtils.Mobile.setSizePercent(lbLeague, 0.4f, 0.04f);
 				style = lbLeague.getElement().getStyle();
 				style.setFontSize(150, Unit.PCT);
-				style.setColor("#FFFFFF");
+				style.setColor("white");
 				style.setPaddingTop(2, Unit.PCT);
 				hp.add(lbLeague);
 				
@@ -182,7 +183,7 @@ public class LeagueViewImpl extends BasicViewImpl implements LeagueView {
 				Style style = getElement().getStyle();
 				style.setMarginLeft(6.5, Unit.PCT);
 				style.setMarginTop(1, Unit.PCT);
-				style.setBackgroundColor("#888888");
+				style.setBackgroundColor("orange");
 
 			}
 
@@ -196,16 +197,16 @@ public class LeagueViewImpl extends BasicViewImpl implements LeagueView {
 
 	public static class MModelNation {
 		public String name = "";
-		public String urlLogo = "";
+		public ImageResource resource;
 		public List<MModelLeague> leagues = new ArrayList<>();
 
-		public MModelNation(String name, String urlLogo) {
-			setData(name, urlLogo);
+		public MModelNation(String name, ImageResource resource) {
+			setData(name, resource);
 		}
 
-		public void setData(String name, String urlLogo) {
+		public void setData(String name, ImageResource resource) {
 			this.name = name;
-			this.urlLogo = urlLogo;
+			this.resource = resource;
 		}
 
 	}
@@ -213,11 +214,11 @@ public class LeagueViewImpl extends BasicViewImpl implements LeagueView {
 	public static class MModelLeague {
 		public long id;
 		public String name = "";
-		public String urlLogo = "";
+		public ImageResource resource;
 
-		public MModelLeague(String name, String urlLogo) {
+		public MModelLeague(String name, ImageResource resource) {
 			this.name = name;
-			this.urlLogo = urlLogo;
+			this.resource = resource;
 		}
 	}
 

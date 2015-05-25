@@ -17,7 +17,7 @@
 	<!--    <inherits name="com.googlecode.gwtphonegap.PhoneGap" /> -->
 	<!-- 	<inherits name="com.googlecode.objectify.ObjectifyService" /> -->
 	<inherits name='com.google.gwt.user.theme.clean.Clean' />
-	<!-- <inherits name='com.google.gwt.user.theme.standard.Standard'/> -->
+	<!-- <inherits name='com.google.gwt.user.theme.standzard.Standard'/> -->
 	<!-- <inherits name='com.google.gwt.user.theme.chrome.Chrome'/> -->
 	<!-- <inherits name='com.google.gwt.user.theme.dark.Dark'/>     -->
 
@@ -31,7 +31,7 @@
 
 	<!-- allow Super Dev Mode -->
 	<add-linker name="xsiframe" />
-	<!-- <entry-point class="giddyhero.soccersystem.client.MobileEntryPoint"> -->
-	 <entry-point class="giddyhero.soccersystem.client.SystemManager"> 
+	 <entry-point class="giddyhero.soccersystem.client.MobileEntryPoint">  
+	<!--   <entry-point class="giddyhero.soccersystem.client.SystemManager"> -->
 	</entry-point>
 </module>

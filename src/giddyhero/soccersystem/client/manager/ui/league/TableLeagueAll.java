@@ -61,6 +61,7 @@ public class TableLeagueAll extends TableInfoDisplay {
 
 			@Override
 			public void onSuccess(Season[] result) {
+				Window.alert("Get : "+result.length+" season available");
 				seasons = result;
 				initTableData();
 			}

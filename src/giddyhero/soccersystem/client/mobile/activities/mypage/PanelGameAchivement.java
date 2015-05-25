@@ -1,6 +1,7 @@
 package giddyhero.soccersystem.client.mobile.activities.mypage;
 
 import giddyhero.soccersystem.client.mobile.resources.ClientBundleMobile;
+import giddyhero.soccersystem.client.mobile.widget.SSButton;
 import giddyhero.soccersystem.client.share.CSSUtils;
 
 import com.google.gwt.dom.client.Style;
@@ -47,7 +48,7 @@ public class PanelGameAchivement extends ScrollPanel{
 		mainPanel.add(game2);
 		mainPanel.add(game3);
 		setWidget(mainPanel);
-		CSSUtils.Mobile.setSizePercent(PanelGameAchivement.this, 1.0f, 0.8f);
+		CSSUtils.Mobile.setSizePercent(PanelGameAchivement.this, 1.0f, 0.83f);
 	}
 
 	class GameWidget extends HorizontalPanel{
@@ -66,7 +67,8 @@ public class PanelGameAchivement extends ScrollPanel{
 			CSSUtils.Mobile.setSizePercent(GameWidget.this, 0.95f, 0.2f);
 			Style style = getElement().getStyle();
 			style.setBorderStyle(BorderStyle.SOLID);
-			style.setBackgroundColor("#9d9d9d");
+			style.setBackgroundColor(CSSUtils.Mobile.BACKGROUND_COLOR);
+			style.setColor(CSSUtils.Mobile.TEXT_COLOR);
 			style.setMarginLeft(2.5, Unit.PCT);
 			style.setMarginTop(1.5, Unit.PCT);
 			style.setMarginBottom(1.5, Unit.PCT);
@@ -83,7 +85,7 @@ public class PanelGameAchivement extends ScrollPanel{
 			style = imgLogo.getElement().getStyle();
 			style.setMargin(7.5, Unit.PCT);
 			vp1.add(imgLogo);
-			Button btPlay = new Button("Play Now!");
+			SSButton btPlay = new SSButton("Play Now!");
 			btPlay.getElement().getStyle().setMarginLeft(15, Unit.PCT);
 			vp1.add(btPlay);
 			add(vp1);
@@ -91,6 +93,7 @@ public class PanelGameAchivement extends ScrollPanel{
 			VerticalPanel vp2 = new VerticalPanel();
 			style = vp2.getElement().getStyle();
 			style.setMarginLeft(7.5, Unit.PCT);
+			style.setMarginTop(5, Unit.PCT);
 			add(vp2);
 			
 			style = lbName.getElement().getStyle();
@@ -114,10 +117,10 @@ public class PanelGameAchivement extends ScrollPanel{
 				hp.add(imgAchivement[i]);
 			}
 			
-			lbNote.setSize("235px", "30px");
-			style = lbNote.getElement().getStyle();
-			style.setFontWeight(FontWeight.BOLD);
-			vp2.add(lbNote);
+//			lbNote.setSize("235px", "30px");
+//			style = lbNote.getElement().getStyle();
+//			style.setFontWeight(FontWeight.BOLD);
+//			vp2.add(lbNote);
 		}
 		
 		public void setAchivement(int[] pers){

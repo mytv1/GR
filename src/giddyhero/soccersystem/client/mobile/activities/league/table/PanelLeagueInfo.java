@@ -1,13 +1,19 @@
 package giddyhero.soccersystem.client.mobile.activities.league.table;
 
 import giddyhero.soccersystem.client.MobileEntryPoint;
+import giddyhero.soccersystem.client.mobile.activities.basic.BasicPlace;
 import giddyhero.soccersystem.client.mobile.activities.player.PlayerPlace;
 import giddyhero.soccersystem.client.mobile.activities.teams.TeamPlace;
 import giddyhero.soccersystem.client.mobile.resources.ClientBundleMobile;
 import giddyhero.soccersystem.client.share.CSSUtils;
+import giddyhero.soccersystem.shared.model.Standing;
+import giddyhero.soccersystem.shared.model.Team;
 
+import com.google.gwt.dom.client.Style.VerticalAlign;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.HasClickHandlers;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
@@ -38,7 +44,7 @@ public class PanelLeagueInfo extends VerticalPanel {
 		Label lbRank = new Label("Rank"), lbLogo = new Label("Team"), lbName = new Label("Name"), lbPlayed = new Label(
 				"P"), lbPoints = new Label("PTS"), lbWin = new Label("W"), lbDraw = new Label("D"), lbLose = new Label(
 				"L");
-		FlexTable tblScore = new FlexTable();
+		FlexTable tblStanding = new FlexTable();
 
 		public PanelTableLeague() {
 			super();
@@ -47,13 +53,15 @@ public class PanelLeagueInfo extends VerticalPanel {
 		}
 
 		private void style() {
+			getElement().getStyle().setVerticalAlign(VerticalAlign.TOP);
+			CSSUtils.Mobile.setSizePercent(PanelTableLeague.this, 1f, 0.82f);
 			addStyleName(ClientBundleMobile.INST.get().style().panelLeagueScoreTable());
 
 			CSSUtils.Mobile.setSizePercent(lbTitle, 0.90f, 0.03f);
 			lbTitle.addStyleName(ClientBundleMobile.INST.get().style().lbTitle());
 
-			tblScore.addStyleName(ClientBundleMobile.INST.get().style().tblLeagueScore());
-			tblScore.getRowFormatter().addStyleName(0, ClientBundleMobile.INST.get().style().tblLeagueScoreRow());
+			tblStanding.addStyleName(ClientBundleMobile.INST.get().style().tblLeagueScore());
+			tblStanding.getRowFormatter().addStyleName(0, ClientBundleMobile.INST.get().style().tblLeagueScoreRow());
 
 		}
 
@@ -62,9 +70,38 @@ public class PanelLeagueInfo extends VerticalPanel {
 			initTable();
 			setTempData();
 		}
+		
+
+		private void setTempData() {
+			for (int i = 1; i <= 20; i++) {
+				tblStanding.setText(i, 0, "" + i);
+				Image imgTeamLogoTemp = new Image(ClientBundleMobile.INST.get().avatarNotAvailable());
+				CSSUtils.Mobile.setSizePercent(imgTeamLogoTemp, 0.05f, 0.025f);
+				tblStanding.setWidget(i, 1, imgTeamLogoTemp);
+				Label lbTeam = new Label("N/A");
+				lbTeam.addClickHandler(new ClickHandler() {
+					
+					@Override
+					public void onClick(ClickEvent event) {
+						TeamPlace teamPlace = new TeamPlace();
+						MobileEntryPoint.getClientFactory().getPlaceController().goTo(teamPlace);
+					}
+				});
+				lbTeam.addStyleName(ClientBundleMobile.INST.get().style().hyperlink());
+				tblStanding.setWidget(i, 2, lbTeam);
+				tblStanding.setText(i, 3, "N/A");
+				tblStanding.setText(i, 4, "N/A");
+				tblStanding.setText(i, 5, "N/A");
+				tblStanding.setText(i, 6, "N/A");
+				tblStanding.setText(i, 7, "N/A");
+				
+			}
+
+		}
+
 
 		private void initTable() {
-			CSSUtils.Mobile.setWidthPercent(tblScore, 0.96f);
+			CSSUtils.Mobile.setSizePercent(tblStanding, 0.96f, 0.02f);
 			CSSUtils.Mobile.setWidthPercent(lbRank, 0.1f);
 			CSSUtils.Mobile.setWidthPercent(lbLogo, 0.1f);
 			CSSUtils.Mobile.setWidthPercent(lbName, 0.25f);
@@ -74,41 +111,41 @@ public class PanelLeagueInfo extends VerticalPanel {
 			CSSUtils.Mobile.setWidthPercent(lbLose, 0.05f);
 			CSSUtils.Mobile.setWidthPercent(lbPoints, 0.05f);
 
-			tblScore.setWidget(0, 0, lbRank);
-			tblScore.setWidget(0, 1, lbLogo);
-			tblScore.setWidget(0, 2, lbName);
-			tblScore.setWidget(0, 3, lbPlayed);
-			tblScore.setWidget(0, 4, lbWin);
-			tblScore.setWidget(0, 5, lbDraw);
-			tblScore.setWidget(0, 6, lbLose);
-			tblScore.setWidget(0, 7, lbPoints);
+			tblStanding.setWidget(0, 0, lbRank);
+			tblStanding.setWidget(0, 1, lbLogo);
+			tblStanding.setWidget(0, 2, lbName);
+			tblStanding.setWidget(0, 3, lbPlayed);
+			tblStanding.setWidget(0, 4, lbWin);
+			tblStanding.setWidget(0, 5, lbDraw);
+			tblStanding.setWidget(0, 6, lbLose);
+			tblStanding.setWidget(0, 7, lbPoints);
 
-			add(tblScore);
+			add(tblStanding);
+		}
+		
+		public HasClickHandlers setStanding(Standing standing,Team team){
+			int count = tblStanding.getRowCount();
+			tblStanding.setText(count, 0, "" + count);
+			Image imgTeamLogoTemp = new Image(team.logoUrl);
+			CSSUtils.Mobile.setSizePercent(imgTeamLogoTemp, 0.05f, 0.025f);
+			tblStanding.setWidget(count, 1, imgTeamLogoTemp);
+			Label lbTeam = new Label(team.name);
+			lbTeam.addStyleName(ClientBundleMobile.INST.get().style().hyperlink());
+			tblStanding.setWidget(count, 2, lbTeam);
+			int point = standing.win*3 + standing.draw;
+			tblStanding.setText(count, 3, standing.played+"");
+			tblStanding.setText(count, 4, standing.win+"");
+			tblStanding.setText(count, 5, standing.draw+"");
+			tblStanding.setText(count, 6, standing.lose+"");
+			tblStanding.setText(count, 7, point+"");
+			return lbTeam;
 		}
 
-		private void setTempData() {
-			for (int i = 1; i <= 20; i++) {
-				tblScore.setText(i, 0, "" + i);
-				Image imgTeamLogoTemp = new Image(ClientBundleMobile.INST.get().icTeamLogoTemp());
-				CSSUtils.Mobile.setSizePercent(imgTeamLogoTemp, 0.05f, 0.025f);
-				tblScore.setWidget(i, 1, imgTeamLogoTemp);
-				Label lbTeam = new Label("Chelsea");
-				lbTeam.addClickHandler(new ClickHandler() {
-
-					@Override
-					public void onClick(ClickEvent event) {
-						MobileEntryPoint.clientFactory.getPlaceController().goTo(new TeamPlace());
-					}
-				});
-				lbTeam.addStyleName(ClientBundleMobile.INST.get().style().hyperlink());
-				tblScore.setWidget(i, 2, lbTeam);
-				tblScore.setText(i, 3, "33");
-				tblScore.setText(i, 4, "25");
-				tblScore.setText(i, 5, "5");
-				tblScore.setText(i, 6, "3");
-				tblScore.setText(i, 7, "77");
+		public void clearTempData() {
+			int count = tblStanding.getRowCount();
+			for (int i = 0; i < count-1; i++) {
+				tblStanding.removeRow(1);
 			}
-
 		}
 
 	}
@@ -162,10 +199,10 @@ public class PanelLeagueInfo extends VerticalPanel {
 		private void setTempData() {
 			for (int i = 1; i <= 5; i++) {
 				tblPlayer.setText(i, 0, "" + i);
-				Image imgTeamLogoTemp = new Image(ClientBundleMobile.INST.get().icPlayerTemp1());
+				Image imgTeamLogoTemp = new Image(ClientBundleMobile.INST.get().avatarNotAvailable());
 				CSSUtils.Mobile.setSizePercent(imgTeamLogoTemp, 0.05f, 0.025f);
 				tblPlayer.setWidget(i, 1, imgTeamLogoTemp);
-				Label lbPlayer = new Label("Sergio Aguero");
+				Label lbPlayer = new Label("N/A");
 				lbPlayer.addStyleName(ClientBundleMobile.INST.get().style().hyperlink());
 				lbPlayer.addClickHandler(new ClickHandler() {
 
@@ -175,7 +212,7 @@ public class PanelLeagueInfo extends VerticalPanel {
 					}
 				});
 				tblPlayer.setWidget(i, 2, lbPlayer);
-				Label lbTeam = new Label("Manchester City");
+				Label lbTeam = new Label("N/A");
 				lbTeam.addClickHandler(new ClickHandler() {
 
 					@Override
@@ -185,8 +222,8 @@ public class PanelLeagueInfo extends VerticalPanel {
 				});
 				lbTeam.addStyleName(ClientBundleMobile.INST.get().style().hyperlink());
 				tblPlayer.setWidget(i, 3, lbTeam);
-				tblPlayer.setText(i, 4, "33");
-				tblPlayer.setText(i, 5, "35");
+				tblPlayer.setText(i, 4, "N/A");
+				tblPlayer.setText(i, 5, "N/A");
 			}
 
 		}
@@ -242,10 +279,10 @@ public class PanelLeagueInfo extends VerticalPanel {
 		private void setTempData() {
 			for (int i = 1; i <= 5; i++) {
 				tblPlayer.setText(i, 0, "" + i);
-				Image imgTeamLogoTemp = new Image(ClientBundleMobile.INST.get().icPlayerTemp2());
+				Image imgTeamLogoTemp = new Image(ClientBundleMobile.INST.get().avatarNotAvailable());
 				CSSUtils.Mobile.setSizePercent(imgTeamLogoTemp, 0.05f, 0.025f);
 				tblPlayer.setWidget(i, 1, imgTeamLogoTemp);
-				Label lbPlayer = new Label("Sergio Aguero");
+				Label lbPlayer = new Label("N/A");
 				lbPlayer.addStyleName(ClientBundleMobile.INST.get().style().hyperlink());
 				lbPlayer.addClickHandler(new ClickHandler() {
 
@@ -255,7 +292,7 @@ public class PanelLeagueInfo extends VerticalPanel {
 					}
 				});
 				tblPlayer.setWidget(i, 2, lbPlayer);
-				Label lbTeam = new Label("Manchester City");
+				Label lbTeam = new Label("N/A");
 				lbTeam.addClickHandler(new ClickHandler() {
 
 					@Override
@@ -265,8 +302,8 @@ public class PanelLeagueInfo extends VerticalPanel {
 				});
 				lbTeam.addStyleName(ClientBundleMobile.INST.get().style().hyperlink());
 				tblPlayer.setWidget(i, 3, lbTeam);
-				tblPlayer.setText(i, 4, "33");
-				tblPlayer.setText(i, 5, "35");
+				tblPlayer.setText(i, 4, "N/A");
+				tblPlayer.setText(i, 5, "N/A");
 			}
 
 		}

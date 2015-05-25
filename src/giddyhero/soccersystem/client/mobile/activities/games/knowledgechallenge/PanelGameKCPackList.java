@@ -48,6 +48,7 @@ public class PanelGameKCPackList extends VerticalPanel {
 			Style style = container.getElement().getStyle();
 			style.setBorderStyle(BorderStyle.SOLID);
 			style.setMargin(2, Unit.PCT);
+			style.setBackgroundColor("lightgreen");
 
 			style = imgIcon.getElement().getStyle();
 			imgIcon.setResource(resource);
@@ -93,10 +94,10 @@ public class PanelGameKCPackList extends VerticalPanel {
 				super();
 				CSSUtils.Mobile.setSizePercent(PanelPackInfo.this, 0.25f, 0.18f);
 				Style style = getElement().getStyle();
-				style.setBorderStyle(BorderStyle.SOLID);
-				style.setBorderColor("#343434");
-				style.setColor("FFFFFF");
-				style.setBackgroundColor("#787878");
+//				style.setBorderStyle(BorderStyle.SOLID);
+//				style.setBorderColor("#343434");
+				style.setColor("white");
+				style.setBackgroundColor("green");
 
 				style = lbTitle.getElement().getStyle();
 				style.setTextAlign(TextAlign.CENTER);

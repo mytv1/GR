@@ -79,7 +79,9 @@ public class GamesViewImpl extends BasicViewImpl implements GamesView {
 			CSSUtils.Mobile.setWidthPercent(PanelGameIntro.this, 0.95f);
 			Style style = getElement().getStyle();
 			style.setBorderStyle(BorderStyle.SOLID);
+			style.setBorderColor("green");
 			style.setMargin(2, Unit.PCT);
+			style.setBackgroundColor("lightgreen");
 			
 			style = imgIcon.getElement().getStyle();
 			imgIcon.setResource(game.imgIcon);

@@ -320,6 +320,7 @@ public class SystemManager implements EntryPoint {
 			History.newItem(HistoryToken.BLANK);
 			History.newItem(token);
 		}
+		
 //		testGetBigData();
 	}
 

@@ -20,10 +20,6 @@ public class TeamServiceImpl extends RemoteServiceServlet implements TeamService
 	@Override
 	public List<Team> getAllTeams() {
 		List<Team> teamList = ofy().load().type(Team.class).list();
-//		Team[] teams = new Team[teamList.size()];
-//		for (int i = 0; i < teamList.size(); i++) {
-//			teams[i] = teamList.get(i);
-//		}
 		ArrayList<Team> teams = new ArrayList<Team>(teamList);
 		return teams;
 	}
@@ -48,6 +44,12 @@ public class TeamServiceImpl extends RemoteServiceServlet implements TeamService
 	@Override
 	public List<Team> saveTeams(List<Team> teams) {
 		Map<Key<Team>, Team> map = ofy().save().entities(teams).now();
+		return  new ArrayList<Team>(map.values());
+	}
+
+	@Override
+	public List<Team> getTeamsOfIds(List<Long> ids) {
+		Map<Long, Team> map = ofy().load().type(Team.class).ids(ids);
 		return  new ArrayList<Team>(map.values());
 	}
 	

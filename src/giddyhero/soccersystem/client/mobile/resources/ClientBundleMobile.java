@@ -23,52 +23,39 @@ public interface ClientBundleMobile extends ClientBundle {
 	@Source("image/line.png")
 	public ImageResource icMenuLine();
 	
-	@Source("image/my-page.png")
+	@Source("image/ic-menu-mypage.png")
 	public ImageResource icMenuMyPage();
 	
-	@Source("image/news.png")
+	@Source("image/ic-menu-news.png")
 	public ImageResource icMenuNews();
 	
-	@Source("image/live-score.png")
+	@Source("image/ic-menu-livescore.png")
 	public ImageResource icMenuLiveScore();
 	
-	@Source("image/league.png")
+	@Source("image/ic-menu-league.png")
 	public ImageResource icMenuLeague();
 	
-	@Source("image/teams.png")
-	public ImageResource icMenuTeams();
-	
-	@Source("image/games.png")
+	@Source("image/ic-menu-games.png")
 	public ImageResource icMenuGames();
+	
+	@Source("image/ic-menu-store.png")
+	public ImageResource icMenuStore();
 
 	@Source("image/logo-text.png")
 	public ImageResource logoText();
 
-	@Source("image/mypage.png")
-	public ImageResource btMyPage();
-	
-	@Source("image/store.png")
-	public ImageResource icMenuStore();
-	
 
 	@Source("image/playing.png")
 	public ImageResource liveScorePlaying();
 
-	@Source("image/playing-back.png")
-	public ImageResource liveScorePlayingBack();
 
 	@Source("image/previous.png")
 	public ImageResource liveScorePrevious();
 
-	@Source("image/previous-back.png")
-	public ImageResource liveScorePreviousBack();
 
 	@Source("image/upcomming.png")
 	public ImageResource liveScoreUpcomming();
 
-	@Source("image/upcomming-back.png")
-	public ImageResource liveScoreUpcommingBack();
-	
 	@Source("image/bt-add-new-team.png")
 	public ImageResource btAddTeam();
 	
@@ -93,18 +80,15 @@ public interface ClientBundleMobile extends ClientBundle {
 	@Source("image/ic-draw.png")
 	public ImageResource icDraw();
 	
+	@Source("image/avatar-na.jpg")
+	public ImageResource avatarNotAvailable();
+	
 	/* My Page */
 	@Source("image/ic-user.png")
 	public ImageResource icUser();
-
-	@Source("image/ic-user-back.png")
-	public ImageResource icUserBack();
 	
 	@Source("image/ic-team.png")
 	public ImageResource icTeam();
-
-	@Source("image/ic-team-back.png")
-	public ImageResource icTeamBack();
 	
 	@Source("image/ic-games.png")
 	public ImageResource icGames();
@@ -128,6 +112,36 @@ public interface ClientBundleMobile extends ClientBundle {
 	@Source("image/ic-nation.png")
 	public ImageResource icNation();
 	
+	@Source("image/leagues/england.png")
+	public ImageResource icNationEngland();
+	
+	@Source("image/leagues/germany.png")
+	public ImageResource icNationGermany();
+	
+	@Source("image/leagues/france.png")
+	public ImageResource icNationFrance();
+	
+	@Source("image/leagues/italia.jpg")	
+	public ImageResource icNationItalia();
+	
+	@Source("image/leagues/spain.png")	
+	public ImageResource icNationSpain();
+	
+	@Source("image/leagues/premier-league.jpg")
+	public ImageResource icLeaguePremierLeague();
+	
+	@Source("image/leagues/seria-a.jpg")
+	public ImageResource icLeagueSeriaA();
+	
+	@Source("image/leagues/bundesliga.png")
+	public ImageResource icLeagueBundesliga();
+	
+	@Source("image/leagues/primera-division.jpg")	
+	public ImageResource icLeaguePrimeraDivision();
+	
+	@Source("image/leagues/league-1.jpg")	
+	public ImageResource icLeagueLeagueOne();
+	
 	/* Team */
 	@Source("image/manager.jpg")
 	public ImageResource icManagerTemp();
@@ -148,14 +162,8 @@ public interface ClientBundleMobile extends ClientBundle {
 	@Source("image/ic-chat.png")
 	public ImageResource icChatRoom();
 	
-	@Source("image/ic-chat-back.png")
-	public ImageResource icChatRoomBack();
-	
 	@Source("image/ic-bet.png")
 	public ImageResource icBetting();
-	
-	@Source("image/ic-bet-back.png")
-	public ImageResource icBettingBack();
 	
 	@Source("image/ic-smile.png")
 	public ImageResource icSmile();
@@ -189,14 +197,8 @@ public interface ClientBundleMobile extends ClientBundle {
 	@Source("image/ic-inventory.png")
 	public ImageResource icInventory();
 	
-	@Source("image/ic-inventory-back.png")
-	public ImageResource icInventoryBack();
-
 	@Source("image/ic-store.png")
 	public ImageResource icStore();
-	
-	@Source("image/ic-store-back.png")
-	public ImageResource icStoreBack();
 	
 	@Source("image/ball.jpg")
 	public ImageResource icItemBall();
@@ -277,6 +279,21 @@ public interface ClientBundleMobile extends ClientBundle {
 		
 		@Source("lbGameKCQuestion")
 		String lbGameKCQuestion();
+		
+		@Source("tabPanelBottom")
+		String tabPanelBottom();
+		
+		@Source("lbGroupMatchTitle")
+		String lbGroupMatchTitle();
+		
+		@Source("pnMyPageInfo")
+		String pnMyPageInfo();
+		
+		@Source("btSSLarge")
+		String btSSLarge();
+		
+		@Source("btSS")
+		String btSS();
 	}
 	
 	public interface StyleNextMatch extends CssResource{

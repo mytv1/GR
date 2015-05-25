@@ -2,6 +2,7 @@ package giddyhero.soccersystem.client.mobile.activities.league;
 
 import giddyhero.soccersystem.client.mobile.activities.basic.BasicView;
 import giddyhero.soccersystem.client.mobile.activities.league.LeagueViewImpl.MModelNation;
+import giddyhero.soccersystem.client.mobile.activities.league.LeagueViewImpl.PanelNationLeague.PanelLeague;
 import giddyhero.soccersystem.shared.model.News;
 
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ import com.google.gwt.event.dom.client.HasClickHandlers;
 
 public interface LeagueView  extends BasicView {
 
-	List<HasClickHandlers> setData(List<MModelNation> nations);
+	List<PanelLeague> setData(List<MModelNation> nations);
 
 	
 }

@@ -24,14 +24,14 @@ public class PanelPlayerStatistics extends FlexTable{
 	}
 
 	private void init() {
-		addRow("Goal", "54");
-		addRow("Assist", "32");
-		addRow("Appearance", "55");
-		addRow("Goal per match", "0.98");
-		addRow("Red Card", "0");
-		addRow("Yellow Card", "5");
-		addRow("Fouls", "32");
-		addRow("Tackles", "30");
+		addRow("Goal", "N/A");
+		addRow("Assist", "N/A");
+		addRow("Appearance", "N/A");
+		addRow("Goal per match", "N/A");
+		addRow("Red Card", "N/A");
+		addRow("Yellow Card", "N/A");
+		addRow("Fouls", "N/A");
+		addRow("Tackles", "N/A");
 
 	}
 	private void style() {

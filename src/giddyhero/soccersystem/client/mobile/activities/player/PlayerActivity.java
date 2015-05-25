@@ -2,6 +2,7 @@ package giddyhero.soccersystem.client.mobile.activities.player;
 
 import giddyhero.soccersystem.client.mobile.activities.ClientFactory;
 import giddyhero.soccersystem.client.mobile.activities.basic.BasicActivity;
+import giddyhero.soccersystem.shared.model.Player;
 
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
@@ -20,12 +21,16 @@ public class PlayerActivity extends BasicActivity{
 	public void start(AcceptsOneWidget panel, EventBus eventBus) {
 		super.start(panel, eventBus);
 		panel.setWidget(view);
+		view.setHeaderTitle("Player");
 		bind();
 	}
 	
 	@Override
 	public void bind() {
-		view.setHeaderTitle("Player");
+		PlayerPlace playerPlace = (PlayerPlace)place;
+		Player player = playerPlace.getPlayer();
+		if (player != null)
+		view.setPlayerInfo(player.name,player.birth,player.avatarUrl,player.nationality,player.position,player.jerseyNumber);
 	}
 
 }

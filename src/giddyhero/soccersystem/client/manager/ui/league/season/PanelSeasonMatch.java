@@ -93,6 +93,7 @@ public class PanelSeasonMatch extends FlowPanel {
 					@Override
 					public void onSuccess(Integer result) {
 						Window.alert("Delete successful " + result + " matches");
+						tblCreated.matchProvider.getList().clear();
 					}
 				});
 			}

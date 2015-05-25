@@ -8,6 +8,7 @@ import giddyhero.soccersystem.client.manager.ui.widget.ButtonMenuLevel1;
 import giddyhero.soccersystem.client.manager.ui.widget.ButtonMenuLevel2;
 import giddyhero.soccersystem.client.manager.ui.widget.TestDataGrid;
 import giddyhero.soccersystem.client.manager.widget.GHFlowPanel;
+import giddyhero.soccersystem.client.share.CSSUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,9 +36,14 @@ public class MainPage extends DockLayoutPanel {
 	public MainPage() {	
 		super(Unit.PX);
 		init();
-//		addNewCenterContent(new WindowMatchUpdate());
+		style();
 	}
 	
+
+	private void style() {
+		
+	}
+
 
 	private void init() {
 		initNorth();
@@ -60,21 +66,22 @@ public class MainPage extends DockLayoutPanel {
 		
 		Style style = pnWest.getElement().getStyle();
 		style.setProperty("borderRight", "solid");
-		style.setProperty("borderRightWidth", "5px");
+		style.setProperty("borderRightWidth", "2px");
 		style.setProperty("borderRightColor", "#AAAAAA");
+		style.setBackgroundColor(CSSUtils.Manager.MENU_BACKGROUND_COLOR);
 		
 		List<ButtonMenuLevel1> menu = new ArrayList<ButtonMenuLevel1>();
 		
 		initLeagueButtonFunction();
 		initTeamButtonFunction();
 		initPlayerButtonFunction();
-		initMatchButtonFunction();
+//		initMatchButtonFunction();
 		initNewsButtonFunction();
 	
 		menu.add(btLeague);
 		menu.add(btTeam);
 		menu.add(btPlayer);
-		menu.add(btMatch);
+//		menu.add(btMatch);
 		menu.add(btNews);
 		
 		for (ButtonMenuLevel1 buttonExpandMenu : menu) {

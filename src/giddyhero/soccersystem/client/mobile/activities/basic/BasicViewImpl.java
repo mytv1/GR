@@ -14,6 +14,7 @@ import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.HandlerRegistration;
+import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Image;
@@ -41,7 +42,7 @@ public class BasicViewImpl extends HorizontalPanel implements BasicView {
 		});
 
 		
-		pnMenu.pnSelectors[0].img.addClickHandler(new ClickHandler() {
+		pnMenu.pnSelectors[0].addClickHandler(new ClickHandler() {
 
 			@Override
 			public void onClick(ClickEvent event) {
@@ -50,7 +51,7 @@ public class BasicViewImpl extends HorizontalPanel implements BasicView {
 			}
 		});
 
-		pnMenu.pnSelectors[1].img.addClickHandler(new ClickHandler() {
+		pnMenu.pnSelectors[1].addClickHandler(new ClickHandler() {
 
 			@Override
 			public void onClick(ClickEvent event) {
@@ -59,7 +60,7 @@ public class BasicViewImpl extends HorizontalPanel implements BasicView {
 			}
 		});
 		
-		pnMenu.pnSelectors[2].img.addClickHandler(new ClickHandler() {
+		pnMenu.pnSelectors[2].addClickHandler(new ClickHandler() {
 
 			@Override
 			public void onClick(ClickEvent event) {
@@ -69,7 +70,7 @@ public class BasicViewImpl extends HorizontalPanel implements BasicView {
 			}
 		});
 		
-		pnMenu.pnSelectors[3].img.addClickHandler(new ClickHandler() {
+		pnMenu.pnSelectors[3].addClickHandler(new ClickHandler() {
 
 			@Override
 			public void onClick(ClickEvent event) {
@@ -78,7 +79,7 @@ public class BasicViewImpl extends HorizontalPanel implements BasicView {
 			}
 		});
 		
-		pnMenu.pnSelectors[4].img.addClickHandler(new ClickHandler() {
+		pnMenu.pnSelectors[4].addClickHandler(new ClickHandler() {
 
 			@Override
 			public void onClick(ClickEvent event) {
@@ -87,7 +88,7 @@ public class BasicViewImpl extends HorizontalPanel implements BasicView {
 			}
 		});
 		
-		pnMenu.pnSelectors[5].img.addClickHandler(new ClickHandler() {
+		pnMenu.pnSelectors[5].addClickHandler(new ClickHandler() {
 
 			@Override
 			public void onClick(ClickEvent event) {
@@ -95,15 +96,6 @@ public class BasicViewImpl extends HorizontalPanel implements BasicView {
 				pnMenu.setHighlight("store");
 			}
 		});
-		
-//		pnMenu.pnSelectors[4].img.addClickHandler(new ClickHandler() {
-//
-//			@Override
-//			public void onClick(ClickEvent event) {
-//				MobileEntryPoint.clientFactory.getPlaceController().goTo(new TeamPlace());
-//				pnMenu.setHighlight("teams");
-//			}
-//		});
 		
 	}
 
@@ -145,7 +137,11 @@ public class BasicViewImpl extends HorizontalPanel implements BasicView {
 
 				@Override
 				public void onClick(ClickEvent event) {
-					History.back();
+					BasicPlace oldPlace = ((BasicPlace)MobileEntryPoint.clientFactory.getPlaceController().getWhere()).backPlace; 
+					if (oldPlace == null)
+						History.back();
+					else
+						MobileEntryPoint.clientFactory.getPlaceController().goTo(oldPlace);
 				}
 			});
 
@@ -191,11 +187,11 @@ public class BasicViewImpl extends HorizontalPanel implements BasicView {
 	@Override
 	public void setHeaderTitle(String str) {
 		pnMain.pnHeader.lbTitle.setText(str);
-		if (str.equalsIgnoreCase("Knowledge Challenge"))
-		{
-			pnMain.pnHeader.lbTitle.getElement().getStyle().setFontSize(230, Unit.PCT);
-		}else
-			pnMain.pnHeader.lbTitle.getElement().getStyle().setFontSize(300, Unit.PCT);
+//		if (str.equalsIgnoreCase("Knowledge Challenge"))
+//		{
+//			pnMain.pnHeader.lbTitle.getElement().getStyle().setFontSize(230, Unit.PCT);
+//		}else
+//			pnMain.pnHeader.lbTitle.getElement().getStyle().setFontSize(300, Unit.PCT);
 	}
 
 }

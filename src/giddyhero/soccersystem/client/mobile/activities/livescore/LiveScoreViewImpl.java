@@ -3,6 +3,8 @@ package giddyhero.soccersystem.client.mobile.activities.livescore;
 import giddyhero.soccersystem.client.mobile.activities.basic.BasicViewImpl;
 import giddyhero.soccersystem.client.mobile.activities.match.PanelGroupMatch;
 import giddyhero.soccersystem.client.mobile.resources.ClientBundleMobile;
+import giddyhero.soccersystem.client.mobile.widget.SSTabBarButton;
+import giddyhero.soccersystem.client.mobile.widget.SSTabPanel;
 import giddyhero.soccersystem.client.share.CSSUtils;
 import giddyhero.soccersystem.shared.model.MatchDetailShort;
 
@@ -11,13 +13,15 @@ import java.util.ArrayList;
 import com.google.gwt.dom.client.Style.Unit;
 import com.googlecode.mgwt.ui.client.widget.panel.scroll.ScrollPanel;
 import com.googlecode.mgwt.ui.client.widget.tabbar.TabBarAppearance;
-import com.googlecode.mgwt.ui.client.widget.tabbar.TabBarButton;
 import com.googlecode.mgwt.ui.client.widget.tabbar.TabPanel;
 
 public class LiveScoreViewImpl extends BasicViewImpl implements LiveScoreView {
 	PanelGroupMatch pnGroupPlaying;
 	PanelGroupMatch pnGroupPrevious;
 	PanelGroupMatch pnGroupUpcomming;
+	SSTabPanel tabPanel = new SSTabPanel();
+	SSTabBarButton btPlaying = new SSTabBarButton( ClientBundleMobile.INST.get().liveScorePlaying(), "Playing"), btPrevious = new SSTabBarButton( ClientBundleMobile.INST.get().liveScorePrevious(), "Previous"),
+			btUpComming = new SSTabBarButton(ClientBundleMobile.INST.get().liveScoreUpcomming(), "Upcoming");
 
 	public LiveScoreViewImpl() {
 		super();
@@ -66,66 +70,21 @@ public class LiveScoreViewImpl extends BasicViewImpl implements LiveScoreView {
 		pnGroupUpcomming = new PanelGroupMatch("Bundesliga");
 		pnGroupUpcomming.setMatchList(listUpcommingMatch);
 
-		TabPanel tabPanel = new TabPanel();
-		CSSUtils.Mobile.setSizePercent(tabPanel, 1f, 0.9f);
-		tabPanel.add(new ButtonMatchPlaying(), pnGroupPlaying);
+		CSSUtils.Mobile.setSizePercent(tabPanel, 1f, 0.91f);
+		tabPanel.add(btPlaying, pnGroupPlaying);
 
-		tabPanel.add(new ButtonMatchPrevious(),pnGroupPrevious);
+		tabPanel.add(btPrevious, pnGroupPrevious);
 
 		ScrollPanel sp = new ScrollPanel();
 		sp.setWidget(pnGroupUpcomming);
-		CSSUtils.Mobile.setSizePercent(sp, 1f, 0.8f);
-		tabPanel.add(new ButtonMatchUpcomming(), sp );
-		
+		CSSUtils.Mobile.setSizePercent(sp, 1f, 0.83f);
+		tabPanel.add(btUpComming, sp);
+		tabPanel.setSelectionHandler(btPlaying,btPrevious,btUpComming); 
 		pnMain.pnMiddle.add(tabPanel);
 		pnMain.pnScroll.setScrollingEnabledY(false);
-	}
-	
-	class ButtonMatchPlaying  extends TabBarButton {
-
-		public ButtonMatchPlaying() {
-			this(TabPanel.DEFAULT_APPEARANCE);
-		}
-
-		public ButtonMatchPlaying(TabBarAppearance appearance) {
-			super(appearance, ClientBundleMobile.INST.get().liveScorePlaying(),
-					 ClientBundleMobile.INST.get().liveScorePlayingBack());
-
-			setText("Playing");
-			text.getStyle().setTop(2, Unit.PX);
-		}
-	}
-	
-	class ButtonMatchPrevious  extends TabBarButton {
-
-		public ButtonMatchPrevious() {
-			this(TabPanel.DEFAULT_APPEARANCE);
-		}
-
-		public ButtonMatchPrevious(TabBarAppearance appearance) {
-			super(appearance, ClientBundleMobile.INST.get().liveScorePrevious(),
-					 ClientBundleMobile.INST.get().liveScorePreviousBack());
-
-			setText("Previous");
-			text.getStyle().setTop(2, Unit.PX);
-		}
-	}
-
-	class ButtonMatchUpcomming  extends TabBarButton {
-
-		public ButtonMatchUpcomming() {
-			this(TabPanel.DEFAULT_APPEARANCE);
-		}
-
-		public ButtonMatchUpcomming(TabBarAppearance appearance) {
-			super(appearance, ClientBundleMobile.INST.get().liveScoreUpcomming(),
-					 ClientBundleMobile.INST.get().liveScoreUpcommingBack());
-
-			setText("Upcomming");
-			text.getStyle().setTop(2, Unit.PX);
-		}
 	}
 
 
 
 }
+

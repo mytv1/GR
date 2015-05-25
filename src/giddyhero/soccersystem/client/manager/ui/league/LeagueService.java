@@ -38,6 +38,8 @@ public interface LeagueService extends RemoteService {
 	Season saveSeason(Season season);
 	
 	void deleteSeason(long id);
+	
+	Season getRecentSeasonName(String seasonName);
 
 	/* <-------------------- Season --------------------> */
 	/* <-------------------- Match --------------------> */

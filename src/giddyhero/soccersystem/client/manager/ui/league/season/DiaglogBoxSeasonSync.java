@@ -42,7 +42,7 @@ class DialogBoxSeasonSync extends DialogBox {
 		container.add(hpButton);
 
 		CSSUtils.setMarginCenter(hpButton);
-		
+		cbInfo.setVisible(false);
 		cbPlayers.setVisible(false);
 		cbTeams.addClickHandler(new ClickHandler() {
 			

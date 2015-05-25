@@ -1,5 +1,6 @@
 package giddyhero.soccersystem.client.mobile.activities.match;
 
+import giddyhero.soccersystem.client.mobile.resources.ClientBundleMobile;
 import giddyhero.soccersystem.shared.model.MatchDetailShort;
 
 import java.util.List;
@@ -26,18 +27,18 @@ public class PanelGroupMatch extends VerticalPanel {
 	private void initBaseParam() {
 		Style style;
 		style = getElement().getStyle();
-		style.setBackgroundColor("#eeeeee");
+//		style.setBackgroundColor("#eeeeee");
 		style.setMarginBottom(2, Unit.PCT);
 	}
 
 	private void initElements(String title) {
-
 		Style style;
 		lbGroupTitle.setText(title);
-		style = lbGroupTitle.getElement().getStyle();
-		style.setBackgroundColor("#666666");
-		style.setPadding(1, Unit.PCT);
-		style.setColor("#FFFFFF");
+		lbGroupTitle.addStyleName(ClientBundleMobile.INST.get().style().lbGroupMatchTitle());
+//		style = lbGroupTitle.getElement().getStyle();
+//		style.setBackgroundColor("#666666");
+//		style.setPadding(1, Unit.PCT);
+//		style.setColor("#FFFFFF");
 		add(lbGroupTitle);
 
 		add(vpMatches);

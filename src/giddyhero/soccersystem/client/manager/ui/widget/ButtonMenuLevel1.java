@@ -3,6 +3,8 @@ package giddyhero.soccersystem.client.manager.ui.widget;
 import giddyhero.soccersystem.client.manager.widget.GHFlowPanel;
 import giddyhero.soccersystem.client.share.CSSUtils;
 
+import com.google.gwt.dom.client.Style;
+import com.google.gwt.dom.client.Style.BorderStyle;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Label;
@@ -16,9 +18,18 @@ public class ButtonMenuLevel1 extends GHFlowPanel{
 		super();
 		initBtParent(btParentName);
 		initHolder();
+		style();
 	}
 	
 	
+	private void style() {
+		Style style =	getElement().getStyle();
+		style.setProperty("borderBottom", "solid");
+		style.setProperty("borderBottomWidth", "2px");
+		style.setProperty("borderBottomColor", "white");
+	}
+
+
 	private void initHolder() {
 		add(pnHolder);
 //		pnHolder.setWidth(btParent.getGhFlowPanel().getPixelWidth());

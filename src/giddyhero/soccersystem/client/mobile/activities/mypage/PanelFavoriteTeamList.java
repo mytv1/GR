@@ -18,10 +18,11 @@ import com.googlecode.mgwt.ui.client.widget.button.Button;
 
 public class PanelFavoriteTeamList extends VerticalPanel{
 
-	Button btAdd = new Button("Add Team");
+	Button btAdd = new Button("Add Your Favourite Team");
 	
 	public PanelFavoriteTeamList() {
 		super();
+		btAdd.addStyleName(ClientBundleMobile.INST.get().style().btSSLarge());
 		add(btAdd);
 		
 		PlayerWidget teamWidget1 = new PlayerWidget();
@@ -58,7 +59,8 @@ public class PanelFavoriteTeamList extends VerticalPanel{
 			CSSUtils.Mobile.setSizePercent(PlayerWidget.this, 0.95f, 0.2f);
 			Style style = getElement().getStyle();
 			style.setBorderStyle(BorderStyle.SOLID);
-			style.setBackgroundColor("#9d9d9d");
+			style.setBackgroundColor(CSSUtils.Mobile.BACKGROUND_COLOR);
+			style.setColor(CSSUtils.Mobile.TEXT_COLOR);
 			style.setMarginLeft(2.5, Unit.PCT);
 			style.setMarginBottom(2.5, Unit.PCT);
 			style.setProperty("borderTopLeftRadius", "10px");
@@ -75,6 +77,7 @@ public class PanelFavoriteTeamList extends VerticalPanel{
 			add(imgLogo);
 			
 			VerticalPanel vp = new VerticalPanel();
+			vp.getElement().getStyle().setMarginTop(5, Unit.PCT);
 			add(vp);
 			
 			style = lbName.getElement().getStyle();

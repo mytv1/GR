@@ -32,4 +32,10 @@ public class PlayerViewImpl extends BasicViewImpl implements PlayerView {
 		pnMain.pnMiddle.add(pnStatistics);
 	}
 
+	@Override
+	public void setPlayerInfo(String name, String birth, String avatarUrl, String nationality, String position,
+			int jerseyNumber) {
+		pnInfo.setPlayerInfo(name,birth,avatarUrl,nationality,position,jerseyNumber);
+	}
+
 }

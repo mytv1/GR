@@ -20,6 +20,7 @@ public class PanelFavoritePlayerList extends VerticalPanel {
 
 	public PanelFavoritePlayerList() {
 		super();
+		btAdd.addStyleName(ClientBundleMobile.INST.get().style().btSSLarge());
 		add(btAdd);
 
 		TeamWidget teamWidget1 = new TeamWidget();
@@ -58,7 +59,8 @@ public class PanelFavoritePlayerList extends VerticalPanel {
 			CSSUtils.Mobile.setSizePercent(TeamWidget.this, 0.95f, 0.2f);
 			Style style = getElement().getStyle();
 			style.setBorderStyle(BorderStyle.SOLID);
-			style.setBackgroundColor("#9d9d9d");
+			style.setBackgroundColor(CSSUtils.Mobile.BACKGROUND_COLOR);
+			style.setColor(CSSUtils.Mobile.TEXT_COLOR);
 			style.setMarginLeft(2.5, Unit.PCT);
 			style.setMarginBottom(2.5, Unit.PCT);
 			style.setProperty("borderTopLeftRadius", "10px");
@@ -75,6 +77,7 @@ public class PanelFavoritePlayerList extends VerticalPanel {
 			add(imgLogo);
 
 			VerticalPanel vp = new VerticalPanel();
+			vp.getElement().getStyle().setMarginTop(5, Unit.PCT);
 			add(vp);
 
 			style = lbName.getElement().getStyle();

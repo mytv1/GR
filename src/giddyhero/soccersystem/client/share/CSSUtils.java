@@ -14,6 +14,8 @@ public class CSSUtils {
 	public static class Mobile{
 		public static int WIDTH_DESIGN = 800, HEIGHT_DESIGN = 1280;
 		public static int WIDTH_DEVICE = 0, HEIGHT_DEVICE = 0;
+		public static String BACKGROUND_COLOR = "green";
+		public static String TEXT_COLOR = "white";
 		
 		static{
 			WIDTH_DEVICE = Window.getClientWidth();
@@ -48,6 +50,12 @@ public class CSSUtils {
 //			Window.alert("hp : "+hP+" - h "+h+" Height device : "+HEIGHT_DEVICE);
 		}
 		
+	}
+	
+	public static class Manager{
+		public static final String MENU_BACKGROUND_COLOR = "white";
+		public static final String MENU_BACKGROUND_HIGH_LIGHT = "darkgray";
+		public static final String MENU_TEXT_COLOR = "black";
 	}
 	
 	public static String COLOR_DIV = "#DADADA";
