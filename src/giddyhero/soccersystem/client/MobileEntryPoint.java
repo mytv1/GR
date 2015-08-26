@@ -54,6 +54,7 @@ public class MobileEntryPoint implements EntryPoint {
 				.create(PlayerService.class);
 		public final static TeamServiceAsync team = GWT
 				.create(TeamService.class);
+	
 	}
 
 	@Override
